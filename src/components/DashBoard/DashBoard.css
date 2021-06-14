@@ -7,16 +7,16 @@
 }
 
 .top-row {
-    height: 90px;
+
     background-color: white;
-    border-radius:9px;
+    border-radius: 9px;
     margin-top: 5px;
 }
 
 .bottom-row {
-    /*height: 220px;*/
+
     background-color: white;
-    border-radius:9px;
+    border-radius: 9px;
     margin-bottom: 25px;
 }
 
@@ -29,3 +29,29 @@ li {
     padding-top: 15px
 }
 
+.line {
+    border-bottom: 1px solid black;
+}
+
+
+.right-box {
+    border: 1px solid white;
+    width: 250px;
+}
+
+.left-box {
+    border: 1px solid white;
+    width: 250px;
+
+}
+
+.center-box {
+    border-left: 0.1rem solid gray;
+    border-right: 0.1rem solid gray;
+    width: 250px;
+
+}
+
+h2 {
+    color: dodgerblue;
+}
