@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import footer from './components/footer'
+import footer from "./components/footer";
 import { Row, Col, Container } from "react-bootstrap"
 
 function App() {
