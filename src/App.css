@@ -1,1 +1,46 @@
+body{
+    background-color: #f3f2ef!important;
+  }
+.icon-1{
+    justify-content: center;
+    align-items: center;
+}
 
+svg{
+    color: rgb(102, 100, 100);
+}
+
+.navlink {
+    width: 90px;
+    align-items: center;
+}
+.dropmenu{
+    display: flex;
+    width: 90px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 0 !important;
+    border-right: 1pt solid rgb(211, 210, 210);
+}
+ .dropdown title {
+    padding: 0 !important;
+}
+.gridmenu{
+    display: flex;
+    width: 90px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 0 !important;
+}
+
+.premiumLink{
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    color: rgb(167, 124, 16);
+}
+.premiumLink:hover{
+    text-decoration: underline;
+}
