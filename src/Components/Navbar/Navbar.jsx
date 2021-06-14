@@ -1,6 +1,7 @@
 import {Button,Col,Container,Form,FormControl,Image,Nav,Navbar,NavDropdown} from 'react-bootstrap'
 import logo from "./assets/logo.png"
 import pp from "./assets/putin.jpeg"
+import styles from "./Navbar.module.css"
 
 const NavBar = () =>{
 
@@ -25,7 +26,7 @@ const NavBar = () =>{
         
         <Nav className="nav-h6 d-flex">
 
-        <Nav.Link href="#home" className="d-flex flex-column navlink" >
+        <Nav.Link href="#home" className={ styles.navlink} >
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" className="bi bi-house-fill" viewBox="0 0 16 16">
         <path fillRule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
         <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
@@ -33,7 +34,7 @@ const NavBar = () =>{
         <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} >Home</h6>
         </Nav.Link> 
             
-        <Nav.Link href="#link" className="d-flex flex-column navlink">
+        <Nav.Link href="#link" className={ styles.navlink}>
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" className="bi bi-people-fill" viewBox="0 0 16 16">
         <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
         <path fillRule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.323 6.323 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
@@ -42,7 +43,7 @@ const NavBar = () =>{
         <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} > My Network</h6>
         </Nav.Link>
 
-        <Nav.Link href="#link" className="d-flex flex-column navlink">
+        <Nav.Link href="#link" className={ styles.navlink}>
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" className="bi bi-briefcase-fill" viewBox="0 0 16 16">
         <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
         <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.238 0L0 6.85v5.65z"/>
@@ -50,21 +51,22 @@ const NavBar = () =>{
         <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} >Jobs</h6>
         </Nav.Link>
 
-        <Nav.Link href="#link" className="d-flex flex-column navlink" >
+        <Nav.Link href="#link" className={ styles.navlink} >
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" className="bi bi-chat-dots-fill" viewBox="0 0 16 16">
         <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.923.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
         </svg>
         <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} >Messaging</h6>
         </Nav.Link>
 
-        <Nav.Link href="#link" className="d-flex flex-column navlink">
+        <Nav.Link href="#link" className={ styles.navlink}>
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" className="bi bi-bell-fill" viewBox="0 0 16 16">
         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
         </svg>
         <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} >Notifications</h6>
         </Nav.Link>
-            <div className="d-flex flex-column align-items-center dropmenu"> 
-                <img src={pp} style={{height:'26px', width:'26px',objectFit:'cover',borderRadius:'13px'}} />
+
+            <div className={ styles.dropmenu}> 
+                <img src={pp} className={styles.dropmenuImg} />
             <NavDropdown title="Me" className="meTitle"  id="basic-nav-dropdown" >
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -74,7 +76,7 @@ const NavBar = () =>{
             </NavDropdown>
             </div>
 
-            <div className="d-flex flex-column align-items-center gridmenu"> 
+            <div className={ styles.gridmenu}> 
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-grid-3x3-gap-fill" viewBox="0 0 16 16">
             <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
             </svg>            
@@ -87,8 +89,8 @@ const NavBar = () =>{
             </NavDropdown>
             </div>
 
-            <Nav.Link href="#link" className="d-flex flex-column">
-            <h6 className="mt-1 mb-0 premiumLink" >Try Premium for <br/> free</h6>
+            <Nav.Link href="#link" className={styles.navlink}>
+            <h6 className={ styles.premiumLink} >Try Premium for <br/> free</h6>
             </Nav.Link>
             
             </Nav>
