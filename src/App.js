@@ -1,17 +1,13 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import footer from "./components/footer";
-import { Row, Col, Container } from "react-bootstrap"
+
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Dashboard from "./components/DashBoard/DashBoard";
 
 function App() {
   return (
-    <Container>
-      <Row>
-        <Col xs={9}>
-          <footer />
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Dashboard />
+    </>
   );
 }
 

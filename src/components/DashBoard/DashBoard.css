@@ -1,0 +1,57 @@
+.card {
+    background: #dce6f1;
+    /*height: 450px;*/
+    border-radius: 10px;
+    width: 800px;
+
+}
+
+.top-row {
+
+    background-color: white;
+    border-radius: 9px;
+    margin-top: 5px;
+}
+
+.bottom-row {
+
+    background-color: white;
+    border-radius: 9px;
+    margin-bottom: 25px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    padding-left: 8px;
+    padding-top: 15px
+}
+
+.line {
+    border-bottom: 1px solid black;
+}
+
+
+.right-box {
+    border: 1px solid white;
+    width: 250px;
+}
+
+.left-box {
+    border: 1px solid white;
+    width: 250px;
+
+}
+
+.center-box {
+    border-left: 0.1rem solid gray;
+    border-right: 0.1rem solid gray;
+    width: 250px;
+
+}
+
+h2 {
+    color: dodgerblue;
+}
