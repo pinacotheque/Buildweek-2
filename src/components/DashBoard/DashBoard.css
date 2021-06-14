@@ -1,23 +1,23 @@
 .card {
     background: #dce6f1;
-    /*height: 450px;*/
     border-radius: 10px;
     width: 800px;
 
 }
 
 .top-row {
-
     background-color: white;
     border-radius: 9px;
     margin-top: 5px;
+    border: 1px solid #aaa8a8;
+
 }
 
 .bottom-row {
-
     background-color: white;
     border-radius: 9px;
     margin-bottom: 25px;
+    border: 1px solid #aaa8a8;
 }
 
 ul {
@@ -46,8 +46,8 @@ li {
 }
 
 .center-box {
-    border-left: 0.1rem solid gray;
-    border-right: 0.1rem solid gray;
+    border-left: 0.1rem solid #aaa8a8;
+    border-right: 0.1rem solid #aaa8a8;
     width: 250px;
 
 }
@@ -55,3 +55,4 @@ li {
 h2 {
     color: dodgerblue;
 }
+
