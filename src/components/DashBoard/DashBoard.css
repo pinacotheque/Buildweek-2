@@ -1,6 +1,6 @@
 .card {
     background: #dce6f1;
-    height: 450px;
+    /*height: 450px;*/
     border-radius: 10px;
     width: 800px;
 
@@ -14,7 +14,18 @@
 }
 
 .bottom-row {
-    height: 220px;
+    /*height: 220px;*/
     background-color: white;
     border-radius:9px;
+    margin-bottom: 25px;
 }
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    padding-left: 8px;
+    padding-top: 15px
+}
+
