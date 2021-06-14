@@ -4,6 +4,8 @@ import ProfileCard from './Components/ProfileCard/ProfileCard';
 import { Row, Col, Container } from "react-bootstrap"
 import InterestsCard from './Components/infoCards/InterestsCard';
 import EducationCard from './Components/infoCards/EducationCard';
+import SkillsEndorsements from './Components/infoCards/SkillsEndorsements';
+import Experience from './Components/infoCards/Experience';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Row>
         <Col xs={9}>
           <ProfileCard />
+          <SkillsEndorsements />
+          <Experience />
           <InterestsCard />
           <EducationCard />
         </Col>

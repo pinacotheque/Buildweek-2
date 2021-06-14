@@ -137,3 +137,62 @@
 .educationCol:last-of-type::after {
     border-bottom: none;
 }
+
+.takeQuizBtn {
+    color: rgb(10, 102, 194);
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    border-radius: 16px;
+    padding: 4px 16px;
+    margin-top: 6px;
+    border: none;
+    box-shadow: rgb(10, 102, 194) 0px 0px 0px 1px inset;
+}
+
+.takeQuizBtn:hover {
+    background-color: rgba(112, 181, 249, 0.2);
+    box-shadow: rgb(10, 102, 194) 0px 0px 0px 2px inset;
+}
+
+.takeQuizBtn:active {
+    background-color: rgba(112, 181, 249, 0.3);
+    color: rgb(0, 65, 130);
+    box-shadow: rgb(0, 65, 130) 0px 0px 0px 2px inset;
+}
+
+.skillsCol {
+    border-bottom: 1px solid rgba(110, 110, 110, 0.274);
+}
+
+.skillsCol:last-of-type {
+    border-bottom: none;
+}
+
+.skillsCol p:nth-of-type(1) {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+.skillsCol p:nth-of-type(2) {
+    color: #767676;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.skillsCol p strong {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.skillsCol span::before {
+    content: '\00B7';
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 3px;
+}
+
+.skillsCol span {
+    color: rgba(0, 0, 0, 0.6);
+}
