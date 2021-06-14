@@ -27,3 +27,59 @@ const MyFooter = () => (
           </svg>
         </div>
 
+        <Nav.Link className="footer-links ">About</Nav.Link>
+        <Nav.Link className="footer-links ">Comunity Guidelines</Nav.Link>
+        <Nav.Link className="footer-links ">Privacy $ Terms</Nav.Link>
+        <Nav.Link className="footer-links ">Sales Solutions</Nav.Link>
+        <Nav.Link className="footer-links ">Safety Center</Nav.Link>
+
+        <div className="footer-copyright">LinkedIn Corporation © 2021</div>
+      </Col>
+
+      <Col className="mt-5">
+        <Nav.Link className="footer-links ">Accesibility</Nav.Link>
+        <Nav.Link className="footer-links ">Careers</Nav.Link>
+        <Nav.Link className="footer-links ">Ad choices</Nav.Link>
+        <Nav.Link className="footer-links ">Mobile</Nav.Link>
+      </Col>
+      <Col className="mt-5">
+        <Nav.Link className="footer-links ">Talent Solutions</Nav.Link>
+        <Nav.Link className="footer-links ">Marketing Solutions</Nav.Link>
+        <Nav.Link className="footer-links ">Advertising</Nav.Link>
+        <Nav.Link className="footer-links ">Small Business</Nav.Link>
+      </Col>
+      <Col className="mt-5">
+        <Nav.Link className="footer-links-icons ">
+          <AiFillQuestionCircle className="icons-footer-style" />
+          Questions?
+        </Nav.Link>
+        <p className="footer-undertext">Visit our help center</p>
+
+        <Nav.Link className="footer-links-icons ">
+          <AiFillSetting className="icons-footer-style" /> Manage your account
+          and privacy
+        </Nav.Link>
+        <p className="footer-undertext">Go to your settings</p>
+        <Nav.Link className="footer-links ">Corporate information</Nav.Link>
+      </Col>
+      <Col className="mt-5">
+        <Form>
+          <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Label className="footer-links-language ">
+              Select language
+            </Form.Label>
+
+            <Form.Control size="sm" as="select">
+              <option>English</option>
+              <option>Deutsch</option>
+              <option>French</option>
+              <option>Italian</option>
+              <option>Spanish</option>
+            </Form.Control>
+          </Form.Group>
+        </Form>
+      </Col>
+    </Row>
+  </Container>
+);
+export default MyFooter;
