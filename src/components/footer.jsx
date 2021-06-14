@@ -28,3 +28,12 @@ const MyFooter = () => (
             </g>
           </svg>
         </div>
+
+        <Nav.Link className="footer-links ">About</Nav.Link>
+        <Nav.Link className="footer-links ">Comunity Guidelines</Nav.Link>
+        <Nav.Link className="footer-links ">Privacy $ Terms</Nav.Link>
+        <Nav.Link className="footer-links ">Sales Solutions</Nav.Link>
+        <Nav.Link className="footer-links ">Safety Center</Nav.Link>
+
+        <div className="footer-copyright">LinkedIn Corporation © 2021</div>
+      </Col>
