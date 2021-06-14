@@ -1,0 +1,139 @@
+.iconBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    border-radius: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 8px;
+}
+
+.iconBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.iconBtn:active {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.textBtn {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+    min-height: 32px;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+}
+
+.textBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.infoCard {
+    background-color: white;
+    margin-top: 16px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.mainInfoCardHeader {
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+
+.secondaryInfoCardHeader {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.interests {
+    padding-right: 24px;
+    margin-bottom: 24px;
+}
+
+.interests img {
+    width: 56px;
+    height: 56px;
+    margin-right: 24px;
+}
+
+.interests h3 {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 3px;
+}
+
+.interests p {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.education {
+    margin-bottom: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.education button {
+    margin-top: -10px;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.education:hover button {
+    opacity: 1;
+}
+
+.education img {
+    width: 56px;
+    height: 56px;
+    margin-right: 24px;
+}
+
+.education h3 {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 1px;
+}
+
+.education p:nth-of-type(1) {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.education p:nth-of-type(2) {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+.educationCol {
+    position: relative;
+}
+.educationCol::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -24px;
+    width: 93%;
+    border-bottom: 1px solid rgba(110, 110, 110, 0.274);
+}
+
+.educationCol:last-of-type::after {
+    border-bottom: none;
+}
