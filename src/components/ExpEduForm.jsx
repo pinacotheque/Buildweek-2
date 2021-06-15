@@ -1,11 +1,7 @@
-import { Component } from "react";
-import { Button, Modal, Row } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Modal, Form} from "react-bootstrap";
 import CloseIcon from "@material-ui/icons/Close";
-import ModalDialog from "react-bootstrap/ModalDialog";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import "./ExpEduForm.css";
 
 import { useState } from 'react'
@@ -15,22 +11,57 @@ const ExpEduForm = (props) => {
   const [checked, setChecked] = useState(false)
   const [experience, setExperience] = useState(
     {
-      role: "",
-      company: "",
-      area: "",
-      startDate: "",
-      endDate: "",
-      description: "",
+      role: props.edit != null ? props.edit.role : '',
+      company: props.edit != null ? props.edit.company : '',
+      area: props.edit != null ? props.edit.area : '',
+      startDate: props.edit != null ? props.edit.startDate : '',
+      endDate: props.edit != null ? props.edit.endDate : '',
+      description: props.edit != null ? props.edit.description : '',
     }
   )
-
+  console.log(experience.role, props.edit.role, experience.area, props.edit.area)
   const changeData = (id, value) => {
     const exp = {...experience, [id]: value}
     setExperience(exp)
   }
 
-  const postExperience = async () => {
-    const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/:userId/experiences")
+  const postExperience = async (e) => {
+    e.preventDefault()
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences`, {
+      method: "POST",
+      body: JSON.stringify(experience),
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    })
+    if(response.ok) {
+      props.closeFunc()
+    } else {
+      console.log("error with posting experience")
+    }
+  }
+
+  const putExperience = async (e) => {
+    e.preventDefault()
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences/${props.edit._id}`, {
+      method: "PUT",
+      body: JSON.stringify(experience),
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    })
+    if(response.ok) {
+      props.reload()
+      props.closeFunc()
+    } else {
+      console.log("error with posting experience")
+    }
+  }
+
+  const doExperience = (e) => {
+    props.edit ? putExperience(e) : postExperience(e)
   }
 
   return (
@@ -42,7 +73,7 @@ const ExpEduForm = (props) => {
         scrollable={true}
         style={{ height: "100vh" }}
       >
-          
+      <Form onSubmit={(e) => doExperience(e)}>
           <Modal.Header>
           <Modal.Title>Add Experience</Modal.Title>
           <div
@@ -112,7 +143,7 @@ const ExpEduForm = (props) => {
               id="area"
               placeholder="Ex:London,United Kingdom"
               aria-describedby="basic-addon3"
-              value={experience.location}
+              value={experience.area}
               onChange={(e) => changeData(e.target.id, e.target.value)}
               required
             />
@@ -163,7 +194,7 @@ const ExpEduForm = (props) => {
                 id="startDate"
                 className="mx-3"
                 required
-                value={experience.startDate}
+                value={experience.startDate.slice(0,10)}
                 onChange={(e) => changeData(e.target.id, e.target.value)}
               />
               {!experience.startDate && (
@@ -179,7 +210,7 @@ const ExpEduForm = (props) => {
                   id="endDate"
                   className="mx-3"
                   required
-                  value={experience.endDate}
+                  value={experience.endDate.slice(0,10)}
                   onChange={(e) => changeData(e.target.id, e.target.value)}
                 />
               )}
@@ -199,29 +230,7 @@ const ExpEduForm = (props) => {
               value={experience.description}
               onChange={(e) => changeData(e.target.id, e.target.value)}
             />
-            <p className="mt-3" style={{ fontSize: "0.8rem" }}>
-              Media{" "}
-            </p>
-            <p style={{ fontSize: "0.8rem" }}>
-              Add or link to external documents, photos, sites, videos and
-              presentations.{" "}
-            </p>
           </div>
-          <div className="d-flex " style={{ justifyContent: "space-around" }}>
-            <button className="btnB">Upload</button>
-            <button className="btnW">Link</button>
-          </div>
-          <HelpOutlineIcon
-            style={{
-              color: "blue",
-              backgroundColor: "white",
-            }}
-          />
-          <span
-            style={{ color: "blue", fontSize: "0.8rem", cursor: "pointer" }}
-          >
-            Supported formats
-          </span>
         </Modal.Body>
         <Modal.Footer className="d-flex">
           <button
@@ -234,11 +243,12 @@ const ExpEduForm = (props) => {
               minHeight: "2rem",
             }}
             ClassName="ml-auto"
-            onClick={props.closeFunc}
+            type="submit"
           >
             Save
           </button>
         </Modal.Footer>
+        </Form>
       </Modal>
       </>
   )

@@ -4,15 +4,15 @@ import ProfileCardInfo from './ProfileCardInfo';
 import { useState } from "react";
 import ProfileModal from "./ProfileModal";
 
-const ProfileCard = () => {
+const ProfileCard = (props) => {
 
     return (
         <section className={styles.profileCard}>
             <Cover />
             <div className={styles.profileAbout}>
-                <Avatar src="https://rendezvous4news.files.wordpress.com/2019/05/putin-kremlin.jpg?w=640" />
+                <Avatar src={props.img} />
                 <div className="d-flex justify-content-between pt-2">
-                    <ProfileCardInfo name="Name Surname" about="Something about me is going to be here." location="Place, City, Country" />
+                    <ProfileCardInfo name={props.name} about={props.about} location={props.location} />
                     <div className={styles.rightPanel}>
                         <ul>
                             <RightPanelItem title="Strive School" img="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1631750400&v=beta&t=Z5VOepdFNLxZjBwg4bbfh5VFFJEUssCa9yTLNI8CxUM" />
