@@ -10,6 +10,11 @@ svg{
     color: rgb(102, 100, 100);
 }
 
+.searchbar{
+    background-color: rgb(233, 239, 245);
+
+}
+
 .navlink {
     display: flex !important;
     flex-direction: column;
@@ -59,3 +64,15 @@ svg{
     text-decoration: underline;
 }
 
+.meTitle a {
+    padding: 0 !important;
+    margin-bottom: -2px;
+}
+.meWork a {
+    padding: 0 !important;
+
+}
+
+.meWork:first-of-type a {
+    margin-bottom: -7px;
+}
