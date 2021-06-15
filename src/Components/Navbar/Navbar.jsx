@@ -2,14 +2,29 @@ import {Button,Col,Container,Form,FormControl,Image,Nav,Navbar,NavDropdown} from
 import logo from "./assets/logo.png"
 import pp from "./assets/putin.jpeg"
 import styles from "./Navbar.module.css"
+import NavButton from "./NavButton"
+import {useState} from 'react'
 
-const NavBar = () =>{
+
+function NavBar (){
+
+    const [navbar,setNavbar] = useState(false)
+
+    const ChangeDisplay = () => {
+        console.log(window.scrollY)
+        if(window.scrollY>10){
+            setNavbar(true)
+        }else {
+            setNavbar(false)
+        }
+    }
+    window.addEventListener('scroll',ChangeDisplay)
 
     return(
+        <>
         
-
-        <Navbar bg="white" expand="lg" className="navbar p-0">
-        <Container>
+        <Navbar bg="white" expand="lg" style={{position:'fixed', width:'100%'}} className="navbar p-0 justify-content-between">
+        <Container >
         
         <div >
         
@@ -20,8 +35,7 @@ const NavBar = () =>{
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
-        </span> */}
-                    
+        </span> */}  
             <FormControl type="text" bg="" placeholder="Search" className={ styles.searchbar} >
                 
             </FormControl>
@@ -35,7 +49,7 @@ const NavBar = () =>{
         
         <Nav className="nav-h6 d-flex">
 
-        <Nav.Link href="#home" className={ styles.navlink} >
+        <Nav.Link href="#home" className={styles.navlink} >
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" className="bi bi-house-fill" viewBox="0 0 16 16">
         <path fillRule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
         <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
@@ -43,7 +57,7 @@ const NavBar = () =>{
         <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} >Home</h6>
         </Nav.Link> 
             
-        <Nav.Link href="#link" className={ styles.navlink}>
+        <Nav.Link href="#link" className={styles.navlink}>
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" className="bi bi-people-fill" viewBox="0 0 16 16">
         <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
         <path fillRule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.323 6.323 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
@@ -52,7 +66,7 @@ const NavBar = () =>{
         <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} > My Network</h6>
         </Nav.Link>
 
-        <Nav.Link href="#link" className={ styles.navlink}>
+        <Nav.Link href="#link" className={styles.navlink}>
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" className="bi bi-briefcase-fill" viewBox="0 0 16 16">
         <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
         <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.238 0L0 6.85v5.65z"/>
@@ -109,7 +123,40 @@ const NavBar = () =>{
        
         </Container>
         </Navbar>
+
+        
+        <Navbar bg="white" expand="lg" style={{position:'fixed'}} className={navbar? styles.navbarScrollActive : styles.navbarScroll}>
+        <Container >
+        
+        <Form inline className={styles.scrollNav} >
+        <Navbar.Brand href="#home" className="m-0 mr-2"><img src={pp} className={styles.scrollNavImg}/></Navbar.Brand>  
+        <div href="#link" className={ styles.navname}>
+        <h6 className={styles.scrollNavText} >Name Surname</h6>
+        <h6 className=" mb-0" style={{fontSize:'12px',fontWeight:'400'}} >Job Title</h6>
+
+       </div>
+        
+        </Form>
+
+        <div>
+            <NavButton text="More"/>
+            <NavButton text="Add section"/>
+            <NavButton text="Open to" blue/>
+        </div>
+        
+        </Container>
+        </Navbar>
        
+        
+        <div>
+        <img src={pp} />
+        <img src={pp} />
+        <img src={pp} />
+        <img src={pp} />
+        <img src={pp} />
+        <img src={pp} />
+        </div>
+      </> 
     )
 }
 
