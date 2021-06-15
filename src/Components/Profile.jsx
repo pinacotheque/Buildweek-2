@@ -11,7 +11,7 @@ import SidePeopleBar from './infoCards/SidePeopleBar/SidePeopleBar';
 function Profile() {
   return (
     <Container>
-      <Row>
+      <Row id="profileBody">
         <Col xs={9}>
           <ProfileCard />
           <About />

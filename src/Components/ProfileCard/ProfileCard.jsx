@@ -1,6 +1,8 @@
 import styles from "./ProfileCard.module.css"
 import ProfileButton from "./ProfileButton"
 import ProfileCardInfo from './ProfileCardInfo';
+import { useState } from "react";
+import ProfileModal from "./ProfileModal";
 
 const ProfileCard = () => {
 
@@ -83,9 +85,15 @@ const RightPanelItem = (props) => {
 }
 
 const Avatar = (props) => {
+
+    const [show, setShow] = useState(false)
+
+    const showModal = () => setShow(true)
+    const hideModal = () => setShow(false)
+
     return (
         <div className="d-flex justify-content-between">
-            <div className={styles.avatarHolder}>
+            <div className={styles.avatarHolder} onClick={showModal}>
                 <div className={styles.avatarCircle}>
                     <img src={props.src} alt="" />
                 </div>
@@ -97,6 +105,7 @@ const Avatar = (props) => {
                     </svg>
                 </a>
             </div>
+            <ProfileModal show={show} close={hideModal} />
         </div>
     )
 }
