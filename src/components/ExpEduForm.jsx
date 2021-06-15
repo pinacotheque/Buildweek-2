@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { Button, Modal, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ExpEdu from "./ExpEdu";
 import CloseIcon from "@material-ui/icons/Close";
 import ModalDialog from "react-bootstrap/ModalDialog";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
