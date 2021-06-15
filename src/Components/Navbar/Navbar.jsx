@@ -125,7 +125,7 @@ function NavBar (){
         </Navbar>
 
         
-        <Navbar bg="white" expand="lg" style={{position:'fixed'}} className={navbar? styles.navbarScrollActive : styles.navbarScroll}>
+        <Navbar bg="white" expand="lg" style={{position:'fixed'}} className={navbar? styles.navbarScrollactive : styles.navbarScroll}>
         <Container >
         
         <Form inline className={styles.scrollNav} >

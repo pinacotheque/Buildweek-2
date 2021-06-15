@@ -26,7 +26,7 @@ svg{
     border-top: 1pt solid rgb(231, 230, 230);
     border-bottom:1pt solid rgb(230, 229, 229) ;
 }
-.navbarScrollActive{
+.navbarScrollactive{
     
     display: flex;
     width: 100%;
