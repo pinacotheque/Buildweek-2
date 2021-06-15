@@ -7,6 +7,7 @@ const Experience = (props) => {
     return (
         <CardBoilerplate add title="Experience">
             <ExperienceCard occupation="Food Service Worker" company="McDonald's" workTime="Full-time" years="Mar 2019 - Aug 2019" location="London, UK" description="testing" src="https://media-exp1.licdn.com/dms/image/C4E0BAQHWxquJ9PJxvw/company-logo_100_100/0/1552140114610?e=1631750400&v=beta&t=xGCfxULpQucZ16Mwcr_FPXtGpeK_vVS90Dnt5Egbt50" />
+            <ExperienceCard occupation="Food Service Worker" company="McDonald's" workTime="Full-time" years="Mar 2019 - Aug 2019" location="London, UK" description="testing" src="https://media-exp1.licdn.com/dms/image/C4E0BAQHWxquJ9PJxvw/company-logo_100_100/0/1552140114610?e=1631750400&v=beta&t=xGCfxULpQucZ16Mwcr_FPXtGpeK_vVS90Dnt5Egbt50" />
         </CardBoilerplate>
     )
 }

@@ -357,4 +357,9 @@
     color: rgba(0, 0, 0, 0.6);
     box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px 2px inset;
 }
+
+.sidePeople button:active {
+    color: rgba(0, 0, 0, 0.9);
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 0px 2px inset;
+}
 /* Side Cards styles end here */
