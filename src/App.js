@@ -1,10 +1,11 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Profile from './Components/Profile'
 
 function App() {
   return (
-    <h1>Hello</h1>
-  );
+    <Profile />
+  )
 }
 
 export default App;

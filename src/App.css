@@ -1,1 +1,17 @@
+body{
+  background-color: #f3f2ef!important;
+}
 
+#profileBody > .col-9 {
+  flex: 0 0 70%!important;
+  max-width: 70%!important;
+}
+
+#profileBody >  .col-3 {
+  flex: 0 0 30%!important;
+  max-width: 30%!important;
+}
+
+#profileBody {
+  padding-top: 100px;
+}

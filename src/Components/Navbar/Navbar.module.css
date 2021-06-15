@@ -1,0 +1,129 @@
+body{
+    background-color: #f3f2ef!important;
+  }
+.icon-1{
+    justify-content: center;
+    align-items: center;
+}
+
+svg{
+    color: rgb(102, 100, 100);
+}
+
+.searchbar{
+    background-color: rgb(233, 239, 245);
+
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    height: 52px;
+}
+
+.subNav {
+    position: fixed;
+    top: 52px;
+    width: 100% !important;
+    padding: 0;
+    border-top: 1pt solid rgb(231, 230, 230);
+    border-bottom:1pt solid rgb(230, 229, 229);
+    z-index: 10;
+}
+
+.navbarScroll{
+    display: none;
+}
+.navbarScrollactive{
+    display: flex;
+}
+
+.scrollNav{
+    flex-direction: row;
+}
+.scrollNavImg{
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+    border-radius: 17px;
+    display: flex;
+    margin: 0;
+
+}
+.scrollNavText{
+    font-size: 14px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+.navname{
+    width: fit-content;
+}
+.profileTitle{
+    display: flex;
+    flex-direction: row;
+}
+.navlink {
+    display: flex !important;
+    flex-direction: column;
+    width: 87px;
+    align-items: center;
+    padding: 0 ;
+    padding-left: 0;
+    padding-right: 0;
+    
+}
+.dropmenu{
+    flex-direction: column;
+    display: flex;
+    width: 90px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 0 !important;
+    border-right: 1pt solid rgb(211, 210, 210);
+}
+.dropmenuImg{
+    height: 26px;
+    width: 26px;
+    object-fit: cover;
+    border-radius: 13px;
+
+}
+ .dropdown title {
+    padding: 0 !important;
+}
+.gridmenu{
+    display: flex;
+    width: 90px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    padding: 0 !important;
+    align-items: center;
+    flex-direction: column;
+}
+
+.premiumLink{
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    color: rgb(167, 124, 16);
+    margin-bottom: 0;
+    margin-top: 2px;
+}
+.premiumLink:hover{
+    text-decoration: underline;
+}
+
+.meTitle a {
+    padding: 0 !important;
+    margin-bottom: -2px;
+}
+.meWork a {
+    padding: 0 !important;
+
+}
+
+.meWork:first-of-type a {
+    margin-bottom: -7px;
+}
