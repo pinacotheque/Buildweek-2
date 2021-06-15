@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Profile from './Components/Profile';
+import Profile from './components/Profile';
 
 function App() {
   return (

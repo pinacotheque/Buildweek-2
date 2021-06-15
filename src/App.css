@@ -12,3 +12,6 @@ body{
   max-width: 30%!important;
 }
 
+#profileBody {
+  padding-top: 100px;
+}

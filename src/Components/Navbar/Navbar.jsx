@@ -11,19 +11,17 @@ function NavBar (){
     const [navbar,setNavbar] = useState(false)
 
     const ChangeDisplay = () => {
-        console.log(window.scrollY)
-        if(window.scrollY>10){
-            setNavbar(true)
+        if(window.scrollY>250){
+            setNavbar(true) 
         }else {
             setNavbar(false)
         }
     }
-    window.addEventListener('scroll',ChangeDisplay)
+    window.addEventListener('scroll', ChangeDisplay)
 
     return(
         <>
-        
-        <Navbar bg="white" expand="lg" style={{position:'fixed', width:'100%'}} className="navbar p-0 justify-content-between">
+        <Navbar bg="white" expand="lg" className={`${styles.navbar} navbar p-0 justify-content-between`}>
         <Container >
         
         <div >
@@ -125,7 +123,7 @@ function NavBar (){
         </Navbar>
 
         
-        <Navbar bg="white" expand="lg" style={{position:'fixed'}} className={navbar? styles.navbarScrollactive : styles.navbarScroll}>
+        <Navbar bg="white" expand="lg" className={`${styles.subNav} ${navbar ? styles.navbarScrollactive : styles.navbarScroll}`}>
         <Container >
         
         <Form inline className={styles.scrollNav} >
@@ -146,16 +144,6 @@ function NavBar (){
         
         </Container>
         </Navbar>
-       
-        
-        <div>
-        <img src={pp} />
-        <img src={pp} />
-        <img src={pp} />
-        <img src={pp} />
-        <img src={pp} />
-        <img src={pp} />
-        </div>
       </> 
     )
 }

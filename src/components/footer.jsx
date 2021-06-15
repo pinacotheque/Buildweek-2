@@ -1,7 +1,7 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col, Nav, Form, Container } from "react-bootstrap";
 import { AiFillSetting } from "react-icons/ai";
 import { AiFillQuestionCircle } from "react-icons/ai";
+import "./footer.css"
 
 const MyFooter = () => (
   <Container className="mt-4 w-80">
@@ -12,7 +12,6 @@ const MyFooter = () => (
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 84 21"
             data-supported-dps="84x21"
-            fill="blue"
             class="mercado-match"
             width="84"
             height="21"
