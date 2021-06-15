@@ -1,5 +1,5 @@
 import { Modal, Button, Form } from "react-bootstrap"
-import { useState, useEffect} from 'react'
+import { useState } from 'react'
 
 const LoginModal = (props) => {
 

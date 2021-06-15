@@ -19,7 +19,7 @@ const ExpEduForm = (props) => {
       description: props.edit != null ? props.edit.description : '',
     }
   )
-  console.log(experience.role, props.edit.role, experience.area, props.edit.area)
+
   const changeData = (id, value) => {
     const exp = {...experience, [id]: value}
     setExperience(exp)
@@ -65,49 +65,24 @@ const ExpEduForm = (props) => {
   }
 
   return (
-    <>
-    <Modal
-        show={props.show}
-        onHide={props.closeFunc}
-        size="lg"
-        scrollable={true}
-        style={{ height: "100vh" }}
-      >
+    <Modal show={props.show} onHide={props.closeFunc} size="lg" scrollable={true}>
       <Form onSubmit={(e) => doExperience(e)}>
-          <Modal.Header>
+        <Modal.Header>
           <Modal.Title>Add Experience</Modal.Title>
-          <div
-            className="ml-auto m-0 p-0"
-            onClick={props.closeFunc}
-            style={{ cursor: "pointer" }}
-          >
+          <div className="ml-auto m-0 p-0" onClick={props.closeFunc} style={{ cursor: "pointer" }}>
             <CloseIcon />
           </div>
         </Modal.Header>
-
         <Modal.Body>
           <div>
             <label htmlFor="role">Title *</label>
-            <input
-              type="text"
-              className="form-control"
-              id="role"
-              placeholder="Ex: Retail Sales Manager"
-              aria-describedby="basic-addon3"
-              value={experience.role}
-              onChange={(e) => changeData(e.target.id, e.target.value)}
-              required
-            />
+            <input type="text" className="form-control" id="role" placeholder="Ex: Retail Sales Manager" aria-describedby="basic-addon3" 
+              value={experience.role} onChange={(e) => changeData(e.target.id, e.target.value)} required />
           </div>
           <div className="mt-4">
             <label htmlFor="EmploymentType">Employment type</label>
             <div className="input-group mb-3">
-              <select
-                className=" w-100 sel"
-                id="EmploymentType"
-                aria-label="Example select with button addon"
-                style={{ height: "2rem" }}
-              >
+              <select className=" w-100 sel" id="EmploymentType" aria-label="Example select with button addon" style={{ height: "2rem" }}>
                 <option selected>-</option>
                 <option value={"Full-time"}>Full-time</option>
                 <option value={"Part-time"}>Part-time</option>
@@ -120,137 +95,46 @@ const ExpEduForm = (props) => {
               </select>{" "}
               <p>Country-specific employment types</p>
             </div>
-            <a className="formLink">Learn More</a>
+            <a href="/" className="formLink">Learn More</a>
           </div>
           <div className="mt-3">
             <label htmlFor="company">Company*</label>
-            <input
-              type="text"
-              className="form-control"
-              id="company"
-              placeholder="Ex: Retail Sales Manager"
-              aria-describedby="basic-addon3"
-              value={experience.company}
-              onChange={(e) => changeData(e.target.id, e.target.value)}
-              required
-            />
+            <input type="text" className="form-control" id="company" placeholder="Ex: Retail Sales Manager" aria-describedby="basic-addon3"
+              value={experience.company} onChange={(e) => changeData(e.target.id, e.target.value)} required />
           </div>
           <div className="mt-3 mb-3">
             <label htmlFor="area">Location*</label>
-            <input
-              type="text"
-              className="form-control"
-              id="area"
-              placeholder="Ex:London,United Kingdom"
-              aria-describedby="basic-addon3"
-              value={experience.area}
-              onChange={(e) => changeData(e.target.id, e.target.value)}
-              required
-            />
+            <input type="text" className="form-control" id="area" placeholder="Ex:London,United Kingdom" aria-describedby="basic-addon3"
+              value={experience.area} onChange={(e) => changeData(e.target.id, e.target.value)} required />
           </div>
-
-          {!checked && (
-            <CheckBoxOutlineBlankIcon
-              style={{ cursor: "pointer" }}
-              onClick={() => setChecked(true)}
-            />
-          )}
-          {checked && (
-            <CheckBoxIcon
-              onClick={() => setChecked(false)}
-              style={{ color: "green", cursor: "pointer" }}
-            />
-          )}
-          <span className="grey">I am currently working in this role</span>
-          <div
-            className="mt-3 mb-3 d-flex"
-            style={{ justifyContent: "space-evenly" }}
-          >
-            {/* <p>Start Date *</p>
-            <select
-              className="sel"
-              style={{ width: "10rem", height: "2rem", overflow: "auto" }}
-              id="month"
-            >
-              <option selected>Month</option>
-              <option value={"01"}>Jenuary</option>
-              <option value={"02"}>February</option>
-              <option value={"03"}>March</option>
-              <option value={"04"}>April</option>
-              <option value={"05"}>May</option>
-              <option value={"06"}>June</option>
-              <option value={"07"}>Jully</option>
-              <option value={"08"}>August</option>
-              <option value={"09"}>September</option>
-              <option value={"10"}>October</option>
-              <option value={"11"}>November</option>
-              <option value={"12"}>December</option>
-            </select> */}
-            <div>
-              <label htmlFor="startDate">Start Date *</label>
-              <input
-                min={"1963-01-01"}
-                type="date"
-                id="startDate"
-                className="mx-3"
-                required
-                value={experience.startDate.slice(0,10)}
-                onChange={(e) => changeData(e.target.id, e.target.value)}
-              />
-              {!experience.startDate && (
-                <p className="invalid mt-3">Please enter a start date.</p>
-              )}
-            </div>
-            <div className="ml-5">
-              <label htmlFor="endDate">End Date *</label>
-              {!checked && (
-                <input
-                  min={"1963-01-01"}
-                  type="date"
-                  id="endDate"
-                  className="mx-3"
-                  required
-                  value={experience.endDate.slice(0,10)}
-                  onChange={(e) => changeData(e.target.id, e.target.value)}
-                />
-              )}
-              {checked && <span className="mx-3"> Present</span>}
-              {!experience.endDate && !checked && (
-                <p className="invalid mt-3">Please enter an end date.</p>
-              )}
-            </div>
+        {!checked && <CheckBoxOutlineBlankIcon style={{ cursor: "pointer" }} onClick={() => setChecked(true)} />}
+        {checked && <CheckBoxIcon onClick={() => setChecked(false)} style={{ color: "green", cursor: "pointer" }} />}
+        <span className="grey">I am currently working in this role</span>
+        <div className="mt-3 mb-3 d-flex" style={{ justifyContent: "space-evenly" }}>
+          <div>
+            <label htmlFor="startDate">Start Date *</label>
+            <input min={"1963-01-01"} type="date" id="startDate" className="mx-3" required value={experience.startDate.slice(0,10)} onChange={(e) => changeData(e.target.id, e.target.value)} />
+            {!experience.startDate && <p className="invalid mt-3">Please enter a start date.</p>}
           </div>
-          <div className="form-group mb-3">
-            <label htmlFor="description">Description</label>
-            <textarea
-              className="form-control"
-              id="description"
-              rows={4}
-              defaultValue={""}
-              value={experience.description}
-              onChange={(e) => changeData(e.target.id, e.target.value)}
-            />
+          <div className="ml-5">
+            <label htmlFor="endDate">End Date *</label>
+            {!checked && <input min={"1963-01-01"} type="date" id="endDate" className="mx-3" required value={experience.endDate.slice(0,10)} onChange={(e) => changeData(e.target.id, e.target.value)} />}
+            {checked && <span className="mx-3"> Present</span>}
+            {!experience.endDate && !checked && <p className="invalid mt-3">Please enter an end date.</p>}
           </div>
-        </Modal.Body>
-        <Modal.Footer className="d-flex">
-          <button
-            style={{
-              color: "white",
-              backgroundColor: "rgb(10,102,194)",
-              border: "none",
-              borderRadius: "2rem",
-              minWidth: "4rem",
-              minHeight: "2rem",
-            }}
-            ClassName="ml-auto"
-            type="submit"
-          >
-            Save
-          </button>
-        </Modal.Footer>
-        </Form>
-      </Modal>
-      </>
+        </div>
+        <div className="form-group mb-3">
+          <label htmlFor="description">Description</label>
+          <textarea className="form-control" id="description" rows={4} defaultValue={""} value={experience.description} onChange={(e) => changeData(e.target.id, e.target.value)} />
+        </div>
+      </Modal.Body>
+      <Modal.Footer className="d-flex">
+        <button style={{ color: "white", backgroundColor: "rgb(10,102,194)", border: "none", borderRadius: "2rem", minWidth: "4rem", minHeight: "2rem" }} className="ml-auto" type="submit" >
+          Save
+        </button>
+      </Modal.Footer>
+      </Form>
+    </Modal>
   )
 }
 
