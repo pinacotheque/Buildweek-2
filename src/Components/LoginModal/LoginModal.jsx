@@ -66,14 +66,14 @@ const LoginModal = (props) => {
                     <strong>Please log in to your strive linked in account</strong>
                 </div>
                 <Form className="d-flex flex-column" onSubmit={(e) => submitForm(e)}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="username">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="username" placeholder="Username" id="username" required value={data.username} onChange={(e) => changeData(e.target.id, e.target.value)} />
+                        <Form.Control type="username" placeholder="Username" required value={data.username} onChange={(e) => changeData(e.target.id, e.target.value)} />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-3" controlId="password">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" id="password" placeholder="Password" required value={data.password} onChange={(e) => changeData(e.target.id, e.target.value)}/>
+                        <Form.Control type="password" placeholder="Password" required value={data.password} onChange={(e) => changeData(e.target.id, e.target.value)}/>
                     </Form.Group>
                     <Button variant="primary" type="submit" className="ml-auto">
                         Log In

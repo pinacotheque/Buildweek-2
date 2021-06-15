@@ -35,7 +35,7 @@ const Experience = (props) => {
     return (
         <CardBoilerplate add title="Experience" callback={showModal}>
             {
-                experiences && experiences.map(exp => <ExperienceCard {...exp} edit={() => {setEdit(exp); showModal()}}/>)
+                experiences && experiences.map(exp => <ExperienceCard key={exp._id} {...exp} edit={() => {setEdit(exp); showModal()}}/>)
             }
             {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} reload={fetchExperiences} />}
         </CardBoilerplate>

@@ -5,7 +5,7 @@ const SidePeople = (props) => {
     return (
         <CardBoilerplate secondary title={props.title} top={props.top}>
             {
-                props.people && props.people.map(person => <SidePeopleCard {...person} top={props.top} />)
+                props.people && props.people.map(person => <SidePeopleCard key={person._id} {...person} top={props.top} />)
             }
         </CardBoilerplate>
     )
