@@ -5,7 +5,7 @@ const SidePeople = (props) => {
     return (
         <CardBoilerplate secondary title={props.title} top={props.top}>
             {
-                props.people && props.people.map(person => <SidePeopleCard {...person} />)
+                props.people && props.people.map(person => <SidePeopleCard {...person} top={props.top} />)
             }
         </CardBoilerplate>
     )
@@ -19,7 +19,7 @@ const SidePeopleCard = (props) => {
         <div className={`${styles.sidePeople} d-flex`}>
             <img src={props.image} onError={(e) => e.target.src = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"} alt="" />
             <div>
-                <h3>{props.name} {props.surname}<span>3rd</span></h3>
+                <h3>{props.name} {props.surname}{props.top && <span>3rd</span>}</h3>
                 <p>{props.title}</p>
                 <ConnectBtn />
             </div>
