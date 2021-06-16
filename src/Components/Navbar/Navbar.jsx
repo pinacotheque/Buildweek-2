@@ -19,7 +19,7 @@ const NavBar = (props) => {
 
     return(
         <>
-        <Navbar bg="white" expand="lg" className={`${styles.navbar} p-0`}>
+        <Navbar bg="white" expand={true} className={`${styles.navbar} p-0`}>
             <Container>
                 <div className="d-flex align-items-center">
                     <Navbar.Brand href="#home" className={styles.brand}>

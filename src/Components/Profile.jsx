@@ -18,7 +18,7 @@ function Profile(props) {
           <Dashboard />
           {props.myProfile && <About bio={props.myProfile.bio} profile={props.myProfile} refresh={props.refresh} />}
           <SkillsEndorsements />
-          <Experience />
+          {props.myProfile && <Experience />}
           <InterestsCard />
           <EducationCard />
         </Col>

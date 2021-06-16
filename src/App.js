@@ -42,7 +42,7 @@ function App() {
 
   return (
     <>
-      <LoginModal  show={!loggedIn} close={close} />
+      <LoginModal show={!loggedIn} close={close} />
       <Navbar profile={myProfile} />
       <Profile loggedIn={loggedIn} myProfile={myProfile} />
       <Footer />
