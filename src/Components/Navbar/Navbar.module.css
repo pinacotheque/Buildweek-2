@@ -1,20 +1,28 @@
-body{
-    background-color: #f3f2ef!important;
-  }
 .icon-1{
     justify-content: center;
     align-items: center;
 }
 
-svg{
+svg {
     color: rgb(102, 100, 100);
 }
 
-.searchbar{
-    background-color: rgb(233, 239, 245);
-
+.brand svg {
+    color: rgb(10, 102, 194);
 }
-.navbar{
+
+.brand {
+    margin-top: -1px;
+    margin-right: 8px;
+}
+
+.searchbar{
+    background-color: rgb(238, 243, 248);
+    height: 34px;
+    border: none;
+}
+
+.navbar {
     position: fixed;
     width: 100%;
     z-index: 10;
@@ -34,6 +42,7 @@ svg{
 .navbarScroll{
     display: none;
 }
+
 .navbarScrollactive{
     display: flex;
 }
@@ -41,6 +50,7 @@ svg{
 .scrollNav{
     flex-direction: row;
 }
+
 .scrollNavImg{
     width: 34px;
     height: 34px;
@@ -50,6 +60,7 @@ svg{
     margin: 0;
 
 }
+
 .scrollNavText{
     font-size: 14px;
     margin-bottom: 0;
@@ -58,21 +69,26 @@ svg{
 .navname{
     width: fit-content;
 }
+
 .profileTitle{
     display: flex;
     flex-direction: row;
 }
+
 .navlink {
     display: flex !important;
     flex-direction: column;
-    width: 87px;
+    width: 80px;
     align-items: center;
-    padding: 0 ;
-    padding-left: 0;
-    padding-right: 0;
-    
+    padding: 0!important;
 }
-.dropmenu{
+
+.navlink h6 {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.dropmenu {
     flex-direction: column;
     display: flex;
     width: 90px;
@@ -82,16 +98,15 @@ svg{
     padding: 0 !important;
     border-right: 1pt solid rgb(211, 210, 210);
 }
+
 .dropmenuImg{
-    height: 26px;
-    width: 26px;
+    height: 24px;
+    width: 24px;
     object-fit: cover;
-    border-radius: 13px;
+    border-radius: 12px;
 
 }
- .dropdown title {
-    padding: 0 !important;
-}
+
 .gridmenu{
     display: flex;
     width: 90px;
@@ -117,13 +132,20 @@ svg{
 
 .meTitle a {
     padding: 0 !important;
-    margin-bottom: -2px;
+    line-height: 14px;
+    margin-top: 1px;
 }
+
 .meWork a {
     padding: 0 !important;
-
+    line-height: 14px;
+    margin-top: 4px;
 }
 
-.meWork:first-of-type a {
-    margin-bottom: -7px;
+.premium {
+    width: 100px;
+}
+
+.premium h6 {
+    line-height: 18px;
 }

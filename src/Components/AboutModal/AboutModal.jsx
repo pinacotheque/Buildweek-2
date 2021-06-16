@@ -1,4 +1,4 @@
-import { Modal, Form, Row, Col } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 import styles from './AboutModal.module.css'
 import { useState } from 'react'
 
