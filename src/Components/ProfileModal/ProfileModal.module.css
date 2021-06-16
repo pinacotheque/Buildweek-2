@@ -1,0 +1,137 @@
+.inputBase {
+    border: none;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px 1px inset;
+    font-size: 14px;
+    padding: 0 10px;
+    height: 32px;
+}
+
+.textArea {
+    border: none;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px 1px inset;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.inputBase:hover, .inputBase:active, .inputBase:focus, .textArea:hover, .textArea:active, .textArea:focus {
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px 2px inset;
+}
+
+.labels {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 4px;    
+}
+
+.formerName {
+    color: #0a66c2;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+    margin-left: 8px;
+    margin-top: 12px;
+    background-color: transparent;
+    border: none;
+}
+
+.pron {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 24px;
+}
+
+.pron svg {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    fill: rgba(0, 0, 0, 0.2);
+}
+
+.pron ~ p {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.pronounsSub {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.pronounsSub span {
+    color: rgb(10, 102, 194);
+    font-weight: 600;
+}
+
+.pronounsSub span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.noMargin {
+    margin: 0;
+}
+
+.visibleTo {
+    background-color: transparent;
+    border: none;
+}
+
+.visibleTo span {
+    color: #0a66c2;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+    margin-left: 4px;
+    margin-top: 12px;
+    background-color: transparent;
+    border: none;
+}
+
+.visibleTo svg {
+    fill: #0a66c2;
+    margin-bottom: 2px;
+    margin-left: -6px;
+}
+
+.addPos {
+    background-color: transparent;
+    border: none;
+    color: rgb(10, 102, 194);
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 24px;
+}
+
+.addPos svg {
+    fill: rgb(10, 102, 194);
+    margin-bottom: 4px;
+    margin-right: 4px;
+}
+
+.addEdu {
+    color: #0a66c2;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+    margin-left: 8px;
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+}

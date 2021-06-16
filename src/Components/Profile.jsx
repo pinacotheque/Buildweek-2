@@ -10,13 +10,13 @@ import Dashboard from './DashBoard/DashBoard';
 import { useState, useEffect } from 'react';
 
 
-function Profile() {
+function Profile(props) {
 
   const [myProfile, setMyProfile] = useState(null)
 
   useEffect(() => {
     fetchProfile()
-  }, [])
+  }, [props.loggedIn])
 
   const fetchProfile = async () => {
     const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {

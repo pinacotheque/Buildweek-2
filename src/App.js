@@ -24,7 +24,7 @@ function App() {
     <>
       <LoginModal  show={!loggedIn} close={close} />
       <Navbar />
-      {loggedIn && <Profile />}
+      <Profile loggedIn={loggedIn} />
       <Footer />
     </>
   )
