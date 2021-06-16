@@ -1,18 +1,16 @@
 import { Container, Form, FormControl, Nav, Navbar, NavDropdown} from 'react-bootstrap'
-import logo from "./assets/logo.png"
-import pp from "./assets/putin.jpeg"
 import styles from "./Navbar.module.css"
 import NavButton from "./NavButton"
 import {useState} from 'react'
 
 
-function NavBar (){
+const NavBar = (props) => {
 
-    const [navbar,setNavbar] = useState(false)
+    const [navbar, setNavbar] = useState(false)
 
     const ChangeDisplay = () => {
         if(window.scrollY > 250){
-            setNavbar(true) 
+            setNavbar(true)
         }else {
             setNavbar(false)
         }
@@ -74,7 +72,7 @@ function NavBar (){
                                 <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} >Notifications</h6>
                             </Nav.Link>
                             <div className={styles.dropmenu}> 
-                                <img src={pp} className={styles.dropmenuImg} alt="" />
+                                <img src={props.profile?.image} className={styles.dropmenuImg} alt="" />
                                 <NavDropdown title="Me" className={styles.meTitle}  id="basic-nav-dropdown" >
                                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -83,7 +81,7 @@ function NavBar (){
                                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                                 </NavDropdown>
                             </div>
-                            <div className={ styles.gridmenu}> 
+                            <div className={styles.gridmenu}> 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" className="bi bi-grid-3x3-gap-fill" viewBox="0 0 16 16">
                                     <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
                                 </svg>            
@@ -107,10 +105,10 @@ function NavBar (){
         <Navbar bg="white" expand="lg" className={`${styles.subNav} ${navbar ? styles.navbarScrollactive : styles.navbarScroll}`}>
             <Container >
                 <Form inline className={styles.scrollNav} >
-                    <Navbar.Brand href="#home" className="m-0 mr-2"><img src={pp} className={styles.scrollNavImg} alt="" /></Navbar.Brand>  
+                    <Navbar.Brand href="#home" className="m-0 mr-2"><img src={props.profile?.image} className={styles.scrollNavImg} alt="" /></Navbar.Brand>  
                     <div href="#link" className={ styles.navname}>
-                        <h6 className={styles.scrollNavText} >Name Surname</h6>
-                        <h6 className=" mb-0" style={{fontSize:'12px',fontWeight:'400'}} >Job Title</h6>
+                        <h6 className={styles.scrollNavText} >{props.profile?.name} {props.profile?.surname}</h6>
+                        <h6 className=" mb-0" style={{fontSize:'12px',fontWeight:'400'}} >{props.profile?.title}</h6>
                     </div>
                 </Form>
                 <div>

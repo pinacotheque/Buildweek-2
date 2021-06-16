@@ -7,38 +7,16 @@ import Experience from './infoCards/Experience';
 import About from './infoCards/About';
 import SidePeopleBar from './infoCards/SidePeopleBar/SidePeopleBar';
 import Dashboard from './DashBoard/DashBoard';
-import { useState, useEffect } from 'react';
-
 
 function Profile(props) {
-
-  const [myProfile, setMyProfile] = useState(null)
-
-  useEffect(() => {
-    fetchProfile()
-  }, [props.loggedIn])
-
-  const fetchProfile = async () => {
-    const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('token')
-      }
-    })
-    if(response.ok) {
-      const data = await response.json()
-      setMyProfile(data)
-    } else {
-      console.log("error fetching profile")
-    }
-  }
 
   return (
     <Container>
       <Row id="profileBody">
         <Col xs={9}>
-          {myProfile && <ProfileCard img={myProfile.image} name={`${myProfile.name} ${myProfile.surname}`} about={myProfile.title} location={myProfile.area} profile={myProfile} refresh={fetchProfile} />}
+          {props.myProfile && <ProfileCard img={props.myProfile.image} name={`${props.myProfile.name} ${props.myProfile.surname}`} about={props.myProfile.title} location={props.myProfile.area} profile={props.myProfile} refresh={props.refresh} />}
           <Dashboard />
-          {myProfile && <About bio={myProfile.bio} profile={myProfile} refresh={fetchProfile} />}
+          {props.myProfile && <About bio={props.myProfile.bio} profile={props.myProfile} refresh={props.refresh} />}
           <SkillsEndorsements />
           <Experience />
           <InterestsCard />
