@@ -5,7 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 const About = (props) => {
     return (
         <CardBoilerplate edit title="About">
-            <AboutCard description="hello /n how are you" />
+            <AboutCard description={props.bio} />
         </CardBoilerplate>
     )
 }

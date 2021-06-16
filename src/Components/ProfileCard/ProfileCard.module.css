@@ -164,7 +164,9 @@
     margin-right: -12px;
 }
 
-.edit > a {
+.edit > button {
+    background-color: transparent;
+    border: none;
     height: 40px;
     width: 40px;
     border-radius: 20px;
@@ -177,7 +179,7 @@
     color: rgba(0, 0, 0, 0.6);
 }
 
-.edit > a:hover {
+.edit > button:hover {
     background-color: rgba(0, 0, 0, 0.08);
 }
 

@@ -1,6 +1,6 @@
 import { Button, Modal } from 'react-bootstrap'
 
-const ProfileModal = (props) => {
+const ProfileModalImg = (props) => {
     return (
         <Modal show={props.show} onHide={props.close}>
           <Modal.Header closeButton>
@@ -19,4 +19,4 @@ const ProfileModal = (props) => {
     );
 }
 
-export default ProfileModal
+export default ProfileModalImg
