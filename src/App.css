@@ -5,11 +5,13 @@ body{
 #profileBody > .col-9 {
   flex: 0 0 70%!important;
   max-width: 70%!important;
+  padding-left: 0!important;
 }
 
-#profileBody >  .col-3 {
+#profileBody > .col-3 {
   flex: 0 0 30%!important;
   max-width: 30%!important;
+  padding-right: 0!important;
 }
 
 #profileBody {

@@ -1,6 +1,7 @@
 import { Modal, Form } from "react-bootstrap";
 import styles from './AboutModal.module.css'
 import { useState } from 'react'
+import { putProfile } from "../../Lib/fetch";
 
 const AboutModal = (props) => {
 
@@ -23,15 +24,8 @@ const AboutModal = (props) => {
 
   const putAbout = async (e) => {
     e.preventDefault()
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/`, {
-      method: "PUT",
-      body: JSON.stringify(profData),
-      headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem('token')
-      }
-    })
-    if(response.ok) {
+    const response = await putProfile(profData)
+    if(!response.error) {
       props.refresh()
       props.closeFunc()
     } else {

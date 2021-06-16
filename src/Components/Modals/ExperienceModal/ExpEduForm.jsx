@@ -5,6 +5,7 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import styles from "./ExpEduForm.module.css";
 
 import { useState } from 'react'
+import { postExp, putExp } from "../../../Lib/fetch";
 
 const ExpEduForm = (props) => {
 
@@ -27,15 +28,8 @@ const ExpEduForm = (props) => {
 
   const postExperience = async (e) => {
     e.preventDefault()
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences`, {
-      method: "POST",
-      body: JSON.stringify(experience),
-      headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem('token')
-      }
-    })
-    if(response.ok) {
+    const result = await postExp(experience)
+    if(!result.error) {
       props.reload()
       props.closeFunc()
     } else {
@@ -45,19 +39,12 @@ const ExpEduForm = (props) => {
 
   const putExperience = async (e) => {
     e.preventDefault()
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences/${props.edit._id}`, {
-      method: "PUT",
-      body: JSON.stringify(experience),
-      headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem('token')
-      }
-    })
-    if(response.ok) {
+    const result = await putExp(props.edit._id, experience)
+    if(!result.error) {
       props.reload()
       props.closeFunc()
     } else {
-      console.log("error with posting experience")
+      console.log("error with putting experience")
     }
   }
 

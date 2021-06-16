@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import IconBtn from './Common/IconBtn';
 import { useState, useEffect } from 'react'
 import ExpEduForm from '../Modals/ExperienceModal/ExpEduForm'
+import { delExp, getExp } from '../../Lib/fetch';
 
 const Experience = (props) => {
 
@@ -19,27 +20,17 @@ const Experience = (props) => {
     }, [])
 
     const fetchExperiences = async () => {
-        const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences`, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem('token')
-            }
-        })
-        if(response.ok) {
-            const data = await response.json()
-            setExperiences(data)
+        const response = await getExp()
+        if(!response.error) {
+            setExperiences(response.data)
         } else {
             console.log('error with fetching experiences')
         }
     }
 
     const delExperience = async (id) => {
-        const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem('token')
-            }
-        })
-        if(response.ok) {
+        const response = await delExp(id)
+        if(!response.error) {
             fetchExperiences()
         } else {
             console.log('error with deleting experience')

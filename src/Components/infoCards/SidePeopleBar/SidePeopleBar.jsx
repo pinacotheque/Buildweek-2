@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { getProfiles } from "../../../Lib/fetch"
 import SidePeople from "./SidePeople"
 
 const SidePeopleBar = (props) => {
@@ -33,14 +34,10 @@ const SidePeopleBar = (props) => {
     }
 
     const fetchPeople = async () => {
-        const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/", {
-            headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGM4NzVhN2MxOTMwNTAwMTU4NzE1NDAiLCJpYXQiOjE2MjM3NTAwNTYsImV4cCI6MTYyNDk1OTY1Nn0.ZeW3I1JMXwRusAN2loy3hyW4wUtcT-s_Rwc7TjVXPew"
-            }
-        })
-        if(response.ok) {
-            const data = await response.json()
-            setPeople(data)
+        const response = await getProfiles()
+        if(!response.error) {
+            setPeople(response.data)
+
         } else {
             console.log('error with fetching people')
         }

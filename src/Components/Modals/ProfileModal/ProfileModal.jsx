@@ -1,6 +1,7 @@
 import { Modal, Form, Row, Col } from "react-bootstrap";
 import styles from './ProfileModal.module.css'
 import { useState } from 'react'
+import { putProfile } from "../../../Lib/fetch";
 
 const ProfileModal = (props) => {
 
@@ -21,17 +22,10 @@ const ProfileModal = (props) => {
     setProfData(profile)
   }
 
-  const putExperience = async (e) => {
+  const putProf = async (e) => {
     e.preventDefault()
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/`, {
-      method: "PUT",
-      body: JSON.stringify(profData),
-      headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem('token')
-      }
-    })
-    if(response.ok) {
+    const response = await putProfile(profData)
+    if(!response.error) {
       props.refresh()
       props.closeFunc()
     } else {
@@ -41,7 +35,7 @@ const ProfileModal = (props) => {
 
   return (
     <Modal show={props.show} onHide={props.closeFunc} size="lg" scrollable={true}>
-      <Form className="h-100 d-flex flex-column" onSubmit={(e) => putExperience(e)}>
+      <Form className="h-100 d-flex flex-column" onSubmit={(e) => putProf(e)}>
         <Modal.Header>
           <Modal.Title>Edit intro</Modal.Title>
           <div className="ml-auto m-0 p-0" onClick={props.closeFunc} style={{ cursor: "pointer" }}>

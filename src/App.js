@@ -5,6 +5,7 @@ import { useState, useEffect} from 'react'
 import LoginModal from './Components/Modals/LoginModal/LoginModal'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
+import { getProfile } from './Lib/fetch';
 
 function App() {
 
@@ -21,22 +22,16 @@ function App() {
     }
   }, [])
 
-
   useEffect(() => {
     fetchProfile()
   }, [loggedIn])
 
   const fetchProfile = async () => {
-    const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('token')
-      }
-    })
-    if(response.ok) {
-      const data = await response.json()
-      setMyProfile(data)
+    const result = await getProfile()
+    if(!result.error) {
+      setMyProfile(result.data)
     } else {
-      console.log("error fetching profile")
+      console.log('error with getting profile')
     }
   }
 
