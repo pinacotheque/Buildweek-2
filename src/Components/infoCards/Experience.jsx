@@ -12,7 +12,7 @@ const Experience = (props) => {
     const [edit, setEdit] = useState(null)
 
     const showModal = () => setShow(true)
-    const hideModal = () => setShow(false)
+    const hideModal = () => {setShow(false); setEdit(null)}
 
     useEffect(() => {
         fetchExperiences()
@@ -51,7 +51,7 @@ const Experience = (props) => {
             {
                 experiences && experiences.map(exp => <ExperienceCard key={exp._id} {...exp} edit={() => {setEdit(exp); showModal()}} delete={() => delExperience(exp._id)} />)
             }
-            {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} reload={fetchExperiences} />}
+            {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} resetEdit={() => setEdit(null)} reload={fetchExperiences} />}
         </CardBoilerplate>
     )
 }

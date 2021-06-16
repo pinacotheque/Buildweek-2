@@ -38,7 +38,7 @@ function Profile(props) {
         <Col xs={9}>
           {myProfile && <ProfileCard img={myProfile.image} name={`${myProfile.name} ${myProfile.surname}`} about={myProfile.title} location={myProfile.area} profile={myProfile} refresh={fetchProfile} />}
           <Dashboard />
-          {myProfile && <About bio={myProfile.bio} />}
+          {myProfile && <About bio={myProfile.bio} profile={myProfile} refresh={fetchProfile} />}
           <SkillsEndorsements />
           <Experience />
           <InterestsCard />

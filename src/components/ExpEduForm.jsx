@@ -36,6 +36,7 @@ const ExpEduForm = (props) => {
       }
     })
     if(response.ok) {
+      props.reload()
       props.closeFunc()
     } else {
       console.log("error with posting experience")
@@ -61,7 +62,8 @@ const ExpEduForm = (props) => {
   }
 
   const doExperience = (e) => {
-    props.edit ? putExperience(e) : postExperience(e)
+    props.edit !== null ? putExperience(e) : postExperience(e)
+    props.resetEdit()
   }
 
   return (
