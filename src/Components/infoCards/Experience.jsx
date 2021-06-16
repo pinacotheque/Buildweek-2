@@ -68,7 +68,7 @@ const ExperienceCard = (props) => {
                     <div className="mr-auto">
                         <h3>{props.role}</h3>
                         <p>{props.company}{props.workTime && <span>{props.workTime}</span>}</p>
-                        {(props.startDate && props.endDate) && <h4>{props.startDate} - {props.endDate}</h4>}
+                        {(props.startDate && props.endDate) && <h4>{props.startDate.split('-')[0]} - {props.endDate.split('-')[0]}</h4>}
                         {props.area && <h4>{props.area}</h4>}
                         {props.description && <p>{props.description}</p>}
                     </div>
