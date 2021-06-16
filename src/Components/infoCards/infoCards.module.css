@@ -363,3 +363,11 @@
     box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 0px 2px inset;
 }
 /* Side Cards styles end here */
+
+.delIcon {
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+}

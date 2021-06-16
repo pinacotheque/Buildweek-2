@@ -4,80 +4,59 @@ import { useState } from 'react'
 
 const ProfileModal = (props) => {
 
-//   const [checked, setChecked] = useState(false)
-//   const [experience, setExperience] = useState(
-//     {
-//       role: props.edit != null ? props.edit.role : '',
-//       company: props.edit != null ? props.edit.company : '',
-//       area: props.edit != null ? props.edit.area : '',
-//       startDate: props.edit != null ? props.edit.startDate : '',
-//       endDate: props.edit != null ? props.edit.endDate : '',
-//       description: props.edit != null ? props.edit.description : '',
-//     }
-//   )
+  const [profData, setProfData] = useState(
+    {
+      name: props.profile.name,
+      surname: props.profile.surname,
+      email: props.profile.email,
+      bio: props.profile.bio,
+      title: props.profile.title,
+      area: props.profile.area,
+      image: props.profile.image
+    }
+  )
 
-//   const changeData = (id, value) => {
-//     const exp = {...experience, [id]: value}
-//     setExperience(exp)
-//   }
+  const changeData = (id, value) => {
+    const profile = {...profData, [id]: value}
+    setProfData(profile)
+  }
 
-//   const postExperience = async (e) => {
-//     e.preventDefault()
-//     const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences`, {
-//       method: "POST",
-//       body: JSON.stringify(experience),
-//       headers: {
-//           "Content-Type": "application/json",
-//           "Authorization": "Bearer " + localStorage.getItem('token')
-//       }
-//     })
-//     if(response.ok) {
-//       props.closeFunc()
-//     } else {
-//       console.log("error with posting experience")
-//     }
-//   }
-
-//   const putExperience = async (e) => {
-//     e.preventDefault()
-//     const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences/${props.edit._id}`, {
-//       method: "PUT",
-//       body: JSON.stringify(experience),
-//       headers: {
-//           "Content-Type": "application/json",
-//           "Authorization": "Bearer " + localStorage.getItem('token')
-//       }
-//     })
-//     if(response.ok) {
-//       props.reload()
-//       props.closeFunc()
-//     } else {
-//       console.log("error with posting experience")
-//     }
-//   }
-
-//   const doExperience = (e) => {
-//     props.edit ? putExperience(e) : postExperience(e)
-//   }
+  const putExperience = async (e) => {
+    e.preventDefault()
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/`, {
+      method: "PUT",
+      body: JSON.stringify(profData),
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    })
+    if(response.ok) {
+      props.refresh()
+      props.closeFunc()
+    } else {
+      console.log("error with posting experience")
+    }
+  }
 
   return (
     <Modal show={props.show} onHide={props.closeFunc} size="lg" scrollable={true}>
-      <Form >
+      <Form className="h-100 d-flex flex-column" onSubmit={(e) => putExperience(e)}>
         <Modal.Header>
           <Modal.Title>Edit intro</Modal.Title>
           <div className="ml-auto m-0 p-0" onClick={props.closeFunc} style={{ cursor: "pointer" }}>
           </div>
         </Modal.Header>
-        <Modal.Body className="p-4 overflow-auto">
+        <Modal.Body className="p-4 h-100">
           <Form.Row>
             <Form.Group as={Col} controlId="name" className="mb-0">
               <Form.Label className={styles.labels}>First Name *</Form.Label>
-              <Form.Control type="text" placeholder="First Name" className={styles.inputBase} required/>
+              <Form.Control type="text" placeholder="First Name" className={styles.inputBase} value={profData.name} onChange={(e) => changeData(e.target.id, e.target.value)} required/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="surname" className="mb-0">
               <Form.Label className={styles.labels}>Last Name *</Form.Label>
-              <Form.Control type="text" placeholder="Last Name" className={styles.inputBase} required/>
+              <Form.Control type="text" placeholder="Last Name" className={styles.inputBase} value={profData.surname} onChange={(e) => changeData(e.target.id, e.target.value)} required/>
             </Form.Group>
           </Form.Row>
 
@@ -114,7 +93,7 @@ const ProfileModal = (props) => {
 
           <Form.Group controlId="title" className="mt-4">
             <Form.Label className={styles.labels}>Headline *</Form.Label>
-            <Form.Control className={styles.textArea} as="textarea" rows={2} />
+            <Form.Control className={styles.textArea} as="textarea" rows={2} value={profData.title} onChange={(e) => changeData(e.target.id, e.target.value)} />
           </Form.Group>
 
           <button className={styles.addPos}>
@@ -133,12 +112,28 @@ const ProfileModal = (props) => {
           </Form.Group>
 
           <button className={styles.addEdu}>Add new education</button>
+          <Form.Check id="checkEdu" className={styles.checkbox}>
+            <Form.Check.Input type="checkbox" />
+            <Form.Check.Label>Show education in my intro</Form.Check.Label>
+          </Form.Check>
 
           <Form.Group controlId="area">
               <Form.Label className={styles.labels}>Country/Region *</Form.Label>
-              <Form.Control type="text" placeholder="Country" className={styles.inputBase} required/>
+              <Form.Control type="text" placeholder="EX. London, UK" className={styles.inputBase} value={profData.area} onChange={(e) => changeData(e.target.id, e.target.value)} required/>
           </Form.Group>
-          <Form.Group controlId="industry">
+
+          <Row>
+            <Col xs={4}>
+              <Form.Label className={styles.labels}>Postal code</Form.Label>
+              <Form.Control placeholder="Postal code" className={styles.inputBase} />
+            </Col>
+            <Col>
+              <Form.Label className={styles.labels}>Locations within this area</Form.Label>
+              <Form.Control placeholder="Locations within this area" className={styles.inputBase} />
+            </Col>
+          </Row>
+
+          <Form.Group controlId="industry" className={styles.industry}>
               <Form.Label className={styles.labels}>Industry *</Form.Label>
               <Form.Control as="select" defaultValue="Industry" className={styles.inputBase} >
                 <option>Example industry</option>
@@ -147,14 +142,14 @@ const ProfileModal = (props) => {
           </Form.Group>
           <Form.Group controlId="area">
               <Form.Label className={styles.labels}>Contact Info</Form.Label>
-              <Form.Control type="text" placeholder="Contact Info" required className={styles.inputBase} />
+              <Form.Control type="text" placeholder="Contact Info" className={styles.inputBase} />
           </Form.Group>
-      </Modal.Body>
-      <Modal.Footer className="d-flex">
-        <button style={{ color: "white", backgroundColor: "rgb(10,102,194)", border: "none", borderRadius: "2rem", minWidth: "4rem", minHeight: "2rem" }} className="ml-auto" type="submit" >
-          Save
-        </button>
-      </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer className="d-flex">
+          <button style={{ color: "white", backgroundColor: "rgb(10,102,194)", border: "none", borderRadius: "2rem", minWidth: "4rem", minHeight: "2rem" }} className="ml-auto" type="submit" >
+            Save
+          </button>
+        </Modal.Footer>
       </Form>
     </Modal>
   )

@@ -32,10 +32,24 @@ const Experience = (props) => {
         }
     }
 
+    const delExperience = async (id) => {
+        const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            }
+        })
+        if(response.ok) {
+            fetchExperiences()
+        } else {
+            console.log('error with deleting experience')
+        }
+    }
+
     return (
         <CardBoilerplate add title="Experience" callback={showModal}>
             {
-                experiences && experiences.map(exp => <ExperienceCard key={exp._id} {...exp} edit={() => {setEdit(exp); showModal()}}/>)
+                experiences && experiences.map(exp => <ExperienceCard key={exp._id} {...exp} edit={() => {setEdit(exp); showModal()}} delete={() => delExperience(exp._id)} />)
             }
             {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} reload={fetchExperiences} />}
         </CardBoilerplate>
@@ -58,7 +72,10 @@ const ExperienceCard = (props) => {
                         {props.area && <h4>{props.area}</h4>}
                         {props.description && <p>{props.description}</p>}
                     </div>
-                    <IconBtn edit callback={props.edit && props.edit} />
+                    <div className="d-flex flex-column justify-content-between">
+                        <IconBtn edit callback={props.edit && props.edit} />
+                        <IconBtn delete callback={props.delete && props.delete} />
+                    </div>
                 </div>
             </Row>
         </Col>

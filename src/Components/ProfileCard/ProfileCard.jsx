@@ -11,7 +11,7 @@ const ProfileCard = (props) => {
         <section className={styles.profileCard}>
             <Cover />
             <div className={styles.profileAbout}>
-                <Avatar src={props.img} />
+                <Avatar src={props.img} profile={props.profile} refresh={props.refresh} />
                 <div className="d-flex justify-content-between pt-2">
                     <ProfileCardInfo name={props.name} about={props.about} location={props.location} />
                     <div className={styles.rightPanel}>
@@ -110,7 +110,7 @@ const Avatar = (props) => {
                     </svg>
                 </button>
             </div>
-            <ProfileModal closeFunc={hideProfileModal} show={profileModal} />
+            <ProfileModal closeFunc={hideProfileModal} show={profileModal} profile={props.profile} refresh={props.refresh} />
             <ProfileModalImg show={show} close={hideModal} />
         </div>
     )
