@@ -3,7 +3,7 @@ import CardBoilerplate from "./Common/CardBoilerplate"
 import { Row, Col } from 'react-bootstrap';
 import IconBtn from './Common/IconBtn';
 import { useState, useEffect } from 'react'
-import ExpEduForm from '../ExpEduForm'
+import ExpEduForm from '../Modals/ExperienceModal/ExpEduForm'
 
 const Experience = (props) => {
 

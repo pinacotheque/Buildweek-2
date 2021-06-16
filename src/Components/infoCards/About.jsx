@@ -2,7 +2,7 @@ import styles from './infoCards.module.css'
 import CardBoilerplate from "./Common/CardBoilerplate"
 import { Row, Col } from 'react-bootstrap';
 import AboutModal from '../AboutModal/AboutModal';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const About = (props) => {
     const [show, setShow] = useState(false)

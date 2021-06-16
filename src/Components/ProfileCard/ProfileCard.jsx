@@ -3,7 +3,7 @@ import ProfileButton from "./ProfileButton"
 import ProfileCardInfo from './ProfileCardInfo';
 import { useState } from "react";
 import ProfileModalImg from "./ProfileModalImg";
-import ProfileModal from "../ProfileModal/ProfileModal";
+import ProfileModal from "../Modals/ProfileModal/ProfileModal";
 
 const ProfileCard = (props) => {
 

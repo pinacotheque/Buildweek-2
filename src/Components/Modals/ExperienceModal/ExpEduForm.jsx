@@ -2,7 +2,7 @@ import { Modal, Form} from "react-bootstrap";
 import CloseIcon from "@material-ui/icons/Close";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import "./ExpEduForm.css";
+import styles from "./ExpEduForm.module.css";
 
 import { useState } from 'react'
 
@@ -84,7 +84,7 @@ const ExpEduForm = (props) => {
           <div className="mt-4">
             <label htmlFor="EmploymentType">Employment type</label>
             <div className="input-group mb-3">
-              <select className=" w-100 sel" id="EmploymentType" aria-label="Example select with button addon" style={{ height: "2rem" }}>
+              <select className={`w-100 ${styles.sel}`} id="EmploymentType" aria-label="Example select with button addon" style={{ height: "2rem" }}>
                 <option selected>-</option>
                 <option value={"Full-time"}>Full-time</option>
                 <option value={"Part-time"}>Part-time</option>
@@ -97,7 +97,7 @@ const ExpEduForm = (props) => {
               </select>{" "}
               <p>Country-specific employment types</p>
             </div>
-            <a href="/" className="formLink">Learn More</a>
+            <a href="/" className={styles.formLink}>Learn More</a>
           </div>
           <div className="mt-3">
             <label htmlFor="company">Company*</label>
@@ -111,18 +111,18 @@ const ExpEduForm = (props) => {
           </div>
         {!checked && <CheckBoxOutlineBlankIcon style={{ cursor: "pointer" }} onClick={() => setChecked(true)} />}
         {checked && <CheckBoxIcon onClick={() => setChecked(false)} style={{ color: "green", cursor: "pointer" }} />}
-        <span className="grey">I am currently working in this role</span>
+        <span className={styles.grey}>I am currently working in this role</span>
         <div className="mt-3 mb-3 d-flex" style={{ justifyContent: "space-evenly" }}>
           <div>
             <label htmlFor="startDate">Start Date *</label>
             <input min={"1963-01-01"} type="date" id="startDate" className="mx-3" required value={experience.startDate.slice(0,10)} onChange={(e) => changeData(e.target.id, e.target.value)} />
-            {!experience.startDate && <p className="invalid mt-3">Please enter a start date.</p>}
+            {!experience.startDate && <p className={`${styles.invalid} mt-1`}>Please enter a start date.</p>}
           </div>
           <div className="ml-5">
             <label htmlFor="endDate">End Date *</label>
             {!checked && <input min={"1963-01-01"} type="date" id="endDate" className="mx-3" required value={experience.endDate.slice(0,10)} onChange={(e) => changeData(e.target.id, e.target.value)} />}
             {checked && <span className="mx-3"> Present</span>}
-            {!experience.endDate && !checked && <p className="invalid mt-3">Please enter an end date.</p>}
+            {!experience.endDate && !checked && <p className={`${styles.invalid} mt-1`}>Please enter an end date.</p>}
           </div>
         </div>
         <div className="form-group mb-3">

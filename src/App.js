@@ -2,9 +2,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from './Components/Profile'
 import { useState, useEffect} from 'react'
-import LoginModal from './Components/LoginModal/LoginModal'
+import LoginModal from './Components/Modals/LoginModal/LoginModal'
 import Navbar from './Components/Navbar/Navbar'
-import Footer from './Components/Footer'
+import Footer from './Components/Footer/Footer'
 
 function App() {
 
