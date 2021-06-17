@@ -3,7 +3,6 @@ import styles from "./Navbar.module.css"
 import NavButton from "./NavButton"
 import {useState} from 'react'
 
-
 const NavBar = (props) => {
 
     const [navbar, setNavbar] = useState(false)

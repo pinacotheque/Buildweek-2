@@ -1,0 +1,50 @@
+.feed-my-profile {
+    position: relative;
+  }
+  .feed-my-profile p,
+  .feed-my-profile span {
+    font-size: 12px;
+    margin: 0;
+  }
+  .feed-my-profile .hero {
+    background-image: url("https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fjosephliu%2Ffiles%2F2019%2F06%2F1-office-1516329_1920-1200x299.jpg");
+    background-size: cover;
+    height: 60px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .feed-my-profile .avatar {
+    height: 72px;
+    width: 72px;
+    object-fit: cover;
+    object-position: top;
+    padding: 2px;
+    position: absolute;
+    top: px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: white;
+  }
+  
+  .feed-my-profile .my-name {
+    margin-top: 60px;
+  }
+  .feed-my-profile .my-title,
+  .feed-my-profile .views p,
+  .feed-my-profile .my-items {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .feed-my-profile .views p {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+  }
+  .feed-my-profile .views span {
+    color: rgb(10, 102, 194);
+  }
+  
+  .feed-my-profile .my-items {
+    font-weight: bold;
+  }
+  
