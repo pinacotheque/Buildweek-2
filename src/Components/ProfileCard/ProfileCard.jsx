@@ -115,7 +115,7 @@ const Avatar = (props) => {
                 }
             </div>
             {!props.public && <ProfileModal closeFunc={hideProfileModal} show={profileModal} profile={props.profile} refresh={props.refresh} />}
-            {!props.public && <ProfileModalImg show={show} close={hideModal} />}
+            {!props.public && <ProfileModalImg show={show} close={hideModal} refresh={props.refresh} />}
         </div>
     )
 }

@@ -48,7 +48,7 @@ function App() {
       <Route path="/in/:id">
         <PublicProfile />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <Homepage profile={myProfile} />
       </Route>
       <Footer />
