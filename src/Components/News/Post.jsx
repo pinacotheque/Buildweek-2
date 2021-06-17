@@ -55,6 +55,7 @@ const EducationCard = (props) => {
             <hr/>
             </Col> 
 
+
             <Col sm={2}>
             <h6 style={{marginBottom:'0',fontWeight:'400',fontSize:'12px'}}>Sort by: <span style={{fontWeight:'600',fontSize:'14px'}} >Top</span></h6>
             </Col> 
