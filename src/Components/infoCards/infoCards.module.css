@@ -1,0 +1,373 @@
+/* Icon Button styles edit|add and text button styles start here */
+.iconBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    border-radius: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 8px;
+}
+
+.iconBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.iconBtn:active {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.textBtn {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+    min-height: 32px;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+}
+
+.textBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+/* Icon button and text button styles end here */
+
+/* Base Info card styles start here */
+.infoCard {
+    background-color: white;
+    margin-top: 16px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.topCard {
+    margin-top: 0;
+}
+
+.sideCard {
+    padding: 24px 16px 12px;
+}
+
+.mainInfoCardHeader {
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+
+.secondaryInfoCardHeader {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+/* Base Info card styles end here */
+
+/* Interests card styles start here */
+.interests {
+    padding-right: 24px;
+    margin-bottom: 24px;
+}
+
+.interests img {
+    width: 56px;
+    height: 56px;
+    margin-right: 24px;
+}
+
+.interests h3 {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 3px;
+}
+
+.interests p {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 400;
+}
+/* Interests card styles end here */
+
+/* Education card styles start here */
+.education {
+    margin-bottom: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.education button {
+    margin-top: -10px;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.education:hover button {
+    opacity: 1;
+}
+
+.education img {
+    width: 56px;
+    height: 56px;
+    margin-right: 24px;
+}
+
+.education h3 {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 1px;
+}
+
+.education p:nth-of-type(1) {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.education p:nth-of-type(2) {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+.educationCol {
+    position: relative;
+}
+.educationCol::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -24px;
+    width: 93%;
+    border-bottom: 1px solid rgba(110, 110, 110, 0.274);
+}
+
+.educationCol:last-of-type::after {
+    border-bottom: none;
+}
+/* Education card styles end here */
+
+
+/* Take quiz button and skills|endorsements styles start here  */
+.takeQuizBtn {
+    color: rgb(10, 102, 194);
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    border-radius: 16px;
+    padding: 4px 16px;
+    margin-top: 6px;
+    border: none;
+    box-shadow: rgb(10, 102, 194) 0px 0px 0px 1px inset;
+}
+
+.takeQuizBtn:hover {
+    background-color: rgba(112, 181, 249, 0.2);
+    box-shadow: rgb(10, 102, 194) 0px 0px 0px 2px inset;
+}
+
+.takeQuizBtn:active {
+    background-color: rgba(112, 181, 249, 0.3);
+    color: rgb(0, 65, 130);
+    box-shadow: rgb(0, 65, 130) 0px 0px 0px 2px inset;
+}
+
+.skillsCol {
+    border-bottom: 1px solid rgba(110, 110, 110, 0.274);
+}
+
+.skillsCol:last-of-type {
+    border-bottom: none;
+}
+
+.skillsCol p:nth-of-type(1) {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+.skillsCol p:nth-of-type(2) {
+    color: #767676;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.skillsCol p strong {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.skillsCol span::before {
+    content: '\00B7';
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 3px;
+}
+
+.skillsCol span {
+    color: rgba(0, 0, 0, 0.6);
+}
+/* Take quiz button and skills|endorsements styles end here  */
+
+/* Experiences styles start here  */
+.experience {
+    margin-bottom: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.experience button {
+    margin-top: -10px;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.experience:hover button {
+    opacity: 1;
+}
+
+.experience img {
+    width: 56px;
+    height: 56px;
+    margin-right: 24px;
+}
+
+.experience h3 {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 1px;
+}
+
+.experience p span::before {
+    content: '\00B7';
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 3px;
+}
+
+.experience p:nth-of-type(1) {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 3px;
+    margin-bottom: -1px;
+}
+
+.experience h4 {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px!important;
+    font-weight: 400!important;
+    margin: 3px 0;
+}
+
+.experience p:nth-of-type(2) {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+.experienceCol {
+    position: relative;
+}
+.experienceCol::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -24px;
+    width: 93%;
+    border-bottom: 1px solid rgba(110, 110, 110, 0.274);
+}
+
+.experienceCol:last-of-type::after {
+    border-bottom: none;
+}
+/* Experiences styles end here  */
+
+/* About styles start here */
+.aboutCol p {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    white-space: pre-line;
+}
+/* About styles end here */
+
+/* Side Cards styles start here */
+.sidePeople {
+    margin-top: 14px;
+}
+
+.sidePeople img {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-right: 12px;
+}
+
+.sidePeople h3 {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.sidePeople h3 span {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+}
+
+.sidePeople h3 span::before {
+    content: '\2022';
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0 3px;
+}
+
+.sidePeople p {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.sidePeople button {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.686);
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px 1px inset;
+    border: none;
+    padding: 4px 16px;
+    margin-top: 6px;
+}
+
+.sidePeople button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.6);
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px 2px inset;
+}
+
+.sidePeople button:active {
+    color: rgba(0, 0, 0, 0.9);
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 0px 2px inset;
+}
+/* Side Cards styles end here */
+
+.delIcon {
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+}
