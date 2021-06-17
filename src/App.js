@@ -2,15 +2,17 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from './Components/Profile'
 import { useState, useEffect} from 'react'
-import LoginModal from './Components/LoginModal/LoginModal'
+import LoginModal from './Components/Modals/LoginModal/LoginModal'
 import Navbar from './Components/Navbar/Navbar'
-import Footer from './Components/footer'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
+import Footer from './Components/Footer/Footer'
+import { getProfile } from './Lib/fetch';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import PublicProfile from './Components/PublicProfile';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false)
+  const [myProfile, setMyProfile] = useState(null)
 
   const close = () => setLoggedIn(true)
 
@@ -22,18 +24,31 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    fetchProfile()
+  }, [loggedIn])
+
+  const fetchProfile = async () => {
+    const result = await getProfile()
+    if(!result.error) {
+      setMyProfile(result.data)
+    } else {
+      console.log('error with getting profile')
+    }
+  }
+
   return (
-    <>
-      
-      
+    <Router>
       <LoginModal show={!loggedIn} close={close} />
-      <Navbar />
-      <Profile loggedIn={loggedIn} />
-
-      
+      <Navbar profile={myProfile} />
+      <Route path="/me">
+        <Profile loggedIn={loggedIn} myProfile={myProfile} />
+      </Route>
+      <Route path="/in/:id">
+        <PublicProfile />
+      </Route>
       <Footer />
-
-    </>
+    </Router>
   )
 }
 

@@ -1,5 +1,6 @@
 import { Modal, Button, Form } from "react-bootstrap"
 import { useState } from 'react'
+import { getProfile } from "../../../Lib/fetch"
 
 const LoginModal = (props) => {
 
@@ -19,13 +20,8 @@ const LoginModal = (props) => {
     }
 
     const setUserId = async () => {
-        const response = await fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem('token')
-            }
-        })
-        if(response.ok) {
-            const data = await response.json()
+        const result = await getProfile()
+        if(!result.error) {
             localStorage.setItem('myId', data._id)
         } else {
             console.log("error with post request")

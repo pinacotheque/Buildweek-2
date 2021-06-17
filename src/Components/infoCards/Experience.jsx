@@ -3,7 +3,8 @@ import CardBoilerplate from "./Common/CardBoilerplate"
 import { Row, Col } from 'react-bootstrap';
 import IconBtn from './Common/IconBtn';
 import { useState, useEffect } from 'react'
-import ExpEduForm from '../ExpEduForm'
+import ExpEduForm from '../Modals/ExperienceModal/ExpEduForm'
+import { delExp, getExp } from '../../Lib/fetch';
 
 const Experience = (props) => {
 
@@ -12,32 +13,36 @@ const Experience = (props) => {
     const [edit, setEdit] = useState(null)
 
     const showModal = () => setShow(true)
-    const hideModal = () => setShow(false)
+    const hideModal = () => {setShow(false); setEdit(null)}
 
     useEffect(() => {
-        fetchExperiences()
-    }, [])
+        fetchExperiences(props.id ? props.id : '')
+    }, [props.id])
 
-    const fetchExperiences = async () => {
-        const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences`, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem('token')
-            }
-        })
-        if(response.ok) {
-            const data = await response.json()
-            setExperiences(data)
+    const fetchExperiences = async (id='') => {
+        const response = await getExp(id)
+        if(!response.error) {
+            setExperiences(response.data)
         } else {
             console.log('error with fetching experiences')
         }
     }
 
+    const delExperience = async (id) => {
+        const response = await delExp(id)
+        if(!response.error) {
+            fetchExperiences()
+        } else {
+            console.log('error with deleting experience')
+        }
+    }
+
     return (
-        <CardBoilerplate add title="Experience" callback={showModal}>
+        <CardBoilerplate add={props.public ? false : true} title="Experience" callback={showModal}>
             {
-                experiences && experiences.map(exp => <ExperienceCard key={exp._id} {...exp} edit={() => {setEdit(exp); showModal()}}/>)
+                experiences && experiences.map(exp => <ExperienceCard key={exp._id} public={props.public} {...exp} edit={() => {setEdit(exp); showModal()}} delete={() => delExperience(exp._id)} />)
             }
-            {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} reload={fetchExperiences} />}
+            {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} resetEdit={() => setEdit(null)} reload={fetchExperiences} />}
         </CardBoilerplate>
     )
 }
@@ -54,11 +59,14 @@ const ExperienceCard = (props) => {
                     <div className="mr-auto">
                         <h3>{props.role}</h3>
                         <p>{props.company}{props.workTime && <span>{props.workTime}</span>}</p>
-                        {(props.startDate && props.endDate) && <h4>{props.startDate} - {props.endDate}</h4>}
+                        {(props.startDate && props.endDate) && <h4>{props.startDate.split('-')[0]} - {props.endDate.split('-')[0]}</h4>}
                         {props.area && <h4>{props.area}</h4>}
                         {props.description && <p>{props.description}</p>}
                     </div>
-                    <IconBtn edit callback={props.edit && props.edit} />
+                    <div className="d-flex flex-column justify-content-between">
+                        {!props.public && <IconBtn edit callback={props.edit && props.edit} />}
+                        {!props.public && <IconBtn delete callback={props.delete && props.delete} />}
+                    </div>
                 </div>
             </Row>
         </Col>

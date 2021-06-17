@@ -1,14 +1,13 @@
 import { Row, Col, Nav, Form, Container } from "react-bootstrap";
 import { AiFillSetting } from "react-icons/ai";
 import { AiFillQuestionCircle } from "react-icons/ai";
-import "./footer.css"
-// hello
+import styles from "./footer.module.css"
 
 const MyFooter = () => (
   <Container className="mt-4 w-80">
-    <Row className="footer-main-row">
+    <Row className={styles.footerMainRow}>
       <Col>
-        <div className="icon-footer-logo">
+        <div className={styles.iconFooterLogo}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 21" data-supported-dps="84x21" className="mercado-match" width="84" height="21" focusable="false" >
             <g>
               <g className="background-mercado">
@@ -19,45 +18,45 @@ const MyFooter = () => (
           </svg>
         </div>
 
-        <Nav.Link className="footer-links ">About</Nav.Link>
-        <Nav.Link className="footer-links ">Comunity Guidelines</Nav.Link>
-        <Nav.Link className="footer-links ">Privacy $ Terms</Nav.Link>
-        <Nav.Link className="footer-links ">Sales Solutions</Nav.Link>
-        <Nav.Link className="footer-links ">Safety Center</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>About</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Comunity Guidelines</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Privacy $ Terms</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Sales Solutions</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Safety Center</Nav.Link>
 
-        <div className="footer-copyright">LinkedIn Corporation © 2021</div>
+        <div className={styles.footerCopyright}>LinkedIn Corporation © 2021</div>
       </Col>
 
       <Col className="mt-5">
-        <Nav.Link className="footer-links ">Accesibility</Nav.Link>
-        <Nav.Link className="footer-links ">Careers</Nav.Link>
-        <Nav.Link className="footer-links ">Ad choices</Nav.Link>
-        <Nav.Link className="footer-links ">Mobile</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Accesibility</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Careers</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Ad choices</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Mobile</Nav.Link>
       </Col>
       <Col className="mt-5">
-        <Nav.Link className="footer-links ">Talent Solutions</Nav.Link>
-        <Nav.Link className="footer-links ">Marketing Solutions</Nav.Link>
-        <Nav.Link className="footer-links ">Advertising</Nav.Link>
-        <Nav.Link className="footer-links ">Small Business</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Talent Solutions</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Marketing Solutions</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Advertising</Nav.Link>
+        <Nav.Link className={styles.footerLinks}>Small Business</Nav.Link>
       </Col>
       <Col className="mt-5">
-        <Nav.Link className="footer-links-icons ">
+        <Nav.Link className={styles.footerLinksIcons}>
           <AiFillQuestionCircle className="icons-footer-style" />
           Questions?
         </Nav.Link>
-        <p className="footer-undertext">Visit our help center</p>
+        <p className={styles.footerUndertext}>Visit our help center</p>
 
-        <Nav.Link className="footer-links-icons ">
-          <AiFillSetting className="icons-footer-style" /> Manage your account
+        <Nav.Link className={styles.footerLinksIcons}>
+          <AiFillSetting className={styles.iconsFooterStyle} /> Manage your account
           and privacy
         </Nav.Link>
-        <p className="footer-undertext">Go to your settings</p>
-        <Nav.Link className="footer-links ">Corporate information</Nav.Link>
+        <p className={styles.footerUndertext}>Go to your settings</p>
+        <Nav.Link className={styles.footerLinks}>Corporate information</Nav.Link>
       </Col>
       <Col className="mt-5">
         <Form>
           <Form.Group controlId="exampleForm.SelectCustom">
-            <Form.Label className="footer-links-language ">
+            <Form.Label className={styles.footerLinksLanguage}>
               Select language
             </Form.Label>
 

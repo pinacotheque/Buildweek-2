@@ -1,23 +1,15 @@
 import { Container, Form, FormControl, Nav, Navbar, NavDropdown} from 'react-bootstrap'
-import logo from "./assets/logo.png"
-import pp from "./assets/putin.jpeg"
 import styles from "./Navbar.module.css"
 import NavButton from "./NavButton"
 import {useState} from 'react'
-import { useHistory } from "react-router-dom";
 
-function HomeButton() {
-    let history = useHistory();
-   
-  }
+const NavBar = (props) => {
 
-function NavBar (){
-
-    const [navbar,setNavbar] = useState(false)
+    const [navbar, setNavbar] = useState(false)
 
     const ChangeDisplay = () => {
         if(window.scrollY > 250){
-            setNavbar(true) 
+            setNavbar(true)
         }else {
             setNavbar(false)
         }
@@ -26,17 +18,23 @@ function NavBar (){
 
     return(
         <>
-        <Navbar bg="white" expand="lg" className={`${styles.navbar} navbar p-0 justify-content-between`}>
+        <Navbar bg="white" expand={true} className={`${styles.navbar} p-0`}>
             <Container>
-                <div>
-                    <Form inline>
-                        <Navbar.Brand href="#home"><img src={logo} style= {{ width:'38px',height:'38px', borderRadius:'5px'}} alt="" /></Navbar.Brand>
-                        <FormControl type="text" bg="" placeholder="Search" className={ styles.searchbar}></FormControl>
+                <div className="d-flex align-items-center">
+                    <Navbar.Brand href="#home" className={styles.brand}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+                            <g>
+                                <path d="M34,2.5v29A2.5,2.5,0,0,1,31.5,34H2.5A2.5,2.5,0,0,1,0,31.5V2.5A2.5,2.5,0,0,1,2.5,0h29A2.5,2.5,0,0,1,34,2.5ZM10,13H5V29h5Zm.45-5.5A2.88,2.88,0,0,0,7.59,4.6H7.5a2.9,2.9,0,0,0,0,5.8h0a2.88,2.88,0,0,0,2.95-2.81ZM29,19.28c0-4.81-3.06-6.68-6.1-6.68a5.7,5.7,0,0,0-5.06,2.58H17.7V13H13V29h5V20.49a3.32,3.32,0,0,1,3-3.58h.19c1.59,0,2.77,1,2.77,3.52V29h5Z" fill="currentColor"></path>
+                            </g>
+                        </svg>
+                    </Navbar.Brand>
+                    <Form inline className="d-flex align-items-center">
+                        <FormControl type="text" bg="" placeholder="Search" className={styles.searchbar}></FormControl>
                     </Form> 
                 </div>
                 <div>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav" className=" d-flex">
+                    <Navbar.Collapse id="basic-navbar-nav" className="d-flex">
                         <Nav className="nav-h6 d-flex">
                             <Nav.Link href="#home" className={styles.navlink} >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" className="bi bi-house-fill" viewBox="0 0 16 16">
@@ -72,8 +70,8 @@ function NavBar (){
                                 </svg>
                                 <h6 className="mt-1 mb-0" style={{fontSize:'12px'}} >Notifications</h6>
                             </Nav.Link>
-                            <div className={ styles.dropmenu}> 
-                                <img src={pp} className={styles.dropmenuImg} alt="" />
+                            <div className={styles.dropmenu}> 
+                                <img src={props.profile?.image} className={styles.dropmenuImg} alt="" />
                                 <NavDropdown title="Me" className={styles.meTitle}  id="basic-nav-dropdown" >
                                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -82,7 +80,7 @@ function NavBar (){
                                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                                 </NavDropdown>
                             </div>
-                            <div className={ styles.gridmenu}> 
+                            <div className={styles.gridmenu}> 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" className="bi bi-grid-3x3-gap-fill" viewBox="0 0 16 16">
                                     <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
                                 </svg>            
@@ -94,8 +92,8 @@ function NavBar (){
                                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                                 </NavDropdown>
                             </div>
-                            <Nav.Link href="#link" className={styles.navlink}>
-                                <h6 className={ styles.premiumLink} >Try Premium for <br/> free</h6>
+                            <Nav.Link href="#link" className={`${styles.navlink} flex-row ${styles.premium}`}>
+                                <h6 className={ styles.premiumLink} >Try Premium for free</h6>
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
@@ -106,10 +104,10 @@ function NavBar (){
         <Navbar bg="white" expand="lg" className={`${styles.subNav} ${navbar ? styles.navbarScrollactive : styles.navbarScroll}`}>
             <Container >
                 <Form inline className={styles.scrollNav} >
-                    <Navbar.Brand href="#home" className="m-0 mr-2"><img src={pp} className={styles.scrollNavImg} alt="" /></Navbar.Brand>  
+                    <Navbar.Brand href="#home" className="m-0 mr-2"><img src={props.profile?.image} className={styles.scrollNavImg} alt="" /></Navbar.Brand>  
                     <div href="#link" className={ styles.navname}>
-                        <h6 className={styles.scrollNavText} >Name Surname</h6>
-                        <h6 className=" mb-0" style={{fontSize:'12px',fontWeight:'400'}} >Job Title</h6>
+                        <h6 className={styles.scrollNavText} >{props.profile?.name} {props.profile?.surname}</h6>
+                        <h6 className=" mb-0" style={{fontSize:'12px',fontWeight:'400'}} >{props.profile?.title}</h6>
                     </div>
                 </Form>
                 <div>
