@@ -4,7 +4,12 @@ import pp from "./assets/putin.jpeg"
 import styles from "./Navbar.module.css"
 import NavButton from "./NavButton"
 import {useState} from 'react'
+import { useHistory } from "react-router-dom";
 
+function HomeButton() {
+    let history = useHistory();
+   
+  }
 
 function NavBar (){
 
