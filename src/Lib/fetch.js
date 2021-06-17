@@ -44,6 +44,21 @@ const fetchExperience = (endpoint='', method = "GET", body = null, id="") => {
     return [finalUrl, options]
 }
 
+const fetchPost = (endpoint='', method='GET', body=null) => {
+    const url = `https://striveschool-api.herokuapp.com/api/posts/`
+    const finalUrl = url + endpoint
+  
+    const options = {
+      method: method,
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem('token'),
+      },
+      body: body ? JSON.stringify(body) : null,
+    }
+    return [finalUrl, options]
+}
+
 export const getProfile = async (id='me') => {
     const result = await fetchData(fetchProfile(id))
     return result
@@ -76,5 +91,20 @@ export const getExp = async (id='') => {
 
 export const delExp = async (id) => {
     const result = await fetchData(fetchExperience(id, 'DELETE'))
+    return result
+}
+
+export const getPosts = async () => {
+    const result = await fetchData(fetchPost())
+    return result
+}
+
+export const postPost = async (post) => {
+    const result = await fetchData(fetchPost('', 'POST', post))
+    return result
+}
+
+export const delPost = async (id) => {
+    const result = await fetchData(fetchPost(id, 'DELETE'))
     return result
 }

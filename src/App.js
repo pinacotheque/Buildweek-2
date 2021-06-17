@@ -8,6 +8,7 @@ import Footer from './Components/Footer/Footer'
 import { getProfile } from './Lib/fetch';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import PublicProfile from './Components/PublicProfile';
+import Homepage from './Components/Homepage';
 
 function App() {
 
@@ -42,10 +43,13 @@ function App() {
       <LoginModal show={!loggedIn} close={close} />
       <Navbar profile={myProfile} />
       <Route path="/me">
-        <Profile loggedIn={loggedIn} myProfile={myProfile} />
+        <Profile loggedIn={loggedIn} myProfile={myProfile} refresh={fetchProfile} />
       </Route>
       <Route path="/in/:id">
         <PublicProfile />
+      </Route>
+      <Route path="/">
+        <Homepage profile={myProfile} />
       </Route>
       <Footer />
     </Router>

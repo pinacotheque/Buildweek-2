@@ -17,3 +17,25 @@ body{
 #profileBody {
   padding-top: 100px;
 }
+
+#homePage {
+  padding-top: 100px;
+}
+
+#homePage > .col-2 {
+  flex: 0 0 22%!important;
+  max-width: 22%!important;
+  padding-left: 0!important;
+}
+
+#homePage > .col-6 {
+  flex: 0 0 48%!important;
+  max-width: 48%!important;
+}
+
+
+#homePage > .col-4 {
+  flex: 0 0 30%!important;
+  max-width: 30%!important;
+  padding-right: 0!important;
+}

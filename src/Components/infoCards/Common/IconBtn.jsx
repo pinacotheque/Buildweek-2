@@ -3,7 +3,7 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 
 const IconBtn = (props) => {
     return (
-        <button className={styles.iconBtn} onClick={props.callback && props.callback}>
+        <button className={`${styles.iconBtn} ${props.toRight && 'ml-auto'}`} onClick={props.callback && props.callback}>
             {
                 props.add ?
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
