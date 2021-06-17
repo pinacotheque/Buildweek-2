@@ -4,7 +4,9 @@ import Profile from './Components/Profile'
 import { useState, useEffect} from 'react'
 import LoginModal from './Components/LoginModal/LoginModal'
 import Navbar from './Components/Navbar/Navbar'
-import Footer from './Components/Footer'
+import Footer from './Components/footer'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 
 function App() {
 
@@ -22,10 +24,15 @@ function App() {
 
   return (
     <>
-      <LoginModal  show={!loggedIn} close={close} />
+      
+      
+      <LoginModal show={!loggedIn} close={close} />
       <Navbar />
       <Profile loggedIn={loggedIn} />
+
+      
       <Footer />
+
     </>
   )
 }

@@ -1,0 +1,174 @@
+.iconBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    border-radius: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 8px;
+}
+
+.iconBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.iconBtn:active {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.textBtn {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+    min-height: 32px;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+}
+
+.textBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+/* Icon button and text button styles end here */
+
+/* Base Info card styles start here */
+.infoCard {
+    background-color: white;
+    margin-top: 16px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.topCard {
+    margin-top: 0;
+}
+
+.sideCard {
+    padding: 24px 16px 12px;
+}
+
+.mainInfoCardHeader {
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+
+.secondaryInfoCardHeader {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+/* Base Info card styles end here */
+
+/* Education card styles start here */
+.education {
+    margin-bottom: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.education button {
+    margin-top: -10px;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.education:hover button {
+    opacity: 1;
+}
+
+.education img {
+    width: 56px;
+    height: 56px;
+    margin-right: 24px;
+}
+
+.education h3 {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 1px;
+}
+
+.education p:nth-of-type(1) {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.education p:nth-of-type(2) {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+.educationCol {
+    position: relative;
+}
+.educationCol::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -24px;
+    width: 93%;
+    border-bottom: 1px solid rgba(110, 110, 110, 0.274);
+}
+
+.educationCol:last-of-type::after {
+    border-bottom: none;
+}
+
+.ppputin{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.newsboiler{
+    align-items: center;
+}
+
+.inputField{
+    width: 650px;
+    height: 58px;
+    border-radius: 30px;
+    padding-left: 20px;
+    border-width: 1pt  ;
+    border-color: rgb(214, 211, 211);
+}
+
+.inputField:hover{
+    background-color: rgb(230, 230, 230);
+}
+.inputField:focus{
+    outline: 0;
+}
+
+.sendPhoto{
+    flex-direction: row;
+}
+
+.h6s{
+    align-self: center;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+.couples{
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    flex-direction: row;
+    display: inline-flex;
+    align-items: baseline;
+}

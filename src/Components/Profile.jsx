@@ -8,7 +8,7 @@ import About from './infoCards/About';
 import SidePeopleBar from './infoCards/SidePeopleBar/SidePeopleBar';
 import Dashboard from './DashBoard/DashBoard';
 import { useState, useEffect } from 'react';
-
+import News from './News/Post'
 
 function Profile(props) {
 
@@ -43,6 +43,7 @@ function Profile(props) {
           <Experience />
           <InterestsCard />
           <EducationCard />
+          <News/>
         </Col>
         <Col xs={3}>
           <SidePeopleBar />
