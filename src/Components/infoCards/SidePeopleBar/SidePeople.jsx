@@ -1,5 +1,6 @@
 import styles from '../infoCards.module.css'
 import CardBoilerplate from "../Common/CardBoilerplate"
+import { Link } from 'react-router-dom'
 
 const SidePeople = (props) => {
     return (
@@ -21,14 +22,16 @@ const SidePeopleCard = (props) => {
             <div>
                 <h3>{props.name} {props.surname}{props.top && <span>3rd</span>}</h3>
                 <p>{props.title}</p>
-                <ConnectBtn />
+                <ConnectBtn id={props._id} />
             </div>
         </div>
     )
 }
 
-const ConnectBtn = () => {
+const ConnectBtn = (props) => {
     return (
-        <button>Connect</button>
+        <Link to={`/in/${props.id}`}>
+            <button>Connect</button>
+        </Link>
     )
 }

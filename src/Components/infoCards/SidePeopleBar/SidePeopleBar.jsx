@@ -37,7 +37,6 @@ const SidePeopleBar = (props) => {
         const response = await getProfiles()
         if(!response.error) {
             setPeople(response.data)
-
         } else {
             console.log('error with fetching people')
         }

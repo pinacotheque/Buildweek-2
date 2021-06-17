@@ -9,9 +9,9 @@ const ProfileCard = (props) => {
 
     return (
         <section className={styles.profileCard}>
-            <Cover />
+            <Cover public={props.public} />
             <div className={styles.profileAbout}>
-                <Avatar src={props.img} profile={props.profile} refresh={props.refresh} />
+                <Avatar src={props.img} profile={props.profile} refresh={props.refresh} public={props.public} />
                 <div className="d-flex justify-content-between pt-2">
                     <ProfileCardInfo name={props.name} about={props.about} location={props.location} />
                     <div className={styles.rightPanel}>
@@ -23,16 +23,18 @@ const ProfileCard = (props) => {
                 <div className="my-2">
                     <a href="/" className={styles.blueLink}>2 connections</a>
                 </div>
-                <div className="mt-2">
-                    <ProfileButton text="Open to" blue/>
-                    <ProfileButton text="Add section"/>
+                <div className={`mt-2 ${props.public && 'mb-4'}`}>
+                    <ProfileButton text={props.public ? "Connect" : "Open to"} blue/>
+                    <ProfileButton text={props.public ? "Message" : "Add section"} />
                     <ProfileButton text="More"/>
                 </div>
             </div>
-            <div className={`${styles.carousel} d-flex`}>
-                <CarouselCard edit title="Open to work" text="Web Developer and Software Associate roles"/>
-                <CarouselCard title="Share that you're hiring" text="and attract qualified candidates." />
-            </div>
+            {
+                !props.public && (<div className={`${styles.carousel} d-flex`}>
+                    <CarouselCard edit title="Open to work" text="Web Developer and Software Associate roles"/>
+                    <CarouselCard title="Share that you're hiring" text="and attract qualified candidates." />
+                </div>)
+            }
         </section>
     )
 }
@@ -98,20 +100,22 @@ const Avatar = (props) => {
 
     return (
         <div className="d-flex justify-content-between">
-            <div className={styles.avatarHolder} onClick={showModal}>
+            <div className={styles.avatarHolder} onClick={!props.public && showModal}>
                 <div className={styles.avatarCircle}>
                     <img src={props.src} alt="" />
                 </div>
             </div>
             <div className={styles.edit}>
-                <button onClick={showProfileModal}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
-                        <path d="M21.13 2.86a3 3 0 00-4.17 0l-13 13L2 22l6.19-2L21.13 7a3 3 0 000-4.16zM6.77 18.57l-1.35-1.34L16.64 6 18 7.35z"></path>
-                    </svg>
-                </button>
+                {
+                    !props.public && (<button onClick={showProfileModal}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="24" height="24" focusable="false">
+                            <path d="M21.13 2.86a3 3 0 00-4.17 0l-13 13L2 22l6.19-2L21.13 7a3 3 0 000-4.16zM6.77 18.57l-1.35-1.34L16.64 6 18 7.35z"></path>
+                        </svg>
+                    </button>)
+                }
             </div>
-            <ProfileModal closeFunc={hideProfileModal} show={profileModal} profile={props.profile} refresh={props.refresh} />
-            <ProfileModalImg show={show} close={hideModal} />
+            {!props.public && <ProfileModal closeFunc={hideProfileModal} show={profileModal} profile={props.profile} refresh={props.refresh} />}
+            {!props.public && <ProfileModalImg show={show} close={hideModal} />}
         </div>
     )
 }
@@ -120,11 +124,13 @@ const Cover = (props) => {
     return (
         <div className={styles.coverDiv}>
             <img src={props.src ? props.src : "https://static-exp1.licdn.com/sc/h/9e0ckeb27mzi70ne80f4hv7il"} alt="" />
-            <button className={styles.coverBtn}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" className="mercado-match" width="16" height="16" focusable="false">
-                    <path d="M10 9a2 2 0 11-2-2 2 2 0 012 2zm5-2.5V14H1V6.5A2.5 2.5 0 013.5 4h.75L5 2h6l.75 2h.75A2.5 2.5 0 0115 6.5zM11 9a3 3 0 10-3 3 3 3 0 003-3z"></path>
-                </svg>
-            </button>
+            {
+                !props.public && (<button className={styles.coverBtn}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-supported-dps="16x16" fill="currentColor" className="mercado-match" width="16" height="16" focusable="false">
+                        <path d="M10 9a2 2 0 11-2-2 2 2 0 012 2zm5-2.5V14H1V6.5A2.5 2.5 0 013.5 4h.75L5 2h6l.75 2h.75A2.5 2.5 0 0115 6.5zM11 9a3 3 0 10-3 3 3 3 0 003-3z"></path>
+                    </svg>
+                </button>)
+            }
         </div>
     )
 }

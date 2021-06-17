@@ -6,6 +6,8 @@ import LoginModal from './Components/Modals/LoginModal/LoginModal'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
 import { getProfile } from './Lib/fetch';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import PublicProfile from './Components/PublicProfile';
 
 function App() {
 
@@ -36,12 +38,17 @@ function App() {
   }
 
   return (
-    <>
+    <Router>
       <LoginModal show={!loggedIn} close={close} />
       <Navbar profile={myProfile} />
-      <Profile loggedIn={loggedIn} myProfile={myProfile} />
+      <Route path="/me">
+        <Profile loggedIn={loggedIn} myProfile={myProfile} />
+      </Route>
+      <Route path="/in/:id">
+        <PublicProfile />
+      </Route>
       <Footer />
-    </>
+    </Router>
   )
 }
 

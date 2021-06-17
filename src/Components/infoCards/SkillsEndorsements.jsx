@@ -4,8 +4,8 @@ import { Row, Col } from 'react-bootstrap';
 
 const SkillsEndorsements = (props) => {
     return (
-        <CardBoilerplate edit textBtn="Add a new skill" title="Skills & endorsements">
-            <button className={styles.takeQuizBtn}>Take skill quiz</button>
+        <CardBoilerplate edit={props.public ? false : true} textBtn={!props.public && "Add a new skill"} title="Skills & endorsements">
+            {!props.public && <button className={styles.takeQuizBtn}>Take skill quiz</button>}
             <SkillsEndorsementsCard endorsements="7" title="Responsive Web Design" />
             <SkillsEndorsementsCard endorsements="5" title="JavaScript" />
             <SkillsEndorsementsCard title="React.js" />

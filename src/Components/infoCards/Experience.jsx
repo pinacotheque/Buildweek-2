@@ -16,11 +16,11 @@ const Experience = (props) => {
     const hideModal = () => {setShow(false); setEdit(null)}
 
     useEffect(() => {
-        fetchExperiences()
-    }, [])
+        fetchExperiences(props.id ? props.id : '')
+    }, [props.id])
 
-    const fetchExperiences = async () => {
-        const response = await getExp()
+    const fetchExperiences = async (id='') => {
+        const response = await getExp(id)
         if(!response.error) {
             setExperiences(response.data)
         } else {
@@ -38,9 +38,9 @@ const Experience = (props) => {
     }
 
     return (
-        <CardBoilerplate add title="Experience" callback={showModal}>
+        <CardBoilerplate add={props.public ? false : true} title="Experience" callback={showModal}>
             {
-                experiences && experiences.map(exp => <ExperienceCard key={exp._id} {...exp} edit={() => {setEdit(exp); showModal()}} delete={() => delExperience(exp._id)} />)
+                experiences && experiences.map(exp => <ExperienceCard key={exp._id} public={props.public} {...exp} edit={() => {setEdit(exp); showModal()}} delete={() => delExperience(exp._id)} />)
             }
             {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} resetEdit={() => setEdit(null)} reload={fetchExperiences} />}
         </CardBoilerplate>
@@ -64,8 +64,8 @@ const ExperienceCard = (props) => {
                         {props.description && <p>{props.description}</p>}
                     </div>
                     <div className="d-flex flex-column justify-content-between">
-                        <IconBtn edit callback={props.edit && props.edit} />
-                        <IconBtn delete callback={props.delete && props.delete} />
+                        {!props.public && <IconBtn edit callback={props.edit && props.edit} />}
+                        {!props.public && <IconBtn delete callback={props.delete && props.delete} />}
                     </div>
                 </div>
             </Row>

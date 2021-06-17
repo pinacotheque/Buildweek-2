@@ -29,8 +29,8 @@ const fetchProfile = (endpoint='', method = "GET", body = null) => {
     return [finalUrl, options]
 }
 
-const fetchExperience = (endpoint='', method = "GET", body = null) => {
-    const url = `https://striveschool-api.herokuapp.com/api/profile/${localStorage.getItem('myId')}/experiences/`
+const fetchExperience = (endpoint='', method = "GET", body = null, id="") => {
+    const url = `https://striveschool-api.herokuapp.com/api/profile/${id ? id : localStorage.getItem('myId')}/experiences/`
     const finalUrl = url + endpoint
   
     const options = {
@@ -44,8 +44,8 @@ const fetchExperience = (endpoint='', method = "GET", body = null) => {
     return [finalUrl, options]
 }
 
-export const getProfile = async () => {
-    const result = await fetchData(fetchProfile('me'))
+export const getProfile = async (id='me') => {
+    const result = await fetchData(fetchProfile(id))
     return result
 }
 
@@ -69,8 +69,8 @@ export const putExp = async (id, exp) => {
     return result
 }
 
-export const getExp = async () => {
-    const result = await fetchData(fetchExperience())
+export const getExp = async (id='') => {
+    const result = await fetchData(fetchExperience('', 'GET', null, id))
     return result
 }
 
