@@ -65,11 +65,11 @@ const EducationCard = (props) => {
             <div>
 
 
-            {/* {feedData.map(news => (
+            {feedData.map(news => (
                  <Feed news={news} />
             )
-               
-            )} */}
+            )}
+
             </div>
             
             
