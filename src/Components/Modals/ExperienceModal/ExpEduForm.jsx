@@ -5,10 +5,11 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import styles from "./ExpEduForm.module.css";
 
 import { useState } from 'react'
-import { postExp, putExp } from "../../../Lib/fetch";
+import { postExp, putExp, addExpImage, putExpImage } from "../../../Lib/fetch";
 
 const ExpEduForm = (props) => {
 
+  const [image, setImage] = useState(null)
   const [checked, setChecked] = useState(false)
   const [experience, setExperience] = useState(
     {
@@ -18,6 +19,7 @@ const ExpEduForm = (props) => {
       startDate: props.edit != null ? props.edit.startDate : '',
       endDate: props.edit != null ? props.edit.endDate : '',
       description: props.edit != null ? props.edit.description : '',
+      image: props.edit != null ? props.edit.image : '',
     }
   )
 
@@ -26,15 +28,31 @@ const ExpEduForm = (props) => {
     setExperience(exp)
   }
 
+  const postImage = async (expId) => {
+    const formData = new FormData()
+    formData.append('experience', image)
+
+    const result = await addExpImage(expId, formData)
+    if(!result.error) {
+      console.log('successful')
+    } else {
+      console.log('error with updating profile picture')
+    }
+  }
+
   const postExperience = async (e) => {
     e.preventDefault()
     const result = await postExp(experience)
     if(!result.error) {
-      props.reload()
-      props.closeFunc()
+      console.log('successfully posted experience')
     } else {
       console.log("error with posting experience")
     }
+    if(image) {
+      await postImage(result.data._id)
+    }
+    props.reload()
+    props.closeFunc()
   }
 
   const putExperience = async (e) => {
@@ -55,14 +73,14 @@ const ExpEduForm = (props) => {
 
   return (
     <Modal show={props.show} onHide={props.closeFunc} size="lg" scrollable={true}>
-      <Form onSubmit={(e) => doExperience(e)}>
+      <Form className="h-100 d-flex flex-column" onSubmit={(e) => doExperience(e)}>
         <Modal.Header>
           <Modal.Title>Add Experience</Modal.Title>
           <div className="ml-auto m-0 p-0" onClick={props.closeFunc} style={{ cursor: "pointer" }}>
             <CloseIcon />
           </div>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={styles.modalBody}>
           <div>
             <label htmlFor="role">Title *</label>
             <input type="text" className="form-control" id="role" placeholder="Ex: Retail Sales Manager" aria-describedby="basic-addon3" 
@@ -116,6 +134,10 @@ const ExpEduForm = (props) => {
           <label htmlFor="description">Description</label>
           <textarea className="form-control" id="description" rows={4} defaultValue={""} value={experience.description} onChange={(e) => changeData(e.target.id, e.target.value)} />
         </div>
+        <Form.Group className="mb-1" controlId="image">
+          <Form.Label>Add image</Form.Label>
+          {props.edit !== null ? <Form.Control type="text" value={experience.image} onChange={(e) => changeData(e.target.id, e.target.value)} /> : <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} />}
+        </Form.Group>
       </Modal.Body>
       <Modal.Footer className="d-flex">
         <button style={{ color: "white", backgroundColor: "rgb(10,102,194)", border: "none", borderRadius: "2rem", minWidth: "4rem", minHeight: "2rem" }} className="ml-auto" type="submit" >

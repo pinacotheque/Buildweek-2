@@ -12,24 +12,32 @@ const fetchData = async (fetchProps) => {
         result.error = true
     }
     return result
-}
+}   
 
 const fetchProfile = (endpoint='', method = "GET", body = null) => {
     const url = "https://striveschool-api.herokuapp.com/api/profile/"
     const finalUrl = url + endpoint
-  
-    const options = {
+    
+    const optionsPicture = {
+        method: method,
+        headers: {
+        Authorization: "Bearer " + localStorage.getItem('token'),
+      },
+      body: body !== null ? body : null,
+    }
+
+    const optionsRegular = {
       method: method,
       headers: {
         "Content-type": "application/json",
         Authorization: "Bearer " + localStorage.getItem('token'),
       },
-      body: body ? JSON.stringify(body) : null,
+      body: body !== null ? JSON.stringify(body) : null,
     }
-    return [finalUrl, options]
+    return [finalUrl, endpoint.includes('picture') ? optionsPicture : optionsRegular]
 }
 
-const fetchExperience = (endpoint='', method = "GET", body = null, id="") => {
+const fetchExperience = (endpoint='', method = "GET", body = null, id="", picture=false) => {
     const url = `https://striveschool-api.herokuapp.com/api/profile/${id ? id : localStorage.getItem('myId')}/experiences/`
     const finalUrl = url + endpoint
   
@@ -41,10 +49,19 @@ const fetchExperience = (endpoint='', method = "GET", body = null, id="") => {
       },
       body: body ? JSON.stringify(body) : null,
     }
-    return [finalUrl, options]
+
+    const optionsPicture = {
+        method: method,
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem('token'),
+        },
+        body: body ? body : null,
+    }
+
+    return [finalUrl, picture ? optionsPicture : options]
 }
 
-const fetchPost = (endpoint='', method='GET', body=null) => {
+const fetchPost = (endpoint='', method='GET', body=null, picture=false) => {
     const url = `https://striveschool-api.herokuapp.com/api/posts/`
     const finalUrl = url + endpoint
   
@@ -56,7 +73,15 @@ const fetchPost = (endpoint='', method='GET', body=null) => {
       },
       body: body ? JSON.stringify(body) : null,
     }
-    return [finalUrl, options]
+
+    const optionsPicture = {
+        method: method,
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem('token'),
+        },
+        body: body ? body : null,
+    }
+    return [finalUrl, picture ? optionsPicture : options]
 }
 
 export const getProfile = async (id='me') => {
@@ -71,6 +96,11 @@ export const getProfiles = async () => {
 
 export const putProfile = async (profile) => {
     const result = await fetchData(fetchProfile('', 'PUT', profile))
+    return result
+}
+
+export const postProfilePicture = async (picture) => {
+    const result = await fetchData(fetchProfile('me/picture', "POST", picture))
     return result
 }
 
@@ -89,6 +119,11 @@ export const getExp = async (id='') => {
     return result
 }
 
+export const addExpImage = async (expId, image) => {
+    const result = await fetchData(fetchExperience(`${expId}/picture`, 'POST', image, '', true))
+    return result
+}
+
 export const delExp = async (id) => {
     const result = await fetchData(fetchExperience(id, 'DELETE'))
     return result
@@ -96,6 +131,11 @@ export const delExp = async (id) => {
 
 export const getPosts = async () => {
     const result = await fetchData(fetchPost())
+    return result
+}
+
+export const addPostImage = async (postId, image) => {
+    const result = await fetchData(fetchPost(postId, 'POST', image, true))
     return result
 }
 

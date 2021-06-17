@@ -31,10 +31,11 @@ const Experience = (props) => {
     const delExperience = async (id) => {
         const response = await delExp(id)
         if(!response.error) {
-            fetchExperiences()
+            console.log('strange ')
         } else {
             console.log('error with deleting experience')
         }
+        fetchExperiences()
     }
 
     return (
@@ -65,7 +66,7 @@ const ExperienceCard = (props) => {
                     </div>
                     <div className="d-flex flex-column justify-content-between">
                         {!props.public && <IconBtn edit callback={props.edit && props.edit} />}
-                        {!props.public && <IconBtn delete callback={props.delete && props.delete} />}
+                        {!props.public &&<IconBtn delete callback={props.delete && props.delete} />}
                     </div>
                 </div>
             </Row>
