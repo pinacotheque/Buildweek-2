@@ -49,7 +49,7 @@ const Post = (props) => {
                 </div>)
             }
             <div className={styles.postFooterInfo}>
-                <p>25<span>8 comments</span><span>528 views</span></p>
+                <p>{Math.floor(Math.random() * 1000)}<span>{Math.floor(Math.random() * 150)} comments</span><span>{Math.floor(Math.random() * 15000)} views</span></p>
             </div>
             <div className={styles.postFooterBtns}>
                 <FooterBtn like text="Like" />
