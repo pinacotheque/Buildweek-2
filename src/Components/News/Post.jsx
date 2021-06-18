@@ -18,6 +18,10 @@ const Post = (props) => {
         props.refresh()
     }
 
+    const editPost = () => {
+        props.edit(props.post)
+    }
+
     return(
         <div className={styles.postBase}>
             <div className={`${styles.postHeader} d-flex`}>
@@ -35,6 +39,7 @@ const Post = (props) => {
                     </div>
                 </Link>
                 {props.user._id === localStorage.getItem('myId') && <IconBtn delete callback={deletePost} toRight />}
+                {props.user._id === localStorage.getItem('myId') && <IconBtn edit callback={editPost} />}
             </div>
             <div className={styles.postText}>
                 <p>{props.text}</p>

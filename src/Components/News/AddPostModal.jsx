@@ -1,14 +1,17 @@
 import { Modal, Form } from "react-bootstrap";
-import { useState } from 'react'
-import { addPostImage, postPost } from './../../Lib/fetch';
+import { useState, useEffect } from 'react'
+import { addPostImage, postPost, putPost } from './../../Lib/fetch';
 
 const AddPostModal = (props) => {
 
   const [post, setPost] = useState({text: ''})
   const [image, setImage] = useState(null)
 
-  const postP = async (e) => {
-    e.preventDefault()
+  useEffect(() => {
+    setPost({text: props.edit !== null ? props.edit.text : null})
+  }, [props.edit])
+
+  const postP = async () => {
     const response = await postPost(post)
     let postId
     if(!response.error) {
@@ -27,6 +30,35 @@ const AddPostModal = (props) => {
         console.log('error with updating profile picture')
       }
     }
+  }
+
+  const putP = async () => {
+    const response = await putPost(props.edit._id, post)
+    if(!response.error) {
+      console.log('successfully putted post')
+    } else {
+      console.log("error with posting experience")
+    }
+    if(image) {
+      const formData = new FormData()
+      formData.append('post', image)
+
+      const result = await addPostImage(props.edit._id, formData)
+      if(!result.error) {
+        console.log('successful')
+      } else {
+        console.log('error with updating profile picture')
+      }
+    }
+  }
+
+  const doPost = async (e) => {
+    e.preventDefault()
+    if(props.edit?._id) {
+      await putP(e)
+    } else {
+      await postP(e)
+    }
     setPost({text: ''})
     setImage(null)
     props.close()
@@ -35,7 +67,7 @@ const AddPostModal = (props) => {
 
   return (
     <Modal show={props.show} onHide={props.close} size="lg" scrollable={true}>
-      <Form className="h-100 d-flex flex-column" onSubmit={(e) => postP(e)}>
+      <Form className="h-100 d-flex flex-column" onSubmit={(e) => doPost(e)}>
         <Modal.Header>
           <Modal.Title>Create a post</Modal.Title>
           <div className="ml-auto m-0 p-0" onClick={props.close} style={{ cursor: "pointer" }}>

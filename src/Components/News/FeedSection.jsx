@@ -17,6 +17,8 @@ const FeedSection = (props) => {
 
     const [posts, setPosts] = useState(null)
 
+    const [editPost, setEditPost] = useState(null)
+
     let autoFetchId
 
     useEffect(() => {
@@ -35,6 +37,8 @@ const FeedSection = (props) => {
                 setSortedPosts([...posts].reverse().filter(post => post.image))
             } else if(sort === 'txt') {
                 setSortedPosts([...posts].reverse().filter(post => !post.image))
+            } else if (sort === 'my') {
+                setSortedPosts([...posts].reverse().filter(post => post.user?._id === localStorage.getItem('myId')))
             }
         }
     }, [posts, sort])
@@ -59,7 +63,7 @@ const FeedSection = (props) => {
                 <Row style={{alignItems:'center'}}>
                     <Col className="d-flex">
                         <img src={props.profile?.image} className={styles.ppputin} alt="" />
-                        <input type="text" placeholder="Start a post" className={styles.inputField} onClick={showModal} />
+                        <input type="text" placeholder="Start a post" className={styles.inputField} onClick={() => {showModal(); setEditPost(null)}} />
                     </Col>
                 </Row>
 
@@ -97,7 +101,7 @@ const FeedSection = (props) => {
                     </div>
                 </Row>
             </CardBoilerplate>
-            <AddPostModal show={modal} close={hideModal} refresh={getAllPosts} />
+            <AddPostModal show={modal} close={hideModal} refresh={getAllPosts} edit={editPost} />
             <div style={{marginTop:'6px', height: '16px'}} className="d-flex align-items-center">
                 <hr className={styles.hr} />
                 <Form.Control as="select" className={styles.sortSelect} onChange={(e) => setSort(e.target.value)}>
@@ -105,9 +109,10 @@ const FeedSection = (props) => {
                     <option value="old">Oldest First</option>
                     <option value="pic">W/ Pictures</option>
                     <option value="txt">Only Text</option>
+                    <option value="my">My Posts</option>
                 </Form.Control>
             </div>
-            <Posts posts={sortedPosts} refresh={getAllPosts} />
+            <Posts posts={sortedPosts} refresh={getAllPosts} edit={(post) => {setEditPost(post); showModal()}} />
         </>
     )
 }
@@ -120,7 +125,7 @@ const Posts = (props) => {
     return (
         <>
             {
-                props.posts && props.posts.slice(0, 30).map(post => <Post key={post._id} {...post} refresh={props.refresh} />)
+                props.posts && props.posts.slice(0, 30).map(post => <Post key={post._id} {...post} refresh={props.refresh} edit={(post) => props.edit(post)} post={post} />)
             }
         </>
     )

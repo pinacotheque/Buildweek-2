@@ -144,6 +144,11 @@ export const postPost = async (post) => {
     return result
 }
 
+export const putPost = async (id, post) => {
+    const result = await fetchData(fetchPost(id, 'PUT', post))
+    return result
+}
+
 export const delPost = async (id) => {
     const result = await fetchData(fetchPost(id, 'DELETE'))
     return result
