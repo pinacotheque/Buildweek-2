@@ -1,9 +1,10 @@
-import { Container, Form, FormControl, Nav, Navbar, NavDropdown} from 'react-bootstrap'
+import {Button, Container, Form, FormControl, Nav, Navbar, NavDropdown,Row} from 'react-bootstrap'
 import styles from "./Navbar.module.css"
 import NavButton from "./NavButton"
 import {useState} from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import SearchField from './SearchField'
+import NewModal from './NavButton'
 
 const NavBar = (props) => {
 
@@ -78,12 +79,21 @@ const NavBar = (props) => {
                                 <Link to='/me'>
                                     <img src={props.profile?.image} className={styles.dropmenuImg} alt="" />
                                 </Link>
-                                <NavDropdown title="Me" className={styles.meTitle}  id="basic-nav-dropdown" >
-                                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                <NavDropdown left title="Me" className={ `${styles.meTitle} p-0  `}  id="basic-nav-dropdown"  >
+                                    <NavDropdown.Item href="/me" className={styles.dropdownpic}><Row className='align-items-center'><img src={props.profile?.image} className='mr-2' alt="" /> <div><span style={{fontWeight:'600'}}>{props.profile?.name} {props.profile?.surname} </span> <br/><span style={{fontWeight:'400'}}>{props.profile?.title}</span></div></Row></NavDropdown.Item>
+                                    <NavDropdown.Item href="/me" > <Button text="View Profile" className={styles.dropdownbutton}>View Profile</Button></NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item onClick={props.logout} className='bg-danger'>Log Out</NavDropdown.Item>
+                                    <NavDropdown.Item href="" className={styles.accountfont}>Account</NavDropdown.Item>
+                                    <NavDropdown.Item href="" className={styles.regularfont}>Settings and Privacy</NavDropdown.Item>
+                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}  >Help</NavDropdown.Item>
+                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `} >Language</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="" className={styles.accountfont}>Manage</NavDropdown.Item>
+                                    <NavDropdown.Item href="" className={styles.regularfont}>Posts and Activity</NavDropdown.Item>
+                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}>Help</NavDropdown.Item>
+                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}>Job Posting Account</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}>Sign Out</NavDropdown.Item>
                                 </NavDropdown>
                             </div>
                             <div className={styles.gridmenu}> 
