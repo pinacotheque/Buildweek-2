@@ -5,6 +5,7 @@ import MyProfileCard from './Sidebar/ProfileCard';
 
 
 const Homepage = (props) => {
+  
 
   return (
     <Container>
@@ -12,7 +13,7 @@ const Homepage = (props) => {
         <Col xs={2} className="d-none d-md-block">
             <MyProfileCard profile={props.profile} />
         </Col>
-        <Col xs={12} md={6}>
+        <Col >
             <FeedSection profile={props.profile} />
         </Col>
         <Col xs={4} className="d-none d-md-block">
