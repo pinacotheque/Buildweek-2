@@ -15,6 +15,11 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [myProfile, setMyProfile] = useState(null)
 
+  const logout = () => {
+    localStorage.clear()
+    setLoggedIn(false)
+  }
+
   const close = () => setLoggedIn(true)
 
   useEffect(() => {
@@ -40,13 +45,13 @@ function App() {
 
   return (
     <Router>
-      <LoginModal show={!loggedIn} close={close} />
-      <Navbar profile={myProfile} />
+      <LoginModal show={!loggedIn} close={close} refresh={fetchProfile} />
+      <Navbar profile={myProfile} logout={logout} />
       <Route path="/me">
         <Profile loggedIn={loggedIn} myProfile={myProfile} refresh={fetchProfile} />
       </Route>
       <Route path="/in/:id">
-        <PublicProfile />
+        <PublicProfile profile={myProfile} />
       </Route>
       <Route exact path="/">
         <Homepage profile={myProfile} />

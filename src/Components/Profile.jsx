@@ -13,7 +13,7 @@ function Profile(props) {
   return (
     <Container>
       <Row id="profileBody">
-        <Col xs={9}>
+        <Col xs={12} lg={9}>
           {props.myProfile && <ProfileCard img={props.myProfile.image} name={`${props.myProfile.name} ${props.myProfile.surname}`} about={props.myProfile.title} location={props.myProfile.area} profile={props.myProfile} refresh={props.refresh} />}
           <Dashboard />
           {props.myProfile && <About bio={props.myProfile.bio} profile={props.myProfile} refresh={props.refresh} />}
@@ -22,8 +22,8 @@ function Profile(props) {
           <InterestsCard />
           <EducationCard />
         </Col>
-        <Col xs={3}>
-          <SidePeopleBar />
+        <Col lg={3} className='d-none d-lg-block'>
+          <SidePeopleBar profile={props.profile} />
         </Col>
       </Row>
     </Container>

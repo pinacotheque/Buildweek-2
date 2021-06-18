@@ -5,18 +5,19 @@ import MyProfileCard from './Sidebar/ProfileCard';
 
 
 const Homepage = (props) => {
+  
 
   return (
     <Container>
       <Row id="homePage">
-        <Col xs={2} >
+        <Col xs={2} className="d-none d-md-block">
             <MyProfileCard profile={props.profile} />
         </Col>
-        <Col xs={6}>
+        <Col >
             <FeedSection profile={props.profile} />
         </Col>
-        <Col xs={4}>
-            <SidePeopleBar />
+        <Col xs={4} className="d-none d-md-block">
+            <SidePeopleBar refresh={props.profile} />
         </Col>
       </Row>
     </Container>

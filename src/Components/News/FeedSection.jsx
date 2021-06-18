@@ -1,5 +1,5 @@
 import styles from './News.module.css'
-import { Button, Row, Col } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import CardBoilerplate from '../infoCards/Common/CardBoilerplate';
 import Post from './Post'
 import { getPosts } from '../../Lib/fetch';
@@ -9,22 +9,49 @@ import AddPostModal from './AddPostModal'
 const FeedSection = (props) => {
 
     const [modal, setModal] = useState(false)
+    const [sort, setSort] = useState('new')
+    const [sortedPosts, setSortedPosts] = useState(null)
 
     const showModal = () => setModal(true)
     const hideModal = () => setModal(false)
 
     const [posts, setPosts] = useState(null)
 
-    const limit = 30
+    const [editPost, setEditPost] = useState(null)
+
+    let autoFetchId
+
+    useEffect(() => {
+        return () => {
+            clearInterval(autoFetchId)
+        }
+    }, [])
+
+    useEffect(() => {
+        if(posts !== null) {
+            if(sort === 'new') {
+                setSortedPosts([...posts].reverse())
+            } else if(sort === 'old') {
+                setSortedPosts([...posts])
+            } else if(sort === 'pic') {
+                setSortedPosts([...posts].reverse().filter(post => post.image))
+            } else if(sort === 'txt') {
+                setSortedPosts([...posts].reverse().filter(post => !post.image))
+            } else if (sort === 'my') {
+                setSortedPosts([...posts].reverse().filter(post => post.user?._id === localStorage.getItem('myId')))
+            }
+        }
+    }, [posts, sort])
 
     useEffect(() => {
         getAllPosts()
+        autoFetchId = setInterval(getAllPosts, 10000)
     }, [])
 
     const getAllPosts = async () => {
         const result = await getPosts()
         if(!result.error) {
-            setPosts(result.data.reverse().slice(0, limit))
+            setPosts(result.data)
         } else {
             console.log('Error with getting posts')
         }
@@ -36,7 +63,7 @@ const FeedSection = (props) => {
                 <Row style={{alignItems:'center'}}>
                     <Col className="d-flex">
                         <img src={props.profile?.image} className={styles.ppputin} alt="" />
-                        <input type="text" placeholder="Start a post" className={styles.inputField} onClick={showModal} />
+                        <input type="text" placeholder="Start a post" className={styles.inputField} onClick={() => {showModal(); setEditPost(null)}} />
                     </Col>
                 </Row>
 
@@ -74,16 +101,18 @@ const FeedSection = (props) => {
                     </div>
                 </Row>
             </CardBoilerplate>
-            <AddPostModal show={modal} close={hideModal} refresh={getAllPosts} />
-            <Row style={{marginTop:'7px',alignItems:'center'}}>
-                <Col sm={9}>
-                    <hr/>
-                </Col> 
-                <Col sm={3}>
-                    <h6 className="text-right" style={{marginBottom:'0',fontWeight:'400',fontSize:'12px'}}>Sort by: <span style={{fontWeight:'600',fontSize:'14px'}} >Top</span></h6>
-                </Col>
-            </Row>
-            <Posts posts={posts} refresh={getAllPosts} />
+            <AddPostModal show={modal} close={hideModal} refresh={getAllPosts} edit={editPost} />
+            <div style={{marginTop:'6px', height: '16px'}} className="d-flex align-items-center">
+                <hr className={styles.hr} />
+                <Form.Control as="select" className={styles.sortSelect} onChange={(e) => setSort(e.target.value)}>
+                    <option value="new">Recent First</option>
+                    <option value="old">Oldest First</option>
+                    <option value="pic">W/ Pictures</option>
+                    <option value="txt">Only Text</option>
+                    <option value="my">My Posts</option>
+                </Form.Control>
+            </div>
+            <Posts posts={sortedPosts} refresh={getAllPosts} edit={(post) => {setEditPost(post); showModal()}} />
         </>
     )
 }
@@ -96,7 +125,7 @@ const Posts = (props) => {
     return (
         <>
             {
-                props.posts && props.posts.map(post => <Post key={post._id} {...post} refresh={props.refresh} />)
+                props.posts && props.posts.slice(0, 30).map(post => <Post key={post._id} {...post} refresh={props.refresh} edit={(post) => props.edit(post)} post={post} />)
             }
         </>
     )

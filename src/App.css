@@ -28,9 +28,18 @@ body{
   padding-left: 0!important;
 }
 
-#homePage > .col-6 {
-  flex: 0 0 48%!important;
-  max-width: 48%!important;
+@media screen and (max-width: 768px) {
+  #homePage > .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #homePage > .col-md-6 {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
 }
 
 
