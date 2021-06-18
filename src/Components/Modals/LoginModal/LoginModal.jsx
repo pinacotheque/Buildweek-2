@@ -4,14 +4,8 @@ import { getProfile } from "../../../Lib/fetch"
 
 const LoginModal = (props) => {
 
-    const [data, setData] = useState({area: "",
-        bio: "",
-        email: "",
-        image: "",
-        name: "",
+    const [data, setData] = useState({
         password: "",
-        surname: "",
-        title: "",
         username: ""})
 
     const changeData = (id, value) => {
@@ -22,7 +16,7 @@ const LoginModal = (props) => {
     const setUserId = async () => {
         const result = await getProfile()
         if(!result.error) {
-            localStorage.setItem('myId', data._id)
+            localStorage.setItem('myId', result.data._id)
         } else {
             console.log("error with post request")
         }
@@ -45,6 +39,7 @@ const LoginModal = (props) => {
             } else {
                 localStorage.setItem('token', data.access_token)
                 setUserId()
+                props.refresh()
                 props.close()
             }
         } else {

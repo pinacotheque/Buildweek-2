@@ -20,6 +20,8 @@ svg {
     background-color: rgb(238, 243, 248);
     height: 34px;
     border: none;
+    width: 75%!important;
+    position: relative;
 }
 
 .navbar {
@@ -36,7 +38,7 @@ svg {
     padding: 0;
     border-top: 1pt solid rgb(231, 230, 230);
     border-bottom:1pt solid rgb(230, 229, 229);
-    z-index: 10;
+    z-index: 1;
 }
 
 .navbarScroll{
@@ -76,7 +78,7 @@ svg {
 }
 
 .navlink {
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     width: 80px;
     align-items: center;
@@ -131,7 +133,7 @@ svg {
     font-size: 12px;
     text-align: center;
     width: 100px;
-    color: rgb(167, 124, 16);
+    color: rgb(167, 124, 16)!important;
     margin-bottom: 0;
     margin-top: 2px;
 }
@@ -176,6 +178,61 @@ svg {
     background-color: black;
 }
 
+.searchField {
+    background-color: white;
+    position: absolute;
+    top: 34px;
+    width: 150%;
+    height: 500px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 8px;
+    z-index: 1000;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-top: 6px;
+}
+
+.searchField::-webkit-scrollbar {
+    display: none;
+}
+  
+.searchCard {
+    padding: 6px 12px 6px 12px;
+}
+
+.searchCard div {
+    font-weight: 600;
+    color: black;
+}
+
+.searchCard img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-right: 10px;
+}
+
+.searchCard div span {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.searchCard div span::before {
+    content: '\00B7';
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 3px;
+}
+
+.searchCard:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.brand + form {
+    z-index: 9999
+}
 .dropdownpic img{
     width: 50px;
     height: 50px;

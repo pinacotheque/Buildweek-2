@@ -23,6 +23,7 @@ const Experience = (props) => {
         const response = await getExp(id)
         if(!response.error) {
             setExperiences(response.data)
+            console.log(response.data)
         } else {
             console.log('error with fetching experiences')
         }
@@ -31,7 +32,7 @@ const Experience = (props) => {
     const delExperience = async (id) => {
         const response = await delExp(id)
         if(!response.error) {
-            console.log('strange ')
+            console.log('strange')
         } else {
             console.log('error with deleting experience')
         }
@@ -39,12 +40,14 @@ const Experience = (props) => {
     }
 
     return (
-        <CardBoilerplate add={props.public ? false : true} title="Experience" callback={showModal}>
-            {
-                experiences && experiences.map(exp => <ExperienceCard key={exp._id} public={props.public} {...exp} edit={() => {setEdit(exp); showModal()}} delete={() => delExperience(exp._id)} />)
-            }
-            {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} resetEdit={() => setEdit(null)} reload={fetchExperiences} />}
-        </CardBoilerplate>
+        experiences?.length ? (
+            <CardBoilerplate add={props.public ? false : true} title="Experience" callback={showModal}>
+                {
+                    experiences && experiences.map(exp => <ExperienceCard key={exp._id} public={props.public} {...exp} edit={() => {setEdit(exp); showModal()}} delete={() => delExperience(exp._id)} />)
+                }
+                {show && <ExpEduForm show={show} closeFunc={hideModal} edit={edit && edit} resetEdit={() => setEdit(null)} reload={fetchExperiences} />}
+            </CardBoilerplate>
+        ) : null
     )
 }
 

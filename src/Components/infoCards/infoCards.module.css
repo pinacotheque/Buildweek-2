@@ -237,6 +237,7 @@
     width: 56px;
     height: 56px;
     margin-right: 24px;
+    object-fit: cover   ;
 }
 
 .experience h3 {
@@ -312,6 +313,7 @@
     height: 48px;
     border-radius: 24px;
     margin-right: 12px;
+    object-fit: cover;
 }
 
 .sidePeople h3 {
