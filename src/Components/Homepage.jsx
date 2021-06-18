@@ -17,7 +17,7 @@ const Homepage = (props) => {
             <FeedSection profile={props.profile} />
         </Col>
         <Col xs={4} className="d-none d-md-block">
-            <SidePeopleBar />
+            <SidePeopleBar refresh={props.profile} />
         </Col>
       </Row>
     </Container>

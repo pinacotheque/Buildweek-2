@@ -39,6 +39,7 @@ const LoginModal = (props) => {
             } else {
                 localStorage.setItem('token', data.access_token)
                 setUserId()
+                props.refresh()
                 props.close()
             }
         } else {

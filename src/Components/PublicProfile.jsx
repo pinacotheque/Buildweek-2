@@ -41,7 +41,7 @@ function PublicProfile(props) {
             <EducationCard public />
         </Col>
         <Col xs={3}>
-            <SidePeopleBar />
+            <SidePeopleBar refresh={props.profile} />
         </Col>
         </Row>
     </Container>

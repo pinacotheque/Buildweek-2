@@ -11,7 +11,7 @@ const SidePeopleBar = (props) => {
 
     useEffect(() => {
         fetchPeople()
-    }, [])
+    }, [props.refresh])
 
     useEffect(() => {
         people.length >= cardLimits.reduce((a, b) => a+b) && randomPeople(cardLimits)
