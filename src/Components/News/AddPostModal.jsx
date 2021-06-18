@@ -7,12 +7,28 @@ const AddPostModal = (props) => {
   const [post, setPost] = useState({text: ''})
   const [image, setImage] = useState(null)
 
+  const [imageUrl, setImageUrl] = useState(null)
+
   useEffect(() => {
     setPost({text: props.edit !== null ? props.edit.text : null})
+    setImageUrl(props.edit !== null ? props.edit.image : null)
   }, [props.edit])
 
+  const imageHandler = async (id) => {
+    const formData = new FormData()
+    formData.append('post', image)
+
+    const result = await addPostImage(formData)
+
+    if(!result.error) {
+      console.log('successfully updated profile picture')
+    } else {
+      console.log('error with updating post picture')
+    }
+  }
+
   const postP = async () => {
-    const response = await postPost(post)
+    const response = await postPost(imageUrl ? {...post, image: imageUrl} : post)
     let postId
     if(!response.error) {
       postId = response.data._id
@@ -20,35 +36,19 @@ const AddPostModal = (props) => {
       console.log("error with posting experience")
     }
     if(image && postId) {
-      const formData = new FormData()
-      formData.append('post', image)
-
-      const result = await addPostImage(postId, formData)
-      if(!result.error) {
-        console.log('successful')
-      } else {
-        console.log('error with updating profile picture')
-      }
+      await imageHandler(postId)
     }
   }
 
   const putP = async () => {
-    const response = await putPost(props.edit._id, post)
+    const response = await putPost(props.edit._id, imageUrl ? {...post, image: imageUrl} : post)
     if(!response.error) {
       console.log('successfully putted post')
     } else {
       console.log("error with posting experience")
     }
     if(image) {
-      const formData = new FormData()
-      formData.append('post', image)
-
-      const result = await addPostImage(props.edit._id, formData)
-      if(!result.error) {
-        console.log('successful')
-      } else {
-        console.log('error with updating profile picture')
-      }
+      await imageHandler(props.edit._id)
     }
   }
 
@@ -59,14 +59,12 @@ const AddPostModal = (props) => {
     } else {
       await postP(e)
     }
-    setPost({text: ''})
-    setImage(null)
     props.close()
     props.refresh()
   }
 
   return (
-    <Modal show={props.show} onHide={props.close} size="lg" scrollable={true}>
+    <Modal show={props.show} onHide={() => {props.close(); setImageUrl(null); setImage(null); setPost({text: ''})}} size="lg" scrollable={true}>
       <Form className="h-100 d-flex flex-column" onSubmit={(e) => doPost(e)}>
         <Modal.Header>
           <Modal.Title>Create a post</Modal.Title>
@@ -79,8 +77,13 @@ const AddPostModal = (props) => {
                 <Form.Control as="textarea" rows={5} value={post.text} onChange={(e) => setPost({text: e.target.value})} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="img">
-                <Form.Label>Add image</Form.Label>
-                <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} />
+                <Form.Label>Upload image</Form.Label>
+                <Form.Control type="file" onChange={(e) => setImage(e.target.files[0])} disabled={imageUrl ? true : false} />
+            </Form.Group>
+            <div className="mb-2">OR</div>
+            <Form.Group className="mb-3" controlId="imageUrl">
+                <Form.Label>Enter image url</Form.Label>
+                <Form.Control type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} disabled={image ? true : false} />
             </Form.Group>
         </Modal.Body>
         <Modal.Footer className="d-flex">

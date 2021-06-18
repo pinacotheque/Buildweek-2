@@ -1,5 +1,4 @@
 import styles from './News.module.css'
-import {Col,Row} from 'react-bootstrap'
 import {delPost} from '../../Lib/fetch'
 import IconBtn from '../infoCards/Common/IconBtn'
 import { postAgo, isEdited } from './../../Lib/dates';
