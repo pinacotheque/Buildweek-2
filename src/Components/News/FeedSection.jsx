@@ -17,6 +17,14 @@ const FeedSection = (props) => {
 
     const [posts, setPosts] = useState(null)
 
+    let autoFetchId
+
+    useEffect(() => {
+        return () => {
+            clearInterval(autoFetchId)
+        }
+    }, [])
+
     useEffect(() => {
         if(posts !== null) {
             if(sort === 'new') {
@@ -33,6 +41,7 @@ const FeedSection = (props) => {
 
     useEffect(() => {
         getAllPosts()
+        autoFetchId = setInterval(getAllPosts, 10000)
     }, [])
 
     const getAllPosts = async () => {
@@ -89,7 +98,7 @@ const FeedSection = (props) => {
                 </Row>
             </CardBoilerplate>
             <AddPostModal show={modal} close={hideModal} refresh={getAllPosts} />
-            <div style={{marginTop:'7px', height: '16px'}} className="d-flex align-items-center">
+            <div style={{marginTop:'6px', height: '16px'}} className="d-flex align-items-center">
                 <hr className={styles.hr} />
                 <Form.Control as="select" className={styles.sortSelect} onChange={(e) => setSort(e.target.value)}>
                     <option value="new">Recent First</option>

@@ -9,13 +9,13 @@ const Homepage = (props) => {
   return (
     <Container>
       <Row id="homePage">
-        <Col xs={2} >
+        <Col xs={2} className="d-none d-md-block">
             <MyProfileCard profile={props.profile} />
         </Col>
-        <Col xs={6}>
+        <Col xs={12} md={6}>
             <FeedSection profile={props.profile} />
         </Col>
-        <Col xs={4}>
+        <Col xs={4} className="d-none d-md-block">
             <SidePeopleBar />
         </Col>
       </Row>
