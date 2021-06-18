@@ -175,3 +175,59 @@ svg {
     bottom: -6px;
     background-color: black;
 }
+
+.dropdownpic img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+.dropdownpic{
+    width: 200px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.dropdownpic:focus{
+    outline: none;
+    background-color: none;
+}
+.dropdownbutton{
+    width: 190px;
+    margin-left: 18px;
+    justify-content: center;
+    background-color: white;
+    padding: 0;
+    border: 1px solid #0a66c2;
+    border-radius: 20px;
+    height: 30px;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    color: #0a66c2;
+    font-weight: 600;
+}
+
+.dropdownbutton:hover{
+    background-color: #c3dbf1;
+    color: #0a66c2;
+}
+.accountfont{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 20px;
+    margin-left: 20px;
+
+}
+.regularfont{
+    font-size: 14px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: rgb(97, 97, 97);
+
+}
+#basic-nav-dropdown{
+    right: auto;
+    left: 0;
+}
