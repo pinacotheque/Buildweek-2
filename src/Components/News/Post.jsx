@@ -3,9 +3,12 @@ import {delPost} from '../../Lib/fetch'
 import IconBtn from '../infoCards/Common/IconBtn'
 import { postAgo, isEdited } from './../../Lib/dates';
 import {Link} from 'react-router-dom'
+import { useState } from 'react'
 
 
 const Post = (props) => {
+
+    const [stats, setStats] = useState({reactions: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 150), views: Math.floor(Math.random() * 15000)})
 
     const deletePost = async () => {
         const result = await delPost(props._id)
@@ -49,7 +52,7 @@ const Post = (props) => {
                 </div>)
             }
             <div className={styles.postFooterInfo}>
-                <p>{Math.floor(Math.random() * 1000)}<span>{Math.floor(Math.random() * 150)} comments</span><span>{Math.floor(Math.random() * 15000)} views</span></p>
+                <p>{stats.reactions}<span>{stats.comments} comments</span><span>{stats.views} views</span></p>
             </div>
             <div className={styles.postFooterBtns}>
                 <FooterBtn like text="Like" />

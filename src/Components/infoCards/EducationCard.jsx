@@ -6,9 +6,9 @@ import IconBtn from './Common/IconBtn';
 const EducationCard = (props) => {
     return (
         <CardBoilerplate add={props.public ? false : true} title="Education">
-            <EducationCardCard place="Strive School" degree="Full Stack Web Developer MERN, IT" years="2021 - 2021" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1631750400&v=beta&t=Z5VOepdFNLxZjBwg4bbfh5VFFJEUssCa9yTLNI8CxUM" />
-            <EducationCardCard place="Strive School" degree="Full Stack Web Developer MERN, IT" years="2021 - 2021" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1631750400&v=beta&t=Z5VOepdFNLxZjBwg4bbfh5VFFJEUssCa9yTLNI8CxUM" />
-            <EducationCardCard place="Strive School" degree="Full Stack Web Developer MERN, IT" years="2021 - 2021" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1631750400&v=beta&t=Z5VOepdFNLxZjBwg4bbfh5VFFJEUssCa9yTLNI8CxUM" />
+            <EducationCardCard public={props.public ? true : false} place="Strive School" degree="Full Stack Web Developer MERN, IT" years="2021 - 2021" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1631750400&v=beta&t=Z5VOepdFNLxZjBwg4bbfh5VFFJEUssCa9yTLNI8CxUM" />
+            <EducationCardCard public={props.public ? true : false} place="Strive School" degree="Full Stack Web Developer MERN, IT" years="2021 - 2021" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1631750400&v=beta&t=Z5VOepdFNLxZjBwg4bbfh5VFFJEUssCa9yTLNI8CxUM" />
+            <EducationCardCard public={props.public ? true : false} place="Strive School" degree="Full Stack Web Developer MERN, IT" years="2021 - 2021" src="https://media-exp1.licdn.com/dms/image/C4D0BAQFFQIjyDsOK0w/company-logo_100_100/0/1593351903670?e=1631750400&v=beta&t=Z5VOepdFNLxZjBwg4bbfh5VFFJEUssCa9yTLNI8CxUM" />
         </CardBoilerplate>
     )
 }
@@ -27,7 +27,7 @@ const EducationCardCard = (props) => {
                         <p>{props.degree}</p>
                         <p>{props.years}</p>
                     </div>
-                    <IconBtn edit />
+                    {props.public ? null : <IconBtn edit />}
                 </div>
             </Row>
         </Col>

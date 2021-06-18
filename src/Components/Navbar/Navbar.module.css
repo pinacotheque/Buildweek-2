@@ -133,7 +133,7 @@ svg {
     font-size: 12px;
     text-align: center;
     width: 100px;
-    color: rgb(167, 124, 16);
+    color: rgb(167, 124, 16)!important;
     margin-bottom: 0;
     margin-top: 2px;
 }

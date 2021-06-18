@@ -102,7 +102,7 @@ const Avatar = (props) => {
         <div className="d-flex justify-content-between">
             <div className={styles.avatarHolder} onClick={!props.public && showModal}>
                 <div className={styles.avatarCircle}>
-                    <img src={props.src} alt="" />
+                    <img src={props.src} onError={(e) => e.target.src = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"} alt="" />
                 </div>
             </div>
             <div className={styles.edit}>
