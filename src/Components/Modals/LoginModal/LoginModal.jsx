@@ -22,7 +22,7 @@ const LoginModal = (props) => {
     const setUserId = async () => {
         const result = await getProfile()
         if(!result.error) {
-            localStorage.setItem('myId', data._id)
+            localStorage.setItem('myId', result.data._id)
         } else {
             console.log("error with post request")
         }

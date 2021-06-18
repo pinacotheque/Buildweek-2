@@ -1,5 +1,5 @@
 import styles from './News.module.css'
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, FormControl, Form } from 'react-bootstrap';
 import CardBoilerplate from '../infoCards/Common/CardBoilerplate';
 import Post from './Post'
 import { getPosts } from '../../Lib/fetch';
@@ -9,13 +9,27 @@ import AddPostModal from './AddPostModal'
 const FeedSection = (props) => {
 
     const [modal, setModal] = useState(false)
+    const [sort, setSort] = useState('new')
+    const [sortedPosts, setSortedPosts] = useState(null)
 
     const showModal = () => setModal(true)
     const hideModal = () => setModal(false)
 
     const [posts, setPosts] = useState(null)
 
-    const limit = 30
+    useEffect(() => {
+        if(posts !== null) {
+            if(sort === 'new') {
+                setSortedPosts([...posts].reverse())
+            } else if(sort === 'old') {
+                setSortedPosts([...posts])
+            } else if(sort === 'pic') {
+                setSortedPosts([...posts].reverse().filter(post => post.image))
+            } else if(sort === 'txt') {
+                setSortedPosts([...posts].reverse().filter(post => !post.image))
+            }
+        }
+    }, [posts, sort])
 
     useEffect(() => {
         getAllPosts()
@@ -24,7 +38,7 @@ const FeedSection = (props) => {
     const getAllPosts = async () => {
         const result = await getPosts()
         if(!result.error) {
-            setPosts(result.data.reverse().slice(0, limit))
+            setPosts(result.data)
         } else {
             console.log('Error with getting posts')
         }
@@ -75,15 +89,16 @@ const FeedSection = (props) => {
                 </Row>
             </CardBoilerplate>
             <AddPostModal show={modal} close={hideModal} refresh={getAllPosts} />
-            <Row style={{marginTop:'7px',alignItems:'center'}}>
-                <Col sm={9}>
-                    <hr/>
-                </Col> 
-                <Col sm={3}>
-                    <h6 className="text-right" style={{marginBottom:'0',fontWeight:'400',fontSize:'12px'}}>Sort by: <span style={{fontWeight:'600',fontSize:'14px'}} >Top</span></h6>
-                </Col>
-            </Row>
-            <Posts posts={posts} refresh={getAllPosts} />
+            <div style={{marginTop:'7px', height: '16px'}} className="d-flex align-items-center">
+                <hr className={styles.hr} />
+                <Form.Control as="select" className={styles.sortSelect} onChange={(e) => setSort(e.target.value)}>
+                    <option value="new">Recent First</option>
+                    <option value="old">Oldest First</option>
+                    <option value="pic">W/ Pictures</option>
+                    <option value="txt">Only Text</option>
+                </Form.Control>
+            </div>
+            <Posts posts={sortedPosts} refresh={getAllPosts} />
         </>
     )
 }
@@ -96,7 +111,7 @@ const Posts = (props) => {
     return (
         <>
             {
-                props.posts && props.posts.map(post => <Post key={post._id} {...post} refresh={props.refresh} />)
+                props.posts && props.posts.slice(0, 30).map(post => <Post key={post._id} {...post} refresh={props.refresh} />)
             }
         </>
     )

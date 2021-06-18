@@ -187,6 +187,9 @@
      width: 48px;
      border-radius: 24px;
      margin-right: 8px;
+
+     object-fit: cover;
+     object-position: center;
  }
 
  .postHeader {
@@ -278,4 +281,28 @@
 .footerBtn:hover {
     background-color: rgba(0, 0, 0, 0.08);
     border-radius: 4px;
+}
+
+.sortSelect {
+    width: auto;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    height: 16px;
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: -5px;
+    width: 92px;
+}
+
+.sortSelect:focus {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+hr {
+    width: 100%;
+    margin: 0;
 }
