@@ -1,12 +1,15 @@
 import { Modal, Button, Form } from "react-bootstrap"
 import { useState } from 'react'
 import { getProfile } from "../../../Lib/fetch"
+import { Redirect } from 'react-router-dom'
 
 const LoginModal = (props) => {
 
     const [data, setData] = useState({
         password: "",
         username: ""})
+
+    const [loggedIn, setLoggedIn] = useState(false)
 
     const changeData = (id, value) => {
         const newData = {...data, [id]: value}
@@ -40,6 +43,7 @@ const LoginModal = (props) => {
                 localStorage.setItem('token', data.access_token)
                 setUserId()
                 props.refresh()
+                setLoggedIn(true)
                 props.close()
             }
         } else {
@@ -69,6 +73,7 @@ const LoginModal = (props) => {
                     <Button variant="primary" type="submit" className="ml-auto">
                         Log In
                     </Button>
+                    {loggedIn && <Redirect to='/me' />}
                 </Form>
             </Modal.Body>
         </Modal>
