@@ -4,14 +4,8 @@ import { getProfile } from "../../../Lib/fetch"
 
 const LoginModal = (props) => {
 
-    const [data, setData] = useState({area: "",
-        bio: "",
-        email: "",
-        image: "",
-        name: "",
+    const [data, setData] = useState({
         password: "",
-        surname: "",
-        title: "",
         username: ""})
 
     const changeData = (id, value) => {

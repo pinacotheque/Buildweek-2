@@ -1,11 +1,12 @@
 import { Button, Modal } from 'react-bootstrap'
-import { postProfilePicture } from '../../Lib/fetch'
+import { postProfilePicture, putProfile } from '../../Lib/fetch'
 import {useState} from 'react'
 
 const ProfileModalImg = (props) => {
 
     const [image, setImage] = useState(null)
-
+    const [imageUrl, setImageUrl] = useState(null)
+    
     const imageHandler = async () => {
       const formData = new FormData()
       formData.append('profile', image)
@@ -13,11 +14,26 @@ const ProfileModalImg = (props) => {
       const result = await postProfilePicture(formData)
 
       if(!result.error) {
-        props.close()
-        props.refresh()
+        console.log('successfully updated profile picture')
       } else {
         console.log('error with updating profile picture')
       }
+    }
+
+    const imageUrlHandler = async () => {
+      const data = {image: imageUrl}
+      const result = await putProfile(data)
+      if(!result.error) {
+        console.log('successfully updated profile picture')
+      } else {
+        console.log('error with updating profile picture')
+      }
+    }
+
+    const doImage = async () => {
+      imageUrl ? await imageUrlHandler() : await imageHandler()
+      props.close()
+      props.refresh()
     }
 
     return (
@@ -26,13 +42,14 @@ const ProfileModalImg = (props) => {
             <Modal.Title>Change picture</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} />
+            <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} disabled={imageUrl ? true : false} />
+            <input type="text" name="imageUrl" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} disabled={image ? true : false} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={props.close}>
               Close
             </Button>
-            <Button variant="primary" onClick={() => {props.close(); imageHandler() }}>
+            <Button variant="primary" onClick={() => doImage()}>
               Save Changes
             </Button>
           </Modal.Footer>
