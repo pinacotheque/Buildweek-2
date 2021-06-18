@@ -269,14 +269,24 @@ svg {
     background-color: #c3dbf1;
     color: #0a66c2;
 }
+
 .accountfont{
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 12px;
     margin-top: 20px;
     margin-left: 20px;
-
 }
+
+.accountfont:hover {
+    background-color: transparent;
+    cursor: unset;
+}
+
+.regularfont:hover {
+    background-color: transparent;
+}
+
 .regularfont{
     font-size: 14px;
     margin-top: 20px;
@@ -287,4 +297,8 @@ svg {
 #basic-nav-dropdown{
     right: auto;
     left: 0;
+}
+
+.btn:hover {
+    background-color: transparent;
 }

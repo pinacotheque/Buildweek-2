@@ -4,7 +4,6 @@ import NavButton from "./NavButton"
 import {useState} from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import SearchField from './SearchField'
-import NewModal from './NavButton'
 
 const NavBar = (props) => {
 
@@ -79,21 +78,29 @@ const NavBar = (props) => {
                                 <Link to='/me'>
                                     <img src={props.profile?.image} className={styles.dropmenuImg} alt="" />
                                 </Link>
-                                <NavDropdown left title="Me" className={ `${styles.meTitle} p-0  `}  id="basic-nav-dropdown"  >
-                                    <NavDropdown.Item href="/me" className={styles.dropdownpic}><Row className='align-items-center'><img src={props.profile?.image} className='mr-2' alt="" /> <div><span style={{fontWeight:'600'}}>{props.profile?.name} {props.profile?.surname} </span> <br/><span style={{fontWeight:'400'}}>{props.profile?.title}</span></div></Row></NavDropdown.Item>
-                                    <NavDropdown.Item href="/me" > <Button text="View Profile" className={styles.dropdownbutton}>View Profile</Button></NavDropdown.Item>
+                                <NavDropdown left title="Me" className={ `${styles.meTitle} p-0 `}  id="basic-nav-dropdown"  >
+                                    <div className={styles.dropdownpic}>
+                                        <div className="d-flex">
+                                            <img src={props.profile?.image} className='mr-2' alt="" />
+                                            <div className="overflow-auto d-flex flex-column">
+                                                <span style={{fontWeight:'600', fontSize: "15px"}}>{props.profile?.name} {props.profile?.surname}</span>
+                                                <span style={{fontWeight:'400', fontSize: "12px"}}>{props.profile?.title}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <Link to='/me' className={styles.btn}> <Button text="View Profile" className={styles.dropdownbutton}>View Profile</Button></Link>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="" className={styles.accountfont}>Account</NavDropdown.Item>
-                                    <NavDropdown.Item href="" className={styles.regularfont}>Settings and Privacy</NavDropdown.Item>
-                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}  >Help</NavDropdown.Item>
-                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `} >Language</NavDropdown.Item>
+                                    <NavDropdown.Item className={styles.accountfont}>Account</NavDropdown.Item>
+                                    <NavDropdown.Item className={styles.regularfont}>Settings and Privacy</NavDropdown.Item>
+                                    <NavDropdown.Item className={ `${styles.regularfont} mt-2  `}  >Help</NavDropdown.Item>
+                                    <NavDropdown.Item className={ `${styles.regularfont} mt-2  `} >Language</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="" className={styles.accountfont}>Manage</NavDropdown.Item>
-                                    <NavDropdown.Item href="" className={styles.regularfont}>Posts and Activity</NavDropdown.Item>
-                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}>Help</NavDropdown.Item>
-                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}>Job Posting Account</NavDropdown.Item>
+                                    <NavDropdown.Item className={styles.accountfont}>Manage</NavDropdown.Item>
+                                    <NavDropdown.Item className={styles.regularfont}>Posts and Activity</NavDropdown.Item>
+                                    <NavDropdown.Item className={ `${styles.regularfont} mt-2  `}>Help</NavDropdown.Item>
+                                    <NavDropdown.Item className={ `${styles.regularfont} mt-2  `}>Job Posting Account</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="" className={ `${styles.regularfont} mt-2  `}>Sign Out</NavDropdown.Item>
+                                    <NavDropdown.Item className={ `${styles.regularfont} mt-2  `} onClick={props.logout}>Sign Out</NavDropdown.Item>
                                 </NavDropdown>
                             </div>
                             <div className={styles.gridmenu}> 
