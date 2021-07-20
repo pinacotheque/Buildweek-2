@@ -1,17 +1,16 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Profile from './Components/Profile'
-import { useState, useEffect} from 'react'
-import LoginModal from './Components/Modals/LoginModal/LoginModal'
-import Navbar from './Components/Navbar/Navbar'
-import Footer from './Components/Footer/Footer'
-import { getProfile } from './Lib/fetch';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import PublicProfile from './Components/PublicProfile';
-import Homepage from './Components/Homepage';
+import "./App.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+import Profile from "./Components/Profile"
+import { useState, useEffect } from "react"
+import LoginModal from "./Components/Modals/LoginModal/LoginModal"
+import Navbar from "./Components/Navbar/Navbar"
+import Footer from "./Components/Footer/Footer"
+import { getProfile } from "./Lib/fetch"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import PublicProfile from "./Components/PublicProfile"
+import Homepage from "./Components/Homepage"
 
 function App() {
-
   const [loggedIn, setLoggedIn] = useState(false)
   const [myProfile, setMyProfile] = useState(null)
 
@@ -23,9 +22,9 @@ function App() {
   const close = () => setLoggedIn(true)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if(token) {
-      localStorage.setItem('token', token)
+    const token = localStorage.getItem("token")
+    if (token) {
+      localStorage.setItem("token", token)
       setLoggedIn(true)
     }
   }, [])
@@ -35,11 +34,14 @@ function App() {
   }, [loggedIn])
 
   const fetchProfile = async () => {
-    const result = await getProfile()
-    if(!result.error) {
-      setMyProfile(result.data)
+    const result = await fetch(
+      "http://localhost:3001/api/profiles/" + localStorage.getItem("myId")
+    )
+    if (!result.error) {
+      const data = await result.json()
+      setMyProfile(data)
     } else {
-      console.log('error with getting profile')
+      console.log("error with getting profile")
     }
   }
 
@@ -61,4 +63,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
