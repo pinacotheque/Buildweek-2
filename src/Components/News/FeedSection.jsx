@@ -52,9 +52,10 @@ const FeedSection = (props) => {
   }, [])
 
   const getAllPosts = async () => {
-    const result = await getPosts()
+    const result = await fetch('http://localhost:3001/api/posts/')
+    let allData = await result.json()
     if (!result.error) {
-      setPosts(result.data)
+      setPosts(allData)
     } else {
       console.log("Error with getting posts")
     }

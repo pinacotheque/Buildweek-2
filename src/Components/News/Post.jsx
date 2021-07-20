@@ -11,7 +11,7 @@ const Post = (props) => {
     const [stats, setStats] = useState({reactions: Math.floor(Math.random() * 1000), comments: Math.floor(Math.random() * 150), views: Math.floor(Math.random() * 15000)})
 
     const deletePost = async () => {
-        const result = await delPost(props._id)
+        const result = await fetch('http://localhost:3001/api/posts/' + props._id)
         if(!result.error) {
             console.log('deleted')
         } else {
