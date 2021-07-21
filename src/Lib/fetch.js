@@ -155,6 +155,9 @@ export const getPosts = async () => {
     return result
 }
 
+//***************************/
+//***************************/
+
 export const addPostImage = async (postId, image) => {
     const result = await fetchData(newFetchPost(postId, 'POST', image, true))
     return result
