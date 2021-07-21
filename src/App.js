@@ -12,7 +12,7 @@ import Homepage from "./Components/Homepage"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-  const [myProfile, setMyProfile] = useState(null)
+  const [myProfile, setMyProfile] = useState({})
 
   const logout = () => {
     localStorage.clear()
@@ -33,9 +33,15 @@ function App() {
     fetchProfile()
   }, [loggedIn])
 
+  useEffect(() => {
+    fetchProfile()
+  }, [])
+
+
   const fetchProfile = async () => {
+    let myId = localStorage.getItem("myId")
     const result = await fetch(
-      "http://localhost:3001/api/profiles/" + localStorage.getItem("myId")
+      "http://localhost:3001/api/profiles/" + myId
     )
     if (!result.error) {
       const data = await result.json()
@@ -49,7 +55,9 @@ function App() {
     <Router>
       {/* <LoginModal show={!loggedIn} close={close} refresh={fetchProfile} /> */}
       <Navbar profile={myProfile} logout={logout} />
-      <Route path="/me">
+      {console.log(myProfile, "my profile name")}
+      <Route path="/:myId">
+        {console.log(myProfile)}
         <Profile loggedIn={loggedIn} myProfile={myProfile} refresh={fetchProfile} />
       </Route>
       <Route path="/in/:id">

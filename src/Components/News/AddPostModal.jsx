@@ -27,17 +27,30 @@ const AddPostModal = (props) => {
     }
   }
 
-  const postP = async () => {
-    const response = await postPost(imageUrl ? {...post, image: imageUrl} : post)
-    let postId
-    if(!response.error) {
-      postId = response.data._id
-    } else {
-      console.log("error with posting experience")
+  const postP = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch('http://localhost:3001/api/posts', {
+      
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers: {
+        'Content-type': 'application/json',
+        }
+      })
+      if (response.ok){
+        setPost({
+          post: ''
+        })
+      } else {
+        console.log('error')
+     
+      }
+      
+    } catch (error) {
+      console.log('error', error)
     }
-    if(image && postId) {
-      await imageHandler(postId)
-    }
+
   }
 
   const putP = async () => {
