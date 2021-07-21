@@ -2,7 +2,7 @@ import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Profile from "./Components/Profile"
 import { useState, useEffect } from "react"
-import LoginModal from "./Components/Modals/LoginModal/LoginModal"
+// import LoginModal from "./Components/Modals/LoginModal/LoginModal"
 import Navbar from "./Components/Navbar/Navbar"
 import Footer from "./Components/Footer/Footer"
 import { getProfile } from "./Lib/fetch"
@@ -47,7 +47,7 @@ function App() {
 
   return (
     <Router>
-      <LoginModal show={!loggedIn} close={close} refresh={fetchProfile} />
+      {/* <LoginModal show={!loggedIn} close={close} refresh={fetchProfile} /> */}
       <Navbar profile={myProfile} logout={logout} />
       <Route path="/me">
         <Profile loggedIn={loggedIn} myProfile={myProfile} refresh={fetchProfile} />

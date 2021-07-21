@@ -15,7 +15,15 @@ const ProfileModalImg = (props) => {
       const formData = new FormData()
       formData.append('profile', image)
 
-      const result = await postProfilePicture(formData)
+      const result = await fetch('http://localhost:3001/api/profiles/' + localStorage.getItem('myId'),
+      {
+        headers: {
+         
+        },
+        method: 'POST',
+        body: JSON.stringify(profData)
+  
+      })postProfilePicture(formData)
 
       if(!result.error) {
         console.log('successfully updated profile picture')

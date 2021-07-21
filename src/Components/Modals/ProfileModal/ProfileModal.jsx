@@ -24,7 +24,17 @@ const ProfileModal = (props) => {
 
   const putProf = async (e) => {
     e.preventDefault()
-    const response = await putProfile(profData)
+  
+    const response = await  fetch('http://localhost:3001/api/profiles/' + localStorage.getItem('myId'),
+    {
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify(profData)
+
+    })
+
     if(!response.error) {
       props.refresh()
       props.closeFunc()
@@ -45,7 +55,8 @@ const ProfileModal = (props) => {
           <Form.Row>
             <Form.Group as={Col} controlId="name" className="mb-0">
               <Form.Label className={styles.labels}>First Name *</Form.Label>
-              <Form.Control type="text" placeholder="First Name" className={styles.inputBase} value={profData.name} onChange={(e) => changeData(e.target.id, e.target.value)} required/>
+              <Form.Control type="text" placeholder="First Name" className={styles.inputBase} value={profData.name}
+               onChange={(e) => changeData(e.target.id, e.target.value)} required/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="surname" className="mb-0">
