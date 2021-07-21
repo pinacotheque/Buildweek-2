@@ -41,7 +41,7 @@ const Experience = (props) => {
     fetchExperiences(props.id)
   }
 
-  return experiences?.length ? (
+  return (
     <CardBoilerplate
       add={props.public ? false : true}
       title="Experience"
@@ -69,7 +69,7 @@ const Experience = (props) => {
         />
       )}
     </CardBoilerplate>
-  ) : null
+  )
 }
 
 export default Experience

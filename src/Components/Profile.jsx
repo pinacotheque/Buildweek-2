@@ -32,7 +32,7 @@ function Profile(props) {
             />
           )}
           <SkillsEndorsements />
-          {props.myProfile && <Experience id={localStorage.getItem("myId")} />}
+          <Experience id={localStorage.getItem("myId")} />
           <InterestsCard />
           <EducationCard />
         </Col>
