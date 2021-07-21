@@ -24,7 +24,16 @@ const AboutModal = (props) => {
 
   const putAbout = async (e) => {
     e.preventDefault()
-    const response = await putProfile(profData)
+    const response = await fetch('http://localhost:3001/api/profiles/' + localStorage.getItem('myId'),
+    {
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify(profData)
+
+    })
+
     if(!response.error) {
       props.refresh()
       props.closeFunc()
