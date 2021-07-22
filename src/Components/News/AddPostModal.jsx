@@ -30,8 +30,7 @@ const AddPostModal = (props) => {
   const postP = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('http://localhost:3001/api/posts', {
-      
+      const response = await fetch('http://localhost:3001/api/posts/' + localStorage.getItem('myId') + '/new', {
       method: 'POST',
       body: JSON.stringify(post),
       headers: {
