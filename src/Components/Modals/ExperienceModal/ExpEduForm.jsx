@@ -85,7 +85,7 @@ const ExpEduForm = (props) => {
     }
     if(image) {
       const jsonFil = await result.json()
-      await postImage(jsonFil.experiences[jsonFil.experiences.length - 1]._id)
+      await postImage(result._id)
     }
     props.reload()
     props.closeFunc()
