@@ -2,17 +2,17 @@ import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Profile from "./Components/Profile"
 import { useState, useEffect } from "react"
-import LoginModal from "./Components/Modals/LoginModal/LoginModal"
 import Navbar from "./Components/Navbar/Navbar"
 import Footer from "./Components/Footer/Footer"
-import { getProfile } from "./Lib/fetch"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import PublicProfile from "./Components/PublicProfile"
 import Homepage from "./Components/Homepage"
+import LoginModal from "./Components/Modals/LoginModal/LoginModal"
+import RegisterPage from "./Components/RegisterPage/RegisterPage"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-  const [myProfile, setMyProfile] = useState(null)
+  const [myProfile, setMyProfile] = useState({})
 
   const logout = () => {
     localStorage.clear()
@@ -22,9 +22,8 @@ function App() {
   const close = () => setLoggedIn(true)
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    if (token) {
-      localStorage.setItem("token", token)
+    const id = localStorage.getItem("myId")
+    if (id) {
       setLoggedIn(true)
     }
   }, [])
@@ -33,10 +32,13 @@ function App() {
     fetchProfile()
   }, [loggedIn])
 
+  useEffect(() => {
+    fetchProfile()
+  }, [])
+
   const fetchProfile = async () => {
-    const result = await fetch(
-      "http://localhost:3001/api/profiles/" + localStorage.getItem("myId")
-    )
+    let myId = localStorage.getItem("myId")
+    const result = await fetch("http://localhost:3001/api/profiles/" + myId)
     if (!result.error) {
       const data = await result.json()
       setMyProfile(data)
@@ -49,15 +51,20 @@ function App() {
     <Router>
       <LoginModal show={!loggedIn} close={close} refresh={fetchProfile} />
       <Navbar profile={myProfile} logout={logout} />
-      <Route path="/me">
-        <Profile loggedIn={loggedIn} myProfile={myProfile} refresh={fetchProfile} />
-      </Route>
-      <Route path="/in/:id">
-        <PublicProfile profile={myProfile} />
-      </Route>
-      <Route exact path="/">
-        <Homepage profile={myProfile} />
-      </Route>
+      <Switch>
+        <Route path="/register">
+          <RegisterPage refresh={fetchProfile} />
+        </Route>
+        <Route path="/in/:id">
+          <PublicProfile profile={myProfile} />
+        </Route>
+        <Route path="/:myId">
+          <Profile loggedIn={loggedIn} myProfile={myProfile} refresh={fetchProfile} />
+        </Route>
+        <Route exact path="/">
+          <Homepage profile={myProfile} />
+        </Route>
+      </Switch>
       <Footer />
     </Router>
   )

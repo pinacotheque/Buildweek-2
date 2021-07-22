@@ -37,6 +37,8 @@ const fetchProfile = (endpoint='', method = "GET", body = null) => {
     return [finalUrl, endpoint.includes('picture') ? optionsPicture : optionsRegular]
 }
 
+
+
 const fetchExperience = (endpoint='', method = "GET", body = null, id="", picture=false) => {
     const url = `https://striveschool-api.herokuapp.com/api/profile/${id ? id : localStorage.getItem('myId')}/experiences/`
     const finalUrl = url + endpoint
@@ -83,6 +85,27 @@ const fetchPost = (endpoint='', method='GET', body=null, picture=false) => {
     }
     return [finalUrl, picture ? optionsPicture : options]
 }
+// ********************************************************
+const newFetchPost = (endpoint='', method='GET', body=null, picture=false) => {
+    const url = `https://localhost:3001/api/posts`
+    const finalUrl = url + endpoint
+  
+    const options = {
+      method: method,
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: body ? JSON.stringify(body) : null,
+    }
+
+    const optionsPicture = {
+        method: method,
+        body: body ? body : null,
+    }
+    return [finalUrl, picture ? optionsPicture : options]
+}
+// ********************************************************
+
 
 export const getProfile = async (id='me') => {
     const result = await fetchData(fetchProfile(id))
@@ -134,18 +157,25 @@ export const getPosts = async () => {
     return result
 }
 
+//***************************/
+//***************************/
+
 export const addPostImage = async (postId, image) => {
-    const result = await fetchData(fetchPost(postId, 'POST', image, true))
+    const result = await fetchData(newFetchPost(postId, 'POST', image, true))
     return result
 }
 
 export const postPost = async (post) => {
-    const result = await fetchData(fetchPost('', 'POST', post))
+    const result = await fetch('http://localhost:3001/api/posts/', {
+        headers: {
+            method: 'POST'
+        }
+    }) 
     return result
 }
 
 export const putPost = async (id, post) => {
-    const result = await fetchData(fetchPost(id, 'PUT', post))
+    const result = await fetchData(newFetchPost(id, 'PUT', post))
     return result
 }
 

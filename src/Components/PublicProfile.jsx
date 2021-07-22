@@ -17,12 +17,14 @@ function PublicProfile(props) {
 
   useEffect(() => {
     fetchProfile(match.params.id)
+    console.log(match.params.id)
   }, [match.params.id])
 
   const fetchProfile = async (id) => {
     const result = await fetch("http://localhost:3001/api/profiles/" + id)
     if (!result.error) {
       const data = await result.json()
+      console.log(data)
       setProfile(data)
     } else {
       console.log("error with getting profile")
