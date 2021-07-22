@@ -37,6 +37,8 @@ const fetchProfile = (endpoint='', method = "GET", body = null) => {
     return [finalUrl, endpoint.includes('picture') ? optionsPicture : optionsRegular]
 }
 
+
+
 const fetchExperience = (endpoint='', method = "GET", body = null, id="", picture=false) => {
     const url = `https://striveschool-api.herokuapp.com/api/profile/${id ? id : localStorage.getItem('myId')}/experiences/`
     const finalUrl = url + endpoint

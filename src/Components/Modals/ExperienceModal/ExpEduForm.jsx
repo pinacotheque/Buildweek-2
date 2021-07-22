@@ -30,9 +30,15 @@ const ExpEduForm = (props) => {
 
   const postImage = async (expId) => {
     const formData = new FormData()
-    formData.append('experience', image)
+    formData.append('picture', image)
 
-    const result = await addExpImage(expId, formData)
+    const result = await fetch(
+      "http://localhost:3001/api/experiences/" + localStorage.getItem("myId") + '/' + expId  + "/picture",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )    
     if(!result.error) {
       console.log('successful')
     } else {
@@ -40,16 +46,46 @@ const ExpEduForm = (props) => {
     }
   }
 
+  // const result = await  fetch(
+  //   'http://localhost:3001/api/experiences/' + localStorage.getItem('myId'),
+  // {
+  //   method: 'POST',
+  //   body: JSON.stringify(experience)
+  //   headers: {
+  //     'Content-Type' : 'application/json'
+  //   },
+
+  // })
+
+  
+  // if (result.ok) {
+  //   setExperience(experience)}
+
   const postExperience = async (e) => {
     e.preventDefault()
-    const result = await postExp(experience)
-    if(!result.error) {
+    const result = await  fetch(
+      'http://localhost:3001/api/experiences/' + localStorage.getItem('myId'),
+    {
+      method: 'POST',
+      body: JSON.stringify(experience),
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+  
+    })
+  
+    
+    if (result.ok) {
+      setExperience(experience)
+      console.log('result', result.json());
+      console.log('exp',experience);
       console.log('successfully posted experience')
     } else {
       console.log("error with posting experience")
     }
     if(image) {
-      await postImage(result.data._id)
+      const jsonFil = await result.json()
+      await postImage(result._id)
     }
     props.reload()
     props.closeFunc()
@@ -57,7 +93,30 @@ const ExpEduForm = (props) => {
 
   const putExperience = async (e) => {
     e.preventDefault()
-    const result = await putExp(props.edit._id, experience)
+
+
+    // const result = await fetch(
+    //   'http://localhost:3001/api/profiles/' + localStorage.getItem('myId') +,
+    // {
+    //   headers: {
+    //     'Content-Type' : 'application/json'
+    //   },
+    //   method: 'PUT',
+    //   body: JSON.stringify(profData)
+
+    // })
+
+
+
+    const result = await fetch('http://localhost:3001/api/experiences/' + localStorage.getItem('myId') +'/'+ props.edit._id,
+    {
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      method: 'PUT',
+      body: JSON.stringify(experience)
+
+    })   
     if(!result.error) {
       props.reload()
       props.closeFunc()
