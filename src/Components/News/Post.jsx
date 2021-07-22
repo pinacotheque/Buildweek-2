@@ -77,7 +77,7 @@ const Post = (props) => {
       )}
       <div className={styles.postFooterInfo}>
         <p>
-          {stats.reactions}
+          {props.likes.length} likes
           <span>{stats.comments} comments</span>
           <span>{stats.views} views</span>
         </p>

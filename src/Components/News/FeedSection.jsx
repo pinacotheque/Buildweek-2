@@ -9,7 +9,8 @@ import AddPostModal from "./AddPostModal"
 const FeedSection = (props) => {
   const [modal, setModal] = useState(false)
   const [sort, setSort] = useState("new")
-  const [sortedPosts, setSortedPosts] = useState(null)
+
+  const [query, setQuery] = useState("")
 
   const showModal = () => setModal(true)
   const hideModal = () => setModal(false)
@@ -29,32 +30,32 @@ const FeedSection = (props) => {
   useEffect(() => {
     if (posts !== null) {
       if (sort === "new") {
-        setSortedPosts([...posts].reverse())
+        setQuery("?sort=-createdAt")
       } else if (sort === "old") {
-        setSortedPosts([...posts])
+        setQuery("?sort=createdAt")
       } else if (sort === "pic") {
-        setSortedPosts([...posts].reverse().filter((post) => post.image))
+        setQuery("?sort=-createdAt&image")
       } else if (sort === "txt") {
-        setSortedPosts([...posts].reverse().filter((post) => !post.image))
+        setQuery("?sort=-createdAt&!image")
       } else if (sort === "my") {
-        setSortedPosts(
-          [...posts]
-            .reverse()
-            .filter((post) => post.user?._id === localStorage.getItem("myId"))
-        )
+        setQuery("?sort=-createdAt&user=" + localStorage.getItem("myId"))
       }
     }
   }, [posts, sort])
 
   useEffect(() => {
     getAllPosts()
-    autoFetchId = setInterval(getAllPosts, 10000)
+  }, [query])
+
+  useEffect(() => {
+    getAllPosts()
+    // autoFetchId = setInterval(() => getAllPosts(query), 10000)
   }, [])
 
   const getAllPosts = async () => {
-    const result = await fetch('http://localhost:3001/api/posts/')
-    let allData = await result.json()
-    if (!result.error) {
+    const result = await fetch("http://localhost:3001/api/posts" + query)
+    if (result.ok) {
+      const allData = await result.json()
       setPosts(allData)
     } else {
       console.log("Error with getting posts")
@@ -171,7 +172,7 @@ const FeedSection = (props) => {
         </Form.Control>
       </div>
       <Posts
-        posts={sortedPosts}
+        posts={posts}
         refresh={getAllPosts}
         edit={(post) => {
           setEditPost(post)
@@ -188,17 +189,15 @@ const Posts = (props) => {
   return (
     <>
       {props.posts &&
-        props.posts
-          .slice(0, 30)
-          .map((post) => (
-            <Post
-              key={post._id}
-              {...post}
-              refresh={props.refresh}
-              edit={(post) => props.edit(post)}
-              post={post}
-            />
-          ))}
+        props.posts.map((post) => (
+          <Post
+            key={post._id}
+            {...post}
+            refresh={props.refresh}
+            edit={(post) => props.edit(post)}
+            post={post}
+          />
+        ))}
     </>
   )
 }

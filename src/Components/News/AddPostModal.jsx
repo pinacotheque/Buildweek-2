@@ -1,6 +1,5 @@
 import { Modal, Form } from "react-bootstrap"
 import { useState, useEffect } from "react"
-import { addPostImage, postPost, putPost } from "./../../Lib/fetch"
 
 const AddPostModal = (props) => {
   const [post, setPost] = useState({ text: "" })
@@ -14,15 +13,33 @@ const AddPostModal = (props) => {
   }, [props.edit])
 
   const imageHandler = async (id) => {
-    const formData = new FormData()
-    formData.append("post", image)
-
-    const result = await addPostImage(formData)
-
-    if (!result.error) {
-      console.log("successfully updated profile picture")
+    if (imageUrl) {
+      const result = await fetch("http://localhost:3001/api/posts/" + id, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ image: imageUrl }),
+      })
+      if (result.ok) {
+        console.log("successfully updated profile picture")
+      } else {
+        console.log("error with updating post picture")
+      }
     } else {
-      console.log("error with updating post picture")
+      const formData = new FormData()
+      formData.append("post", image)
+
+      const result = await fetch("http://localhost:3001/api/posts/" + id, {
+        method: "POST",
+        body: formData,
+      })
+
+      if (result.ok) {
+        console.log("successfully updated profile picture")
+      } else {
+        console.log("error with updating post picture")
+      }
     }
   }
 
@@ -43,6 +60,10 @@ const AddPostModal = (props) => {
         setPost({
           post: "",
         })
+        if (image || imageUrl) {
+          const id = await response.json()
+          await imageHandler(id)
+        }
       } else {
         console.log("error")
       }
@@ -64,7 +85,7 @@ const AddPostModal = (props) => {
     } else {
       console.log("error with posting experience")
     }
-    if (image) {
+    if (image || imageUrl) {
       await imageHandler(props.edit._id)
     }
   }
@@ -76,6 +97,10 @@ const AddPostModal = (props) => {
     } else {
       await postP(e)
     }
+    setImageUrl(null)
+    setImage(null)
+    setPost({ text: "" })
+
     props.close()
     props.refresh()
   }

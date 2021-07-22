@@ -32,7 +32,16 @@ const Experience = (props) => {
   }
 
   const delExperience = async (id) => {
-    const response = await delExp(id)
+    const response = await fetch(
+      "http://localhost:3001/api/experiences/" + localStorage.getItem("myId") + "/" + id,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "DELETE",
+      }
+    )
+
     if (!response.error) {
       console.log("strange")
     } else {
