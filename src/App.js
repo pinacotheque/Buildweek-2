@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import PublicProfile from "./Components/PublicProfile"
 import Homepage from "./Components/Homepage"
 import LoginModal from "./Components/Modals/LoginModal/LoginModal"
+import RegisterPage from "./Components/RegisterPage/RegisterPage"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -51,6 +52,9 @@ function App() {
       <LoginModal show={!loggedIn} close={close} refresh={fetchProfile} />
       <Navbar profile={myProfile} logout={logout} />
       <Switch>
+        <Route path="/register">
+          <RegisterPage refresh={fetchProfile} />
+        </Route>
         <Route path="/in/:id">
           <PublicProfile profile={myProfile} />
         </Route>
