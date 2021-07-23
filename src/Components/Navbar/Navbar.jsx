@@ -76,7 +76,7 @@ const NavBar = (props) => {
                             </NavLink>
                             <div className={styles.dropmenu}>
                                 <Link to='/me'>
-                                    {console.log(props.profile)}
+                                  
                                     <img src={props.profile?.image} className={styles.dropmenuImg} alt="" />
                                 </Link>
                                 <NavDropdown left title="Me" className={ `${styles.meTitle} p-0 `}  id="basic-nav-dropdown"  >
