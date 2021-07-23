@@ -2,15 +2,19 @@ import styles from "./News.module.css"
 import IconBtn from "../infoCards/Common/IconBtn"
 import { postAgo, isEdited } from "./../../Lib/dates"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Comments from "../Comments/Comments"
+import { Row, Col } from "react-bootstrap"
+import CardBoilerplate from "../infoCards/Common/CardBoilerplate"
+import { BACKEND_URL } from "../../env.js"
 
 const Post = (props) => {
-  const [stats, setStats] = useState({
-  })
+  const [like, setlike] = useState(props.likes.includes(localStorage.getItem("myId")))
+  const [comments, setComments] = useState(null)
+  const [showComments, setShowComments] = useState(false)
 
   const deletePost = async () => {
-    const result = await fetch("http://localhost:3001/api/posts/" + props._id, {
+    const result = await fetch(BACKEND_URL + "/posts/" + props._id, {
       method: "DELETE",
     })
     if (!result.error) {
@@ -27,7 +31,7 @@ const Post = (props) => {
 
   const likePost = async () => {
     const result = await fetch(
-      "http://localhost:3001/api/posts/" + props._id + "/" + localStorage.getItem("myId"),
+      BACKEND_URL + "/posts/" + props._id + "/" + localStorage.getItem("myId"),
       {
         method: "POST",
       }
@@ -42,7 +46,7 @@ const Post = (props) => {
 
   const unlikePost = async () => {
     const result = await fetch(
-      "http://localhost:3001/api/posts/" + props._id + "/" + localStorage.getItem("myId"),
+      BACKEND_URL + "/posts/" + props._id + "/" + localStorage.getItem("myId"),
       {
         method: "DELETE",
       }
@@ -56,27 +60,23 @@ const Post = (props) => {
   }
 
   const getComments = async () => {
-    const result = await fetch(
-      "http://localhost:3001/api/posts/" + props._id + "/" + localStorage.getItem("myId"),
-      {
-        method: "GET",
-      }
-    )
+    const result = await fetch(BACKEND_URL + "/posts/" + props._id + "/comment")
     if (result.ok) {
-      setreview(true)
+      const data = await result.json()
+      setComments(data)
     } else {
       console.log("Error with like the post")
     }
     props.refresh()
   }
 
+  useEffect(() => {
+    getComments()
+  }, [])
 
-// ********** states
-
-  const [like, setlike] = useState(props.likes.includes(localStorage.getItem("myId")))
-
-  const [comments, setcomments] = useState(null)
-  const [review, setreview] = useState(null)
+  const showComms = () => {
+    setShowComments(!showComments)
+  }
 
   return (
     <div className={styles.postBase}>
@@ -129,8 +129,8 @@ const Post = (props) => {
       <div className={styles.postFooterInfo}>
         <p>
           {/* **** likes render ***** */}
-          {props.likes.length} likes
-         <span>{props.likes.length} comments</span>
+          {props.likes?.length} likes
+          <span>{comments?.length} comments</span>
         </p>
       </div>
       <div className={styles.postFooterBtns}>
@@ -168,32 +168,32 @@ const Post = (props) => {
             </>
           )}
         </button>
-        
+
         {/*********  COMMENT *********/}
-        <button
-          onClick= {()=> setcomments(true)}
-          className={styles.footerBtn}>
+        <button onClick={showComms} className={styles.footerBtn}>
           <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          data-supported-dps="24x24"
-          fill="currentColor"
-          class="mercado-match"
-          width="24"
-          height="24"
-          focusable="false">
-          <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
-        </svg>
-         Comment 
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            data-supported-dps="24x24"
+            fill="currentColor"
+            class="mercado-match"
+            width="24"
+            height="24"
+            focusable="false">
+            <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
+          </svg>
+          Comment
         </button>
 
         <FooterBtn share text="Share" />
         <FooterBtn send text="Send" />
       </div>
-      {
-        comments && 
-      <Comments image={props.user.image} name={props.user.name} />
-      }
+      {showComments && (
+        <CardBoilerplate noMargin>
+          <AddComment profile={props.profile} id={props._id} refresh={getComments} />
+          {comments && comments.map((comm) => <Comments comm={comm} />)}
+        </CardBoilerplate>
+      )}
     </div>
   )
 }
@@ -229,5 +229,54 @@ const FooterBtn = (props) => {
       ) : null}
       {props.text}
     </button>
+  )
+}
+
+const AddComment = (props) => {
+  const [comment, setComment] = useState("")
+
+  const submitComment = async (e) => {
+    if (e.key === "Enter") {
+      await postComment()
+      props.refresh()
+    }
+  }
+
+  const postComment = async () => {
+    const result = await fetch(BACKEND_URL + "/posts/" + props.id + "/comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comment: comment, user: localStorage.getItem("myId") }),
+    })
+    if (result.ok) {
+      setComment("")
+      console.log("posted comment")
+    } else {
+      console.log("Error with comment posting")
+    }
+  }
+
+  return (
+    <Row style={{ alignItems: "center" }}>
+      <Col className="d-flex align-items-center">
+        <img
+          src={props.profile?.image}
+          className={styles.ppputin}
+          style={{ marginLeft: "0px", width: "50px", height: "50px" }}
+          alt=""
+        />
+        <input
+          type="text"
+          placeholder="Add a comment..."
+          className={styles.inputField}
+          style={{ height: "40px" }}
+          value={comment}
+          onInput={(e) => setComment(e.target.value)}
+          onKeyDown={(e) => submitComment(e)}
+        />
+      </Col>
+    </Row>
   )
 }

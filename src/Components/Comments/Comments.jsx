@@ -1,43 +1,32 @@
-import CardBoilerplate from "../infoCards/Common/CardBoilerplate"
 import { Row, Col } from "react-bootstrap"
 import styles from "./Comments.module.css"
 import { useState } from "react"
 
-
-
 const Comments = (props) => {
+  return (
+    <Row style={{ marginTop: "15px" }}>
+      <Col className="d-flex ">
+        <img src={props.comm?.user?.image} className={styles.ppputin} alt="" />
 
-    return(
-    
-    <CardBoilerplate noMargin>
-            <Row style={{ alignItems: "center" }}>
-              <Col className="d-flex">
-                <img src={props.image} className={styles.ppputin} alt="" />
-                <input
-                  type="text"
-                  placeholder="Add a comment..."
-                  className={styles.inputField}
-                  
-                />
-              </Col>
-            </Row>
-
-            {/* {props.usercomments &&  */}
-            
-            <Row style={{ marginTop: "35px" }}>
-            <Col className="d-flex ">
-                <img src={props.image} className={styles.ppputin} alt="" />
-                
-            <div style={{ width: "100%", height:"100%",borderRadius: "10px", backgroundColor: "#F2F2F2"} }>
-
-            <div style= {{fontSize: "13px", fontWeight:"700", paddingLeft: "10px", paddingTop: "5px" }}>{props.name} </div>
-           
-            </div> 
-              </Col>
-            </Row>
-            
-    </CardBoilerplate>
-    
-    )
-} 
+        <div
+          className="p-2 px-3"
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "10px",
+            backgroundColor: "#F2F2F2",
+          }}>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "600",
+            }}>
+            {props.comm?.user.name}{" "}
+          </div>
+          <div style={{ fontSize: "14px" }}>{props.comm?.comment}</div>
+        </div>
+      </Col>
+    </Row>
+  )
+}
 export default Comments

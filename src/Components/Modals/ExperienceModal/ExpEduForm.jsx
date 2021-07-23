@@ -5,7 +5,7 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox"
 import styles from "./ExpEduForm.module.css"
 
 import { useState } from "react"
-import { postExp, putExp, addExpImage, putExpImage } from "../../../Lib/fetch"
+import { BACKEND_URL } from "../../../env.js"
 
 const ExpEduForm = (props) => {
   const [image, setImage] = useState(null)
@@ -30,7 +30,8 @@ const ExpEduForm = (props) => {
     formData.append("picture", image)
 
     const result = await fetch(
-      "http://localhost:3001/api/experiences/" +
+      BACKEND_URL +
+        "/experiences/" +
         localStorage.getItem("myId") +
         "/" +
         expId +
@@ -47,24 +48,10 @@ const ExpEduForm = (props) => {
     }
   }
 
-  // const result = await  fetch(
-  //   'http://localhost:3001/api/experiences/' + localStorage.getItem('myId'),
-  // {
-  //   method: 'POST',
-  //   body: JSON.stringify(experience)
-  //   headers: {
-  //     'Content-Type' : 'application/json'
-  //   },
-
-  // })
-
-  // if (result.ok) {
-  //   setExperience(experience)}
-
   const postExperience = async (e) => {
     e.preventDefault()
     const result = await fetch(
-      "http://localhost:3001/api/experiences/" + localStorage.getItem("myId"),
+      BACKEND_URL + "/experiences/" + localStorage.getItem("myId"),
       {
         method: "POST",
         body: JSON.stringify(experience),
@@ -90,22 +77,8 @@ const ExpEduForm = (props) => {
   const putExperience = async (e) => {
     e.preventDefault()
 
-    // const result = await fetch(
-    //   'http://localhost:3001/api/profiles/' + localStorage.getItem('myId') +,
-    // {
-    //   headers: {
-    //     'Content-Type' : 'application/json'
-    //   },
-    //   method: 'PUT',
-    //   body: JSON.stringify(profData)
-
-    // })
-
     const result = await fetch(
-      "http://localhost:3001/api/experiences/" +
-        localStorage.getItem("myId") +
-        "/" +
-        props.edit._id,
+      BACKEND_URL + "/experiences/" + localStorage.getItem("myId") + "/" + props.edit._id,
       {
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +87,7 @@ const ExpEduForm = (props) => {
         body: JSON.stringify(experience),
       }
     )
-    if (!result.error) {
+    if (result.ok) {
       props.reload()
       props.closeFunc()
     } else {

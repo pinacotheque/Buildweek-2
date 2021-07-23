@@ -1,7 +1,8 @@
-import { Container, Form, Row, Col } from "react-bootstrap"
+import { Form, Row, Container, Col } from "react-bootstrap"
 import styles from "./RegisterPage.module.css"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
+import { BACKEND_URL } from "../../env.js"
 
 const RegisterPage = (props) => {
   const [profData, setProfData] = useState({
@@ -24,7 +25,7 @@ const RegisterPage = (props) => {
   const postProf = async (e) => {
     e.preventDefault()
 
-    const response = await fetch("http://localhost:3001/api/profiles/", {
+    const response = await fetch(BACKEND_URL + "/profiles/", {
       headers: {
         "Content-Type": "application/json",
       },

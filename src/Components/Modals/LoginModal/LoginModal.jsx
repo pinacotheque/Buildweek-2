@@ -1,6 +1,7 @@
 import { Modal, Button, Form } from "react-bootstrap"
 import { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
+import { BACKEND_URL } from "../../../env.js"
 
 const LoginModal = (props) => {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -8,7 +9,7 @@ const LoginModal = (props) => {
   const [selectedUser, setSelectedUser] = useState(null)
 
   const getAllUsers = async () => {
-    const response = await fetch("http://localhost:3001/api/profiles")
+    const response = await fetch(BACKEND_URL + "/profiles")
     if (response.ok) {
       const data = await response.json()
       setUsers(data)

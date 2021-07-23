@@ -1,5 +1,6 @@
 import { Modal, Form } from "react-bootstrap"
 import { useState, useEffect } from "react"
+import { BACKEND_URL } from "../../env.js"
 
 const AddPostModal = (props) => {
   const [post, setPost] = useState({ text: "" })
@@ -14,7 +15,7 @@ const AddPostModal = (props) => {
 
   const imageHandler = async (id) => {
     if (imageUrl) {
-      const result = await fetch("http://localhost:3001/api/posts/" + id, {
+      const result = await fetch(BACKEND_URL + "/posts/" + id, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +31,7 @@ const AddPostModal = (props) => {
       const formData = new FormData()
       formData.append("post", image)
 
-      const result = await fetch("http://localhost:3001/api/posts/" + id, {
+      const result = await fetch(BACKEND_URL + "/posts/" + id, {
         method: "POST",
         body: formData,
       })
@@ -47,7 +48,7 @@ const AddPostModal = (props) => {
     e.preventDefault()
     try {
       const response = await fetch(
-        "http://localhost:3001/api/posts/" + localStorage.getItem("myId") + "/new",
+        BACKEND_URL + "/posts/" + localStorage.getItem("myId") + "/new",
         {
           method: "POST",
           body: JSON.stringify(post),
@@ -73,7 +74,7 @@ const AddPostModal = (props) => {
   }
 
   const putP = async () => {
-    const response = await fetch("http://localhost:3001/api/posts/" + props.edit._id, {
+    const response = await fetch(BACKEND_URL + "/posts/" + props.edit._id, {
       method: "PUT",
       body: JSON.stringify(...[post]),
       headers: {

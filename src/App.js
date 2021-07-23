@@ -9,6 +9,7 @@ import PublicProfile from "./Components/PublicProfile"
 import Homepage from "./Components/Homepage"
 import LoginModal from "./Components/Modals/LoginModal/LoginModal"
 import RegisterPage from "./Components/RegisterPage/RegisterPage"
+import { BACKEND_URL } from "./env.js"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -38,7 +39,7 @@ function App() {
 
   const fetchProfile = async () => {
     let myId = localStorage.getItem("myId")
-    const result = await fetch("http://localhost:3001/api/profiles/" + myId)
+    const result = await fetch(BACKEND_URL + "/profiles/" + myId)
     if (!result.error) {
       const data = await result.json()
       setMyProfile(data)
