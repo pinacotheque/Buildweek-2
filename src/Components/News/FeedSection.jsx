@@ -150,6 +150,7 @@ const FeedSection = (props) => {
           </div>
         </Row>
       </CardBoilerplate>
+      
       <AddPostModal
         show={modal}
         close={hideModal}
