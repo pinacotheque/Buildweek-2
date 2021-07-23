@@ -1,18 +1,17 @@
 import styles from "./Navbar.module.css"
 import { useState, useEffect } from "react"
-import { getProfiles } from "../../Lib/fetch"
 import { Link } from "react-router-dom"
+import { BACKEND_URL } from "../../env.js"
 
 const SearchField = (props) => {
   const [people, setPeople] = useState(null)
-  const [showSearch, setShowSearch] = useState(false)
 
   useEffect(() => {
     fetchPeople()
   }, [])
 
   const fetchPeople = async () => {
-    const result = await fetch("http://localhost:3001/api/profiles")
+    const result = await fetch(BACKEND_URL + "/profiles")
     if (!result.error) {
       const data = await result.json()
       setPeople(data)

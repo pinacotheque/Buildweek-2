@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap"
 import IconBtn from "./Common/IconBtn"
 import { useState, useEffect } from "react"
 import ExpEduForm from "../Modals/ExperienceModal/ExpEduForm"
-import { delExp, getExp } from "../../Lib/fetch"
+import { BACKEND_URL } from "../../env.js"
 
 const Experience = (props) => {
   const [show, setShow] = useState(false)
@@ -22,7 +22,7 @@ const Experience = (props) => {
   }, [props.id])
 
   const fetchExperiences = async (id = props.id) => {
-    const response = await fetch("http://localhost:3001/api/experiences/" + id)
+    const response = await fetch(BACKEND_URL + "/experiences/" + id)
     if (!response.error) {
       const data = await response.json()
       setExperiences(data.experiences)
@@ -33,7 +33,7 @@ const Experience = (props) => {
 
   const delExperience = async (id) => {
     const response = await fetch(
-      "http://localhost:3001/api/experiences/" + localStorage.getItem("myId") + "/" + id,
+      BACKEND_URL + "/experiences/" + localStorage.getItem("myId") + "/" + id,
       {
         headers: {
           "Content-Type": "application/json",

@@ -2,7 +2,7 @@ import styles from "./News.module.css"
 import { Row, Col, Form } from "react-bootstrap"
 import CardBoilerplate from "../infoCards/Common/CardBoilerplate"
 import Post from "./Post"
-import { getPosts } from "../../Lib/fetch"
+import { BACKEND_URL } from "../../env.js"
 import { useState, useEffect } from "react"
 import AddPostModal from "./AddPostModal"
 
@@ -53,7 +53,7 @@ const FeedSection = (props) => {
   }, [])
 
   const getAllPosts = async () => {
-    const result = await fetch("http://localhost:3001/api/posts" + query)
+    const result = await fetch(BACKEND_URL + "/posts" + query)
     if (result.ok) {
       const allData = await result.json()
       setPosts(allData)
@@ -150,6 +150,7 @@ const FeedSection = (props) => {
           </div>
         </Row>
       </CardBoilerplate>
+
       <AddPostModal
         show={modal}
         close={hideModal}
@@ -172,6 +173,7 @@ const FeedSection = (props) => {
         </Form.Control>
       </div>
       <Posts
+        profile={props.profile}
         posts={posts}
         refresh={getAllPosts}
         edit={(post) => {
@@ -192,6 +194,7 @@ const Posts = (props) => {
         props.posts.map((post) => (
           <Post
             key={post._id}
+            profile={props.profile}
             {...post}
             refresh={props.refresh}
             edit={(post) => props.edit(post)}

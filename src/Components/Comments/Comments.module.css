@@ -1,0 +1,191 @@
+.iconBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    border-radius: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 8px;
+}
+
+.ppputin{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.newsboiler{
+    align-items: center;
+}
+
+.inputField{
+    width: 100%;
+    height: 40px;
+    border-radius: 30px;
+    padding-left: 10px;
+    border-width: 1pt  ;
+    border-color: rgb(214, 211, 211);
+}
+
+.inputField:hover{
+    background-color: rgb(230, 230, 230);
+}
+.inputField:focus{
+    outline: 0;
+}
+
+.sendPhoto{
+    flex-direction: row;
+}
+
+.h6s{
+    align-self: center;
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+.couples{
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    flex-direction: row;
+    display: inline-flex;
+    align-items: baseline;
+}
+
+
+ /* post css starts here */
+ .postBase {
+     background-color: white;
+     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+     border-radius: 8px;
+     width: 100%;
+     margin-top: 10px;
+ }
+
+ .postHeader img {
+     height: 48px;
+     width: 48px;
+     border-radius: 24px;
+     margin-right: 8px;
+
+     object-fit: cover;
+     object-position: center;
+ }
+
+ .postHeader {
+     padding-top: 12px;
+     padding-left: 16px;
+     padding-right: 16px;
+     overflow: hidden;
+     margin-bottom: 8px;
+ }
+
+ .postHeader h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+    margin-bottom: 0;
+}
+
+.postHeader h5 span {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.postHeader h5 span:before, .postHeader p span:before, .postFooterInfo p span:before {
+    content: '\00B7';
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0 3px;
+}
+
+.postHeader p {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.postText {
+    margin: 0 16px;
+}
+
+.postText p {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.postImg {
+    width: 100%
+}
+
+.postImg img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.postFooterInfo {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: 16px;
+    margin-right: 16px;
+    border-bottom: 1px rgba(0, 0, 0, 0.08) solid;
+}
+
+.postFooterInfo p {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.footerBtn {
+    background-color: transparent;
+    border: none;
+    padding: 10px 8px 10px 8px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.footerBtn svg {
+    margin-right: 5px;
+}
+
+.postFooterBtns {
+    padding: 4px 8px 4px 8px;
+}
+
+.footerBtn:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+}
+
+.sortSelect {
+    width: auto;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    height: 16px;
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: -5px;
+    width: 92px;
+}
+
+.sortSelect:focus {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+hr {
+    width: 100%;
+    margin: 0;
+}   

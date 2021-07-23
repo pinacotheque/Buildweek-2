@@ -8,7 +8,7 @@ import About from "./infoCards/About"
 import SidePeopleBar from "./infoCards/SidePeopleBar/SidePeopleBar"
 import { useState, useEffect } from "react"
 import { useRouteMatch } from "react-router-dom"
-import { getProfile } from "./../Lib/fetch"
+import { BACKEND_URL } from "../env.js"
 
 function PublicProfile(props) {
   const [profile, setProfile] = useState(null)
@@ -21,7 +21,7 @@ function PublicProfile(props) {
   }, [match.params.id])
 
   const fetchProfile = async (id) => {
-    const result = await fetch("http://localhost:3001/api/profiles/" + id)
+    const result = await fetch(BACKEND_URL + "/profiles/" + id)
     if (!result.error) {
       const data = await result.json()
       console.log(data)

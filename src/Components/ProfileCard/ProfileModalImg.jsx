@@ -1,6 +1,6 @@
 import { Button, Modal } from "react-bootstrap"
-import { postProfilePicture, putProfile } from "../../Lib/fetch"
 import { useState, useEffect } from "react"
+import { BACKEND_URL } from "../../env.js"
 
 const ProfileModalImg = (props) => {
   const [image, setImage] = useState(null)
@@ -15,7 +15,7 @@ const ProfileModalImg = (props) => {
     formData.append("picture", image)
 
     const result = await fetch(
-      "http://localhost:3001/api/profiles/" + localStorage.getItem("myId") + "/picture",
+      BACKEND_URL + "/profiles/" + localStorage.getItem("myId") + "/picture",
       {
         method: "POST",
         body: formData,
@@ -32,7 +32,7 @@ const ProfileModalImg = (props) => {
   const imageUrlHandler = async () => {
     const data = { image: imageUrl }
     const result = await fetch(
-      "http://localhost:3001/api/profiles/" + localStorage.getItem("myId") + "/picture",
+      BACKEND_URL + "/profiles/" + localStorage.getItem("myId") + "/picture",
       {
         method: "POST",
         headers: {
