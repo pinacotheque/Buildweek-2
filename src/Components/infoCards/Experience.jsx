@@ -17,10 +17,6 @@ const Experience = (props) => {
     setEdit(null)
   }
 
-  useEffect(() => {
-    fetchExperiences(props.id ? props.id : "")
-  }, [props.id])
-
   const fetchExperiences = async (id = props.id) => {
     const response = await fetch(BACKEND_URL + "/experiences/" + id)
     if (!response.error) {
@@ -30,6 +26,19 @@ const Experience = (props) => {
       console.log("error with fetching experiences")
     }
   }
+
+  useEffect(() => {
+    const fetchExperiences = async (id = props.id) => {
+      const response = await fetch(BACKEND_URL + "/experiences/" + id)
+      if (!response.error) {
+        const data = await response.json()
+        setExperiences(data.experiences)
+      } else {
+        console.log("error with fetching experiences")
+      }
+    }
+    fetchExperiences(props.id ? props.id : "")
+  }, [props.id])
 
   const delExperience = async (id) => {
     const response = await fetch(

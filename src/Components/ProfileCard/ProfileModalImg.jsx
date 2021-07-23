@@ -8,7 +8,7 @@ const ProfileModalImg = (props) => {
 
   useEffect(() => {
     setImageUrl(props.edit)
-  }, [props.show])
+  }, [props.show, props.edit])
 
   const imageHandler = async () => {
     const formData = new FormData()

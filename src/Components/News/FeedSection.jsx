@@ -19,14 +19,6 @@ const FeedSection = (props) => {
 
   const [editPost, setEditPost] = useState(null)
 
-  let autoFetchId
-
-  useEffect(() => {
-    return () => {
-      clearInterval(autoFetchId)
-    }
-  }, [])
-
   useEffect(() => {
     if (posts !== null) {
       if (sort === "new") {
@@ -44,13 +36,17 @@ const FeedSection = (props) => {
   }, [posts, sort])
 
   useEffect(() => {
+    const getAllPosts = async () => {
+      const result = await fetch(BACKEND_URL + "/posts" + query)
+      if (result.ok) {
+        const allData = await result.json()
+        setPosts(allData)
+      } else {
+        console.log("Error with getting posts")
+      }
+    }
     getAllPosts()
   }, [query])
-
-  useEffect(() => {
-    getAllPosts()
-    // autoFetchId = setInterval(() => getAllPosts(query), 10000)
-  }, [])
 
   const getAllPosts = async () => {
     const result = await fetch(BACKEND_URL + "/posts" + query)

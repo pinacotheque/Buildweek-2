@@ -1,6 +1,5 @@
 import { Row, Col } from "react-bootstrap"
 import styles from "./Comments.module.css"
-import { useState } from "react"
 
 const Comments = (props) => {
   return (

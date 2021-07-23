@@ -3,8 +3,6 @@ import { BACKEND_URL } from "../../../env.js"
 import SidePeople from "./SidePeople"
 
 const SidePeopleBar = (props) => {
-  const cardLimits = [4, 10]
-
   const [people, setPeople] = useState([])
   const [peopleCards, setPeopleCards] = useState([])
 
@@ -13,24 +11,23 @@ const SidePeopleBar = (props) => {
   }, [props.refresh])
 
   useEffect(() => {
-    people.length >= cardLimits.reduce((a, b) => a + b) && randomPeople(cardLimits)
-  }, [people])
-
-  const randomPeople = (limits) => {
-    const nums = []
-    const random = limits.map((limit) => {
-      const randPeople = []
-      while (randPeople.length < limit) {
-        const randNum = Math.floor(Math.random() * people.length)
-        if (!nums.includes(randNum)) {
-          nums.push(randNum)
-          randPeople.push(people[randNum])
+    const cardLimits = [4, 10]
+    if (people.length >= cardLimits.reduce((a, b) => a + b)) {
+      const nums = []
+      const random = cardLimits.map((limit) => {
+        const randPeople = []
+        while (randPeople.length < limit) {
+          const randNum = Math.floor(Math.random() * people.length)
+          if (!nums.includes(randNum)) {
+            nums.push(randNum)
+            randPeople.push(people[randNum])
+          }
         }
-      }
-      return randPeople
-    })
-    setPeopleCards(random)
-  }
+        return randPeople
+      })
+      setPeopleCards(random)
+    }
+  }, [people])
 
   const fetchPeople = async () => {
     const response = await fetch(BACKEND_URL + "/profiles")
