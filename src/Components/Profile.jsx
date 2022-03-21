@@ -1,12 +1,12 @@
-import ProfileCard from "./ProfileCard/ProfileCard.jsx"
-import { Row, Col, Container } from "react-bootstrap"
-import InterestsCard from "./infoCards/InterestsCard.jsx"
-import EducationCard from "./infoCards/EducationCard.jsx"
-import SkillsEndorsements from "./infoCards/SkillsEndorsements.jsx"
-import Experience from "./infoCards/Experience.jsx"
-import About from "./infoCards/About.jsx"
-import SidePeopleBar from "./infoCards/SidePeopleBar/SidePeopleBar.jsx"
-import Dashboard from "./DashBoard/DashBoard.jsx"
+import ProfileCard from "./ProfileCard/ProfileCard";
+import { Row, Col, Container } from "react-bootstrap";
+import InterestsCard from "./infoCards/InterestsCard";
+import EducationCard from "./infoCards/EducationCard";
+import SkillsEndorsements from "./infoCards/SkillsEndorsements";
+import Experience from "./infoCards/Experience";
+import About from "./infoCards/About";
+import SidePeopleBar from "./infoCards/SidePeopleBar/SidePeopleBar";
+import Dashboard from "./DashBoard/DashBoard";
 
 function Profile(props) {
   return (
@@ -41,7 +41,7 @@ function Profile(props) {
         </Col>
       </Row>
     </Container>
-  )
+  );
 }
 
-export default Profile
+export default Profile;
