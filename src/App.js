@@ -62,12 +62,12 @@ function App() {
         <Route path="/:myId">
           <Profile loggedIn={loggedIn} myProfile={myProfile} refresh={fetchProfile} />
         </Route>
-        <Route exact path='/' render={(routerProps) => <Homepage profile={myProfile} />} />
 
         {/* <Route exact path="/">
           <Homepage profile={myProfile} />
         </Route> */}
       </Switch>
+      <Route exact path='/' render={(routerProps) => <Homepage profile={myProfile} />} />
       <Footer />
     </Router>
   )
